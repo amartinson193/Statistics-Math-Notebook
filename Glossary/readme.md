@@ -4,6 +4,47 @@
   <summary></summary>
 </details>
 
+## C
+
+<details>
+  <summary>Cumulative Distribution Function</summary>
+
+Source: DataCamp – Exploratory Data Analysis in Python 
+Source: empiricaldist package 
+
+**Notes** 
+
+For a given value of x, it tells you the probability of getting something <= x 
+
+Example computing the empirical cdf 
+```
+def ecdf(data): 
+
+    """Compute ECDF for a one-dimensional array of measurements.""" 
+
+    # Number of data points: n 
+    n = len(data) 
+    
+    # x-data for the ECDF: x 
+    x = np.sort(data) 
+    
+    # y-data for the ECDF: y 
+    y = np.arange(1, n + 1) / n 
+    
+    return x, y 
+```
+</details>
+
+
+## N
+
+<details>
+  <summary>Normalize</summary>
+ Source: DataCamp – Exploratory Data Analysis in Python 
+
+**Notes** 
+* This actually means to add up to 1 
+</details>
 
 
 ## P
@@ -22,14 +63,6 @@ Source: empiricaldist package
 
 </details>
 
-## N
 
-<details>
-  <summary>Normalize</summary>
- Source: DataCamp – Exploratory Data Analysis in Python 
-
-**Notes** 
-* This actually means to add up to 1 
-</details>
   
 
