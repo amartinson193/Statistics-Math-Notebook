@@ -1,39 +1,23 @@
-# A collapsible section with markdown
-<details>
-  <summary>Click to expand!</summary>
-  
-  ## Heading
-  1. A numbered
-  2. list
-     * With some
-     * Sub bullets
-</details>
-
-```
-Check it out
-
-```
-
+# Glossary
 
 <details>
-  <summary>**Probability Mass Function**</summary>
+  <summary>P</summary>
+
+<details>
+  <summary>Probability Mass Function</summary>
 
 Source: Datacamp – Exploratory Data Analysis 
-
 Source: empiricaldist package 
 
 **Notes** 
 
 * Introduced as another way of thinking about distributions 
-
 * It basically takes the percentage of the whole and plots it using something like matplotlib.pyplot.bar 
-
 * Advantageous because it shows all unique values as opposed to bins 
-
 * PDF is the continuous analog to the PMF 
 
 </details>
-
+</details>
 
  
 
