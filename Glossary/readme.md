@@ -35,6 +35,21 @@ def ecdf(data):
 ```
 </details>
 
+# K
+
+<details>
+  <summary>Kernel Density Function</summary>
+ Source: DataCamp – Exploratory Data Analysis in Python 
+
+**Notes** 
+
+This is used to get from a PMF to a PDF 
+
+PMF, CDF, KDE
+* Use CDFs for exploration
+* Use PMFs if there are a small number of unique values
+* Use KDE if there are a lot of values  
+</details>
 
 ## N
 
@@ -48,6 +63,14 @@ def ecdf(data):
 
 
 ## P
+
+<details>
+  <summary>Probability Distribution Function </summary>
+
+Source: DataCamp – Exploratory Data Analysis in Python 
+
+</details>
+
 <details>
   <summary>Probability Mass Function</summary>
 
