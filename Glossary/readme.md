@@ -15,21 +15,25 @@ Check it out
 ```
 
 
-Probability Mass Function 
+<details>
+  <summary>**Probability Mass Function**</summary>
 
 Source: Datacamp – Exploratory Data Analysis 
 
 Source: empiricaldist package 
 
-Notes 
+**Notes** 
 
-Introduced as another way of thinking about distributions 
+* Introduced as another way of thinking about distributions 
 
-It basically takes the percentage of the whole and plots it using something like matplotlib.pyplot.bar 
+* It basically takes the percentage of the whole and plots it using something like matplotlib.pyplot.bar 
 
-Advantageous because it shows all unique values as opposed to bins 
+* Advantageous because it shows all unique values as opposed to bins 
 
-PDF is the continuous analog to the PMF 
+* PDF is the continuous analog to the PMF 
+
+</details>
+
 
  
 
