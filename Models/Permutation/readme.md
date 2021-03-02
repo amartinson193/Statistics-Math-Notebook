@@ -10,7 +10,7 @@ A nonparametric approach to computing the p-value for any test statistic in just
 In almost all hypothesis testing scenarios, the null hypothesis can be interpreted as follows. 
 
 <div style="padding-left:15px;padding-right:15px;">
-$$H_0$$: Any pattern that has been witnessed in the sampled data is simply due to random chance.
+$`H_0`$: Any pattern that has been witnessed in the sampled data is simply due to random chance.
 </div>
 
 Permutation Tests depend completely on this single idea. If all patterns in the data really are simply due to random chance, then the null hypothesis is true. Further, random **re**-samples of the data should show similar lack of patterns. However, if the pattern in the data is *real*, then random **re**-samples of the data will show very different patterns from the original.
