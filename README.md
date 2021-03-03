@@ -5,4 +5,4 @@ Resources
 Blogs   
     
 <a href="./Models">Models</a>
-[Models section](/Models)
+[Models section](./Statistics-Book/Models)
