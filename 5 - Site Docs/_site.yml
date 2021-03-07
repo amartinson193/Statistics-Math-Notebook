@@ -32,6 +32,7 @@ navbar:
           href: ChiSquaredTests.html
         - text: "Permutation Tests"
           href: PermutationTests.html
-
+    - text: "Glossary"
+      href: Glossary.html
 
 output_dir: '.'
