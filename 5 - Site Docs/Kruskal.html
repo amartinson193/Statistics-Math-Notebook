@@ -13,6 +13,7 @@
 
 <title>Kruskal-Wallis Test</title>
 
+<script src="site_libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
@@ -339,6 +340,12 @@ $(document).ready(function () {
     </li>
   </ul>
 </li>
+<li>
+  <a href="Glossary.html">Glossary</a>
+</li>
+<li>
+  <a href="Articles.html">Articles</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -360,7 +367,7 @@ $(document).ready(function () {
 <p>The nonparametric equivalent to one-way <a href="ANOVA.html">ANOVA</a>.</p>
 <hr />
 <div id="kruskal-wallis-rank-sum-test" class="section level3 tabset tabset-fade tabset-pills">
-<h3>Kruskal-Wallis Rank Sum Test</h3>
+<h3 class="tabset tabset-fade tabset-pills">Kruskal-Wallis Rank Sum Test</h3>
 <div style="float:left;width:125px;" align="center">
 <p><img src="Images/QuantYQualXg3plus.png" width=58px;></p>
 </div>
@@ -378,7 +385,7 @@ $(document).ready(function () {
 \]</span> <span class="math display">\[
   H_a: \text{At least one sample&#39;s distribution is stochastically different.}
 \]</span></p>
-<p>However, according to the original authors, what the alternative to the Kruskal-Wallis test really is, &quot;is a tendency for observations in at least one of the populations to be larger (or smaller) than all the observations together, when paired randomly. In many cases, this is practically equivalent to the mean of at least one population differing from the others.&quot; Thus, it could also be appropriate to use the ANOVA style hypotheses</p>
+<p>However, according to the original authors, what the alternative to the Kruskal-Wallis test really is, “is a tendency for observations in at least one of the populations to be larger (or smaller) than all the observations together, when paired randomly. In many cases, this is practically equivalent to the mean of at least one population differing from the others.” Thus, it could also be appropriate to use the ANOVA style hypotheses</p>
 <p><span class="math display">\[
   H_0: \mu_1 = \mu_2 = \ldots = \mu
 \]</span> <span class="math display">\[
@@ -415,7 +422,8 @@ $(document).ready(function () {
 <p>In many cases it is of interest to perform a hypothesis test about whether or not several samples come from the same population.</p>
 <p>The Kruskal-Wallis Rank Sum Test allows for this by extending the idea behind the Wilcoxon Rank Sum Test to allow for more than two samples.</p>
 <p>The following explanation of how the test works comes mainly from the original 1952 article, <a href="http://www.jstor.org/stable/2280779?seq=1#page_scan_tab_contents">Use of Ranks in One-Criterion Variance Analysis, 1952</a>, but is expanded here for increased clarity.</p>
-<h4 id="calculating-the-test-statistic">Calculating the Test Statistic</h4>
+<div id="calculating-the-test-statistic" class="section level4">
+<h4>Calculating the Test Statistic</h4>
 <p>The following artificial data will be used to demonstrate how the Kruskal-Wallis Test statistic is calculated. (Taken from the original article.)</p>
 <div style="color:#a8a8a8;">
 <center>
@@ -550,6 +558,7 @@ $(document).ready(function () {
 <p>In the bottle-cap data, <span class="math inline">\(p = 0.059\)</span>, which represents the probability of <span class="math inline">\(H\)</span> being as extreme or more extreme than the observed value of 5.656, assuming the null hypothesis is true.</p>
 </div>
 <hr />
+</div>
 </div>
 </div>
 </div>

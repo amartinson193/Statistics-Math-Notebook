@@ -13,6 +13,7 @@
 
 <title>Chi-squared Tests</title>
 
+<script src="site_libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
@@ -340,6 +341,12 @@ $(document).ready(function () {
     </li>
   </ul>
 </li>
+<li>
+  <a href="Glossary.html">Glossary</a>
+</li>
+<li>
+  <a href="Articles.html">Articles</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -367,7 +374,7 @@ $(document).ready(function () {
 <p>Association testing for two qualitative variables with at least two levels to each variable.</p>
 <hr />
 <div id="chi-squared-test-of-independence" class="section level3 tabset tabset-pills tabset-fade">
-<h3>Chi-squared Test of Independence</h3>
+<h3 class="tabset tabset-pills tabset-fade">Chi-squared Test of Independence</h3>
 <table>
 <tr>
 <td style="vertical-align:top;width:20%;">
@@ -483,7 +490,7 @@ $(document).ready(function () {
 <p><img src="ChiSquaredTests_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>If the null hypothesis were true for the Titanic data, then we would expect to see roughly the same percentage of survival across all classes. In other words, if <strong>Class</strong> and <strong>Survival</strong> were independent, we would expect to see plots more like the theoretical ones depicted below.</p>
 <p><img src="ChiSquaredTests_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<p>The theoretical plot above depicts the expected counts for each <strong>Class</strong> and <strong>Survival</strong> combination. To see where these expected counts come from, note that there are a total of 2,201 passengers recorded for the Titanic data (the sum of all values in the table). Further, there are a total of <span class="math inline">\(122+203 = 325\)</span> passengers that were 1st class, <span class="math inline">\(167 + 118 = 285\)</span> passengers in 2nd class, <span class="math inline">\(528 + 178 = 706\)</span> passengers in 3rd class, and <span class="math inline">\(673 + 212 = 885\)</span> Crew members. Thus, we have the following percentage of each class of passenger. Note that these percentages were obtained by taking the row totals and dividing them by the &quot;total total&quot;.</p>
+<p>The theoretical plot above depicts the expected counts for each <strong>Class</strong> and <strong>Survival</strong> combination. To see where these expected counts come from, note that there are a total of 2,201 passengers recorded for the Titanic data (the sum of all values in the table). Further, there are a total of <span class="math inline">\(122+203 = 325\)</span> passengers that were 1st class, <span class="math inline">\(167 + 118 = 285\)</span> passengers in 2nd class, <span class="math inline">\(528 + 178 = 706\)</span> passengers in 3rd class, and <span class="math inline">\(673 + 212 = 885\)</span> Crew members. Thus, we have the following percentage of each class of passenger. Note that these percentages were obtained by taking the row totals and dividing them by the “total total”.</p>
 <div style="padding-left:25%; padding-right:35%;">
 <table>
 <thead>
@@ -512,7 +519,7 @@ $(document).ready(function () {
 </tbody>
 </table>
 </div>
-<p>Thus, if the null hypothesis is true, we would &quot;expect&quot; these percentages to remain consistent across both categories of <strong>Survival</strong>. Since there were <span class="math inline">\(122+167+528+673 = 1490\)</span> passengers that did not survive and <span class="math inline">\(203+118+178+212 =711\)</span> passengers that survived, we have the following expected counts. The counts under <strong>Survived</strong> were obtained by multiplying the number of passengers that survived, <span class="math inline">\(711\)</span> by each of the percentages for the different classes. The counts under <strong>Perished</strong> were obtained by multiplying the number of passengers that perished, <span class="math inline">\(1,490\)</span> by each of the percentages for the different classes.</p>
+<p>Thus, if the null hypothesis is true, we would “expect” these percentages to remain consistent across both categories of <strong>Survival</strong>. Since there were <span class="math inline">\(122+167+528+673 = 1490\)</span> passengers that did not survive and <span class="math inline">\(203+118+178+212 =711\)</span> passengers that survived, we have the following expected counts. The counts under <strong>Survived</strong> were obtained by multiplying the number of passengers that survived, <span class="math inline">\(711\)</span> by each of the percentages for the different classes. The counts under <strong>Perished</strong> were obtained by multiplying the number of passengers that perished, <span class="math inline">\(1,490\)</span> by each of the percentages for the different classes.</p>
 <div style="padding-left:20%; padding-right:30%;">
 <table>
 <thead>
@@ -617,7 +624,7 @@ $(document).ready(function () {
 <hr />
 </div>
 <div id="nonparametric-chi-squared-test" class="section level3 tabset tabset-pills tabset-fade">
-<h3>Nonparametric Chi-squared Test</h3>
+<h3 class="tabset tabset-pills tabset-fade">Nonparametric Chi-squared Test</h3>
 <table>
 <tr>
 <td style="vertical-align:top;width:20%;">
@@ -675,23 +682,23 @@ $(document).ready(function () {
 <tbody>
 <tr class="odd">
 <td align="left">1st</td>
-<td align="right">113</td>
-<td align="right">212</td>
+<td align="right">112</td>
+<td align="right">213</td>
 </tr>
 <tr class="even">
 <td align="left">2nd</td>
-<td align="right">86</td>
-<td align="right">199</td>
+<td align="right">87</td>
+<td align="right">198</td>
 </tr>
 <tr class="odd">
 <td align="left">3rd</td>
-<td align="right">243</td>
-<td align="right">463</td>
+<td align="right">246</td>
+<td align="right">460</td>
 </tr>
 <tr class="even">
 <td align="left">Crew</td>
-<td align="right">277</td>
-<td align="right">608</td>
+<td align="right">291</td>
+<td align="right">594</td>
 </tr>
 </tbody>
 </table>
@@ -701,7 +708,7 @@ $(document).ready(function () {
 <div style="padding-left:15px;">
 <p>For the made up data above, the Chi-squared Test of Independence gives the test statistic of</p>
 <div style="color:#EE7942;">
-<p><span class="math display">\[\chi^2 = 3.1953669\]</span></p>
+<p><span class="math display">\[\chi^2 = 1.9889645\]</span></p>
 </div>
 </div>
 <p><strong>Step 3</strong>: Repeat the process thousands of times, always keeping track of the <span class="math inline">\(\chi^2\)</span> value from each test.</p>

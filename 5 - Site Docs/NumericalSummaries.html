@@ -13,6 +13,7 @@
 
 <title>Numerical Summaries</title>
 
+<script src="site_libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
@@ -323,6 +324,12 @@ $(document).ready(function () {
     </li>
   </ul>
 </li>
+<li>
+  <a href="Glossary.html">Glossary</a>
+</li>
+<li>
+  <a href="Articles.html">Articles</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -350,7 +357,7 @@ $(document).ready(function () {
 <p>There are many ways to numerically summarize data. The fundamental idea is to describe the center, or most <em>probable</em> values of the data, as well as the spread, or the <em>possible</em> values of the data.</p>
 <hr />
 <div id="mean" class="section level3 tabset tabset-fade tabset-pills">
-<h3>Mean</h3>
+<h3 class="tabset tabset-fade tabset-pills">Mean</h3>
 <div style="float:left;width:150px;">
 <p><span class="math display">\[
   \bar{x} = \frac{\sum_{i=1}^n x_i}{n}
@@ -360,7 +367,7 @@ $(document).ready(function () {
 <div id="overview" class="section level4">
 <h4>Overview</h4>
 <div style="padding-left:150px;">
-<p>The &quot;balance point&quot; or &quot;center of mass&quot; of quantitative data. It is calculated by taking the numerical sum of the values divided by the number of values. Typically used in tandem with the standard deviation. Most appropriate for describing the most typical values for relatively normally distributed data. Influenced by outliers, so it is not appropriate for describing strongly skewed data.</p>
+<p>The “balance point” or “center of mass” of quantitative data. It is calculated by taking the numerical sum of the values divided by the number of values. Typically used in tandem with the standard deviation. Most appropriate for describing the most typical values for relatively normally distributed data. Influenced by outliers, so it is not appropriate for describing strongly skewed data.</p>
 </div>
 <hr />
 </div>
@@ -370,13 +377,13 @@ $(document).ready(function () {
 <p>To calculate a mean in R use the code:</p>
 <p><code>mean(object)</code></p>
 <ul>
-<li><code>object</code> must be a quantitative variable, what R calls a &quot;numeric vector.&quot;</li>
+<li><code>object</code> must be a quantitative variable, what R calls a “numeric vector.”</li>
 </ul>
 <p>If using <code>library(mosaic)</code> then,</p>
 <p><code>mean(object ~ group, data=NameOfData)</code></p>
 <ul>
-<li><code>object</code> is a quanitative variable, which R calls a &quot;numeric vector&quot;.</li>
-<li><code>group</code> is a qualitative variable, which R calls a &quot;character vector&quot;, &quot;factor&quot;, and sometimes a &quot;numeric vector&quot;.</li>
+<li><code>object</code> is a quanitative variable, which R calls a “numeric vector”.</li>
+<li><code>group</code> is a qualitative variable, which R calls a “character vector”, “factor”, and sometimes a “numeric vector”.</li>
 <li><code>NameOfData</code> is the name of the R dataset containing <code>object</code> and <code>group</code>.</li>
 </ul>
 <p><br></p>
@@ -384,9 +391,9 @@ $(document).ready(function () {
 <p>Hover your mouse over the example codes to learn more.</p>
 <a href="javascript:showhide('mean1')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> mean <span class="tooltiprtext">&quot;mean&quot; is an R function used to calculate the mean of data.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> airquality <span class="tooltiprtext">&quot;airquality&quot; is a dataset. Type &quot;View(airquality)&quot; in R to see it.</span> </span><span class="tooltipr"> $ <span class="tooltiprtext">The $ allows us to access any variable from the airquality dataset.</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">&quot;Temp&quot; is a quantitative variable (numeric vector) from the &quot;airquality&quot; dataset.</span> </span><span class="tooltipr"> )<br />
+<p><span class="tooltipr"> mean <span class="tooltiprtext">“mean” is an R function used to calculate the mean of data.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> airquality <span class="tooltiprtext">“airquality” is a dataset. Type “View(airquality)” in R to see it.</span> </span><span class="tooltipr"> $ <span class="tooltiprtext">The $ allows us to access any variable from the airquality dataset.</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">“Temp” is a quantitative variable (numeric vector) from the “airquality” dataset.</span> </span><span class="tooltipr"> )<br />
 <span class="tooltiprtext">Closing parenthsis for the mean function.</span> </span><span class="tooltipr">     <br />
-<span class="tooltiprtext">Press Enter to run the code if you have typed it in yourself. You can also click here to view the output.</span> </span><span class="tooltipr" style="float:right;">  ...  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<span class="tooltiprtext">Press Enter to run the code if you have typed it in yourself. You can also click here to view the output.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 </a>
 <div id="mean1" style="display:none;">
@@ -395,8 +402,8 @@ $(document).ready(function () {
 </div>
 <a href="javascript:showhide('mean2')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> library(mosaic) <span class="tooltiprtext">mosaic is an R Package that overlaods many R functions to improve their usefulness. The command: library(mosaic) loads the mosaic package.</span> </span><br><span class="tooltipr"> mean( <span class="tooltiprtext">&quot;mean&quot; is an R function used to calculate the mean.</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">Temp is a quantitative variable (numeric vector) from the airquality dataset.</span> </span><span class="tooltipr">   ~   <span class="tooltiprtext">  ~ is the tilde symbol. It is used to create a &quot;forumla&quot; in R. The quantitative variable is always on the left of the tilde. The grouping variable is on the right of the tilde.</span> </span><span class="tooltipr"> Month <span class="tooltiprtext">Month is a qualitative variable (technically a numeric vector) from the airquality dataset. May is 5, June is 6, and so on.</span> </span><span class="tooltipr"> ,  <span class="tooltiprtext">The comma allows us to specify optional commands to the &quot;mean&quot; function. The space after the comma is not required. It just looks nice.</span> </span><span class="tooltipr"> data=airquality <span class="tooltiprtext">data= is used to tell R to find the Temp and Month variables in the airquality dataset.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span> </span><span class="tooltipr">     <br />
-<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  ...  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<p><span class="tooltipr"> library(mosaic) <span class="tooltiprtext">mosaic is an R Package that overlaods many R functions to improve their usefulness. The command: library(mosaic) loads the mosaic package.</span> </span><br><span class="tooltipr"> mean( <span class="tooltiprtext">“mean” is an R function used to calculate the mean.</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">Temp is a quantitative variable (numeric vector) from the airquality dataset.</span> </span><span class="tooltipr">   ~   <span class="tooltiprtext">  ~ is the tilde symbol. It is used to create a “forumla” in R. The quantitative variable is always on the left of the tilde. The grouping variable is on the right of the tilde.</span> </span><span class="tooltipr"> Month <span class="tooltiprtext">Month is a qualitative variable (technically a numeric vector) from the airquality dataset. May is 5, June is 6, and so on.</span> </span><span class="tooltipr"> ,  <span class="tooltiprtext">The comma allows us to specify optional commands to the “mean” function. The space after the comma is not required. It just looks nice.</span> </span><span class="tooltipr"> data=airquality <span class="tooltiprtext">data= is used to tell R to find the Temp and Month variables in the airquality dataset.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span> </span><span class="tooltipr">     <br />
+<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 </a>
 <div id="mean2" style="display:none;">
@@ -411,20 +418,25 @@ $(document).ready(function () {
 <div id="explanation" class="section level4">
 <h4>Explanation</h4>
 <div style="padding-left:150px;">
-<p>The mathematical formula used to compute the mean of data is given by the formula to the left. Although the formula looks complicated, all it states is &quot;add all the data values up and divide by the total number of values.&quot; Read on to learn what all the symbols in the formula represent.</p>
-<h5 id="symbols-in-the-formula">Symbols in the Formula</h5>
+<p>The mathematical formula used to compute the mean of data is given by the formula to the left. Although the formula looks complicated, all it states is “add all the data values up and divide by the total number of values.” Read on to learn what all the symbols in the formula represent.</p>
+<div id="symbols-in-the-formula" class="section level5">
+<h5>Symbols in the Formula</h5>
 <ul>
-<li><p><span class="math inline">\(\bar{x}\)</span> is read &quot;x-bar&quot; and is the symbol typically used for the <strong>sample mean</strong>, the mean computed on a <em>sample</em> of data from a population.</p></li>
-<li><p><span class="math inline">\(\Sigma\)</span>, the capital Greek letter &quot;sigma,&quot; is the symbol used to imply &quot;add all of the data values up.&quot;</p></li>
-<li><p>The <span class="math inline">\(x_i\)</span>'s are the data values. The <span class="math inline">\(i\)</span> in the <span class="math inline">\(x_i\)</span> is stated to go from <span class="math inline">\(i=1\)</span> all the way up to <span class="math inline">\(n\)</span>. In other words, data value 1 is represented by <span class="math inline">\(x_1\)</span>, data value 2: <span class="math inline">\(x_2\)</span>, <span class="math inline">\(\ldots\)</span>, up through the last data value <span class="math inline">\(x_n\)</span>. In general, we just write <span class="math inline">\(x_i\)</span>.</p></li>
+<li><p><span class="math inline">\(\bar{x}\)</span> is read “x-bar” and is the symbol typically used for the <strong>sample mean</strong>, the mean computed on a <em>sample</em> of data from a population.</p></li>
+<li><p><span class="math inline">\(\Sigma\)</span>, the capital Greek letter “sigma,” is the symbol used to imply “add all of the data values up.”</p></li>
+<li><p>The <span class="math inline">\(x_i\)</span>’s are the data values. The <span class="math inline">\(i\)</span> in the <span class="math inline">\(x_i\)</span> is stated to go from <span class="math inline">\(i=1\)</span> all the way up to <span class="math inline">\(n\)</span>. In other words, data value 1 is represented by <span class="math inline">\(x_1\)</span>, data value 2: <span class="math inline">\(x_2\)</span>, <span class="math inline">\(\ldots\)</span>, up through the last data value <span class="math inline">\(x_n\)</span>. In general, we just write <span class="math inline">\(x_i\)</span>.</p></li>
 <li><p><span class="math inline">\(n\)</span> represents the sample size, or number of data values.</p></li>
 </ul>
-<h5 id="population-mean">Population Mean</h5>
+</div>
+<div id="population-mean" class="section level5">
+<h5>Population Mean</h5>
 <p>When <strong>all</strong> of the data from a population is available, the <strong>population mean</strong> is calculated instead of the sample mean. The mathematical formula for the <strong>population mean</strong> is the same as the formula for the sample mean, but is written with slightly different notation. <span class="math display">\[
   \mu = \frac{\sum_{i=1}^N x_i}{N}
-\]</span> Notice that the symbol for the population mean is <span class="math inline">\(\mu\)</span>, pronounced &quot;mew,&quot; another Greek letter. (Review your <a href="https://en.wikipedia.org/wiki/Greek_alphabet#Letters">Greek alphabet</a>.) The only other difference between the two formulas is that the sample mean uses a sample of data, denoted by <span class="math inline">\(n\)</span>, while the population mean uses all the population data, denoted by <span class="math inline">\(N\)</span>.</p>
-<h5 id="physicalinterpretation">Physical Interpretation</h5>
-<p>The mean is sometimes described as the &quot;balance point&quot; of the data. The following example will demonstrate.</p>
+\]</span> Notice that the symbol for the population mean is <span class="math inline">\(\mu\)</span>, pronounced “mew,” another Greek letter. (Review your <a href="https://en.wikipedia.org/wiki/Greek_alphabet#Letters">Greek alphabet</a>.) The only other difference between the two formulas is that the sample mean uses a sample of data, denoted by <span class="math inline">\(n\)</span>, while the population mean uses all the population data, denoted by <span class="math inline">\(N\)</span>.</p>
+</div>
+<div id="physicalinterpretation" class="section level5">
+<h5>Physical Interpretation</h5>
+<p>The mean is sometimes described as the “balance point” of the data. The following example will demonstrate.</p>
 <p>Say there are <span class="math inline">\(n=5\)</span> data points with the following values.</p>
 <ul>
 <li><span class="math inline">\(x_1 = 2\)</span></li>
@@ -435,11 +447,15 @@ $(document).ready(function () {
 </ul>
 <p>The sample mean is calculated as follows. <span class="math display">\[
   \bar{x} = \frac{\sum_{i=1}^n x_i}{n} = \frac{2 + 5 + 6 + 7 + 10}{5} = 6
-\]</span> If these values were plotted, and an &quot;infinitely thin bar&quot; connected the points, then the bar would &quot;balance&quot; at the mean (the triangle) as shown below.</p>
+\]</span> If these values were plotted, and an “infinitely thin bar” connected the points, then the bar would “balance” at the mean (the triangle) as shown below.</p>
 <p><img src="NumericalSummaries_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<h5 id="deviations">Middle of the Deviations</h5>
-<p>The above plot demonstrates that there are equal, but opposite, &quot;sums of deviations&quot; to either side of the mean. Note that a deviation is defined as the distance from the mean to a given point. Thus, <span class="math inline">\(x_1\)</span> has a deviation of -4 from the mean, <span class="math inline">\(x_2\)</span> a deviation of -1, <span class="math inline">\(x_3\)</span> a deviation of 0, <span class="math inline">\(x_4\)</span> a deviation of 1, and <span class="math inline">\(x_5\)</span> a deviation of 4. To the left there is a sum of deviations equal to -5 and on the right, a sum of deviations equal to 5. This can be verified to hold for any scenario.</p>
-<h5 id="outliers">Effect of Outliers</h5>
+</div>
+<div id="deviations" class="section level5">
+<h5>Middle of the Deviations</h5>
+<p>The above plot demonstrates that there are equal, but opposite, “sums of deviations” to either side of the mean. Note that a deviation is defined as the distance from the mean to a given point. Thus, <span class="math inline">\(x_1\)</span> has a deviation of -4 from the mean, <span class="math inline">\(x_2\)</span> a deviation of -1, <span class="math inline">\(x_3\)</span> a deviation of 0, <span class="math inline">\(x_4\)</span> a deviation of 1, and <span class="math inline">\(x_5\)</span> a deviation of 4. To the left there is a sum of deviations equal to -5 and on the right, a sum of deviations equal to 5. This can be verified to hold for any scenario.</p>
+</div>
+<div id="outliers" class="section level5">
+<h5>Effect of Outliers</h5>
 <p>The mean can be strongly influenced by <em>outliers</em>, points that deviate abnormally from the mean. This is shown below by changing <span class="math inline">\(x_5\)</span> to be 20. Note that the deviation of <span class="math inline">\(x_5\)</span> is 12, and the sum of deviations to the left of the mean (<span class="math inline">\(\bar{x}=8\)</span>) is <span class="math inline">\(-1 + -2 + -3 + -6 = -12\)</span>.</p>
 <p>The mean of the altered data</p>
 <ul>
@@ -452,11 +468,12 @@ $(document).ready(function () {
 <p>is now <span class="math inline">\(\bar{x} = \frac{\sum_{i=1}^n x_i}{n} = \frac{2 + 5 + 6 + 7 + 20}{5} = 8\)</span>.</p>
 <p><img src="NumericalSummaries_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>
+</div>
 <hr />
 </div>
 </div>
 <div id="median" class="section level3 tabset tabset-fade tabset-pills">
-<h3>Median</h3>
+<h3 class="tabset tabset-fade tabset-pills">Median</h3>
 <div style="float:left;width:150px;">
 <span class="math display">\[
   \frac{x_{(n/2)}+x_{(n/2+1)}}{2}
@@ -472,7 +489,7 @@ $(document).ready(function () {
 <div id="overview-1" class="section level4">
 <h4>Overview</h4>
 <div style="padding-left:150px;">
-<p>The &quot;middle data point,&quot; i.e., the 50<span class="math inline">\(^{th}\)</span> percentile. Half of the data is below the median and half is above the median. Typically used in tandem with the five-number summary to describe skewed data because it is not heavily influenced by outliers, i.e., it is <em>robust</em>. Can also be used with normally distributed data, but the mean and standard deviation are more useful measures in such cases.</p>
+<p>The “middle data point,” i.e., the 50<span class="math inline">\(^{th}\)</span> percentile. Half of the data is below the median and half is above the median. Typically used in tandem with the five-number summary to describe skewed data because it is not heavily influenced by outliers, i.e., it is <em>robust</em>. Can also be used with normally distributed data, but the mean and standard deviation are more useful measures in such cases.</p>
 </div>
 <hr />
 </div>
@@ -482,13 +499,13 @@ $(document).ready(function () {
 <p>To calculate a median in R use the code:</p>
 <p><code>median(object)</code></p>
 <ul>
-<li><code>object</code> must be a quantitative variable, what R calls a &quot;numeric vector.&quot;</li>
+<li><code>object</code> must be a quantitative variable, what R calls a “numeric vector.”</li>
 </ul>
 <p>If using <code>library(mosaic)</code> then,</p>
 <p><code>median(object ~ group, data=NameOfData)</code></p>
 <ul>
-<li><code>object</code> is a quanitative variable, which R calls a &quot;numeric vector&quot;.</li>
-<li><code>group</code> is a qualitative variable, which R calls a &quot;character vector&quot;, &quot;factor&quot;, and sometimes a &quot;numeric vector&quot;.</li>
+<li><code>object</code> is a quanitative variable, which R calls a “numeric vector”.</li>
+<li><code>group</code> is a qualitative variable, which R calls a “character vector”, “factor”, and sometimes a “numeric vector”.</li>
 <li><code>NameOfData</code> is the name of the R dataset containing <code>object</code> and <code>group</code>.</li>
 </ul>
 <p><br></p>
@@ -496,9 +513,9 @@ $(document).ready(function () {
 <p>Hover your mouse over the example codes to learn more.</p>
 <a href="javascript:showhide('median1')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> median <span class="tooltiprtext">&quot;median&quot; is an R function used to calculate the median of data.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> airquality <span class="tooltiprtext">&quot;airquality&quot; is a dataset. Type &quot;View(airquality)&quot; in R to see it.</span> </span><span class="tooltipr"> $ <span class="tooltiprtext">The $ allows us to access any variable from the airquality dataset.</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">&quot;Temp&quot; is a quantitative variable (numeric vector) from the &quot;airquality&quot; dataset.</span> </span><span class="tooltipr"> )<br />
+<p><span class="tooltipr"> median <span class="tooltiprtext">“median” is an R function used to calculate the median of data.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> airquality <span class="tooltiprtext">“airquality” is a dataset. Type “View(airquality)” in R to see it.</span> </span><span class="tooltipr"> $ <span class="tooltiprtext">The $ allows us to access any variable from the airquality dataset.</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">“Temp” is a quantitative variable (numeric vector) from the “airquality” dataset.</span> </span><span class="tooltipr"> )<br />
 <span class="tooltiprtext">Closing parenthsis for the median function.</span> </span><span class="tooltipr">     <br />
-<span class="tooltiprtext">Press Enter to run the code if you have typed it in yourself. You can also click here to view the output.</span> </span><span class="tooltipr" style="float:right;">  ...  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<span class="tooltiprtext">Press Enter to run the code if you have typed it in yourself. You can also click here to view the output.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 </a>
 <div id="median1" style="display:none;">
@@ -507,8 +524,8 @@ $(document).ready(function () {
 </div>
 <a href="javascript:showhide('median2')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> library(mosaic) <span class="tooltiprtext">mosaic is an R Package that overlaods many R functions to improve their usefulness. The command: library(mosaic) loads the mosaic package.</span> </span><br><span class="tooltipr"> median( <span class="tooltiprtext">&quot;median&quot; is an R function used to calculate the median</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">Temp is a quantitative variable (numeric vector) from the airquality dataset.</span> </span><span class="tooltipr">   ~   <span class="tooltiprtext">  ~ is the tilde symbol. It is used to create a &quot;forumla&quot; in R. The quantitative variable is always on the left of the tilde. The grouping variable is on the right of the tilde.</span> </span><span class="tooltipr"> Month <span class="tooltiprtext">Month is a qualitative variable (technically a numeric vector) from the airquality dataset. May is 5, June is 6, and so on.</span> </span><span class="tooltipr"> ,  <span class="tooltiprtext">The comma allows us to specify optional commands to the &quot;median&quot; function. The space after the comma is not required. It just looks nice.</span> </span><span class="tooltipr"> data=airquality <span class="tooltiprtext">data= is used to tell R to find the Temp and Month variables in the airquality dataset.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span> </span><span class="tooltipr">     <br />
-<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  ...  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<p><span class="tooltipr"> library(mosaic) <span class="tooltiprtext">mosaic is an R Package that overlaods many R functions to improve their usefulness. The command: library(mosaic) loads the mosaic package.</span> </span><br><span class="tooltipr"> median( <span class="tooltiprtext">“median” is an R function used to calculate the median</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">Temp is a quantitative variable (numeric vector) from the airquality dataset.</span> </span><span class="tooltipr">   ~   <span class="tooltiprtext">  ~ is the tilde symbol. It is used to create a “forumla” in R. The quantitative variable is always on the left of the tilde. The grouping variable is on the right of the tilde.</span> </span><span class="tooltipr"> Month <span class="tooltiprtext">Month is a qualitative variable (technically a numeric vector) from the airquality dataset. May is 5, June is 6, and so on.</span> </span><span class="tooltipr"> ,  <span class="tooltiprtext">The comma allows us to specify optional commands to the “median” function. The space after the comma is not required. It just looks nice.</span> </span><span class="tooltipr"> data=airquality <span class="tooltiprtext">data= is used to tell R to find the Temp and Month variables in the airquality dataset.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span> </span><span class="tooltipr">     <br />
+<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 </a>
 <div id="median2" style="display:none;">
@@ -524,13 +541,14 @@ $(document).ready(function () {
 <h4>Explanation</h4>
 <div style="padding-left:150px;">
 <p>The mathematical formula used to compute the median of data depends on whether <span class="math inline">\(n\)</span>, the number of data points in the sample, is even or odd.</p>
-<p>If <span class="math inline">\(n\)</span> is even, then there is no &quot;middle&quot; data point, so the middle two values are averaged. <span class="math display">\[
+<p>If <span class="math inline">\(n\)</span> is even, then there is no “middle” data point, so the middle two values are averaged. <span class="math display">\[
   \text{Median} = \frac{x_{(n/2)}+x_{(n/2+1)}}{2}
 \]</span></p>
 <p>If <span class="math inline">\(n\)</span> is odd, then the middle data point is the median. <span class="math display">\[
   \text{Median} = x_{((n+1)/2)}
 \]</span></p>
-<h5 id="symbols-in-the-formula-1">Symbols in the Formula</h5>
+<div id="symbols-in-the-formula-1" class="section level5">
+<h5>Symbols in the Formula</h5>
 <p>There is no generally accepted symbol for the median. Sometimes a capital <span class="math inline">\(M\)</span> or even lower-case <span class="math inline">\(m\)</span> is used, but generally the word median is just written out.</p>
 <ul>
 <li><p><span class="math inline">\(x_{(n/2)}\)</span> represents the data value that is in the <span class="math inline">\((n/2)^{th}\)</span> position in the ordered list of values. It only exists when <span class="math inline">\(n\)</span> is even.</p></li>
@@ -538,15 +556,19 @@ $(document).ready(function () {
 <li><p><span class="math inline">\(x_{((n+1)/2)}\)</span> represents the data value that is in the <span class="math inline">\(((n+1)/2)^{th}\)</span> position in the ordered list of values. It only exists when <span class="math inline">\(n\)</span> is odd.</p></li>
 <li><p><span class="math inline">\(n\)</span> represents the sample size, or number of data values in the sample.</p></li>
 </ul>
-<h5 id="population-median">Population Median</h5>
+</div>
+<div id="population-median" class="section level5">
+<h5>Population Median</h5>
 <p>When <strong>all</strong> of the data from a population is available, the <strong>population median</strong> is calculated by the above formulas with the slight change that <span class="math inline">\(N\)</span>, the total number of data values in the population, instead of <span class="math inline">\(n\)</span>, the number of values in the sample, is used.</p>
-<p>If <span class="math inline">\(N\)</span> is even, then there is no &quot;middle&quot; data point, so the middle two values are averaged. <span class="math display">\[
+<p>If <span class="math inline">\(N\)</span> is even, then there is no “middle” data point, so the middle two values are averaged. <span class="math display">\[
   \text{Median} = \frac{x_{(N/2)}+x_{(N/2+1)}}{2}
 \]</span></p>
 <p>If <span class="math inline">\(N\)</span> is odd, then the middle data point is the median. <span class="math display">\[
   \text{Median} = x_{((N+1)/2)}
 \]</span></p>
-<h5 id="physical-interpretation">Physical Interpretation</h5>
+</div>
+<div id="physical-interpretation" class="section level5">
+<h5>Physical Interpretation</h5>
 <p>The median is the <span class="math inline">\(50^{th}\)</span> percentile of the data.</p>
 <p>Say there are <span class="math inline">\(n=5\)</span> data points in the sample with the following values.</p>
 <ul>
@@ -560,7 +582,8 @@ $(document).ready(function () {
   \text{Median} = x_{((n+1)/2)} = x_{((5+1)/2)} = x_{(3)} = 6
 \]</span> When these values are plotted it is clear that exactly 50% of the data (excluding the median) is to either side of the median.</p>
 <p><img src="NumericalSummaries_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
-<h6 id="second-example">Second Example</h6>
+<div id="second-example" class="section level6">
+<h6>Second Example</h6>
 <p>Say there was a sixth value in the data set equal to 10, so that <span class="math inline">\(n=6\)</span> is even.</p>
 <ul>
 <li><span class="math inline">\(x_1 = 2\)</span></li>
@@ -574,15 +597,19 @@ $(document).ready(function () {
   \text{Median} = \frac{x_{(n/2)}+x_{(n/2+1)}}{2} = \frac{x_{(6/2)}+x_{(6/2+1)}}{2} = \frac{x_{(3)}+x_{(4)}}{2} = \frac{6+7}{2} = 6.5
 \]</span></p>
 <p><img src="NumericalSummaries_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<h5 id="effect-of-outliers">Effect of Outliers</h5>
+</div>
+</div>
+<div id="effect-of-outliers" class="section level5">
+<h5>Effect of Outliers</h5>
 <p>The median is not greatly influenced by <em>outliers</em>. It is said to be <em>robust</em>. This is shown below by changing <span class="math inline">\(x_6\)</span> to be 20, which does not change the value of the median.</p>
 <p><img src="NumericalSummaries_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
 </div>
 <hr />
 </div>
 </div>
 <div id="mode" class="section level3 tabset tabset-fade tabset-pills">
-<h3>Mode</h3>
+<h3 class="tabset tabset-fade tabset-pills">Mode</h3>
 <div style="float:left;width:150px;">
 <center>
 <p><strong>Most</strong></p>
@@ -611,9 +638,9 @@ $(document).ready(function () {
 <p>Hover your mouse over the example codes to learn more.</p>
 <a href="javascript:showhide('table1')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> table <span class="tooltiprtext">&quot;table&quot; is an R function used to count how many times each observation occurs in a list of data.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> airquality <span class="tooltiprtext">&quot;airquality&quot; is a dataset. Type &quot;View(airquality)&quot; in R to see it.</span> </span><span class="tooltipr"> $ <span class="tooltiprtext">The $ allows us to access any variable from the airquality dataset.</span> </span><span class="tooltipr"> Month <span class="tooltiprtext">&quot;Month&quot; is a qualitative variable (technically a numeric vector) from the &quot;airquality&quot; dataset that contains repeated values.</span> </span><span class="tooltipr"> )<br />
+<p><span class="tooltipr"> table <span class="tooltiprtext">“table” is an R function used to count how many times each observation occurs in a list of data.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> airquality <span class="tooltiprtext">“airquality” is a dataset. Type “View(airquality)” in R to see it.</span> </span><span class="tooltipr"> $ <span class="tooltiprtext">The $ allows us to access any variable from the airquality dataset.</span> </span><span class="tooltipr"> Month <span class="tooltiprtext">“Month” is a qualitative variable (technically a numeric vector) from the “airquality” dataset that contains repeated values.</span> </span><span class="tooltipr"> )<br />
 <span class="tooltiprtext">Closing parenthsis for the function.</span> </span><span class="tooltipr">     <br />
-<span class="tooltiprtext">Press Enter to run the code if you have typed it in yourself. You can also click here to view the output.</span> </span><span class="tooltipr" style="float:right;">  ...  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<span class="tooltiprtext">Press Enter to run the code if you have typed it in yourself. You can also click here to view the output.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 </a>
 <div id="table1" style="display:none;">
@@ -627,7 +654,7 @@ $(document).ready(function () {
 </div>
 </div>
 <div id="minimum" class="section level3 tabset tabset-fade tabset-pills">
-<h3>Minimum</h3>
+<h3 class="tabset tabset-fade tabset-pills">Minimum</h3>
 <div style="float:left;width:150px;">
 <p><span class="math display">\[
   x_{(1)}
@@ -647,13 +674,13 @@ $(document).ready(function () {
 <p>To calculate a minimum in R use the code:</p>
 <p><code>min(object)</code></p>
 <ul>
-<li><code>object</code> must be a quantitative variable, what R calls a &quot;numeric vector.&quot;</li>
+<li><code>object</code> must be a quantitative variable, what R calls a “numeric vector.”</li>
 </ul>
 <p>If using <code>library(mosaic)</code> then,</p>
 <p><code>min(object ~ group, data=NameOfData)</code></p>
 <ul>
-<li><code>object</code> is a quanitative variable, which R calls a &quot;numeric vector&quot;.</li>
-<li><code>group</code> is a qualitative variable, which R calls a &quot;character vector&quot;, &quot;factor&quot;, and sometimes a &quot;numeric vector&quot;.</li>
+<li><code>object</code> is a quanitative variable, which R calls a “numeric vector”.</li>
+<li><code>group</code> is a qualitative variable, which R calls a “character vector”, “factor”, and sometimes a “numeric vector”.</li>
 <li><code>NameOfData</code> is the name of the R dataset containing <code>object</code> and <code>group</code>.</li>
 </ul>
 <p><br></p>
@@ -661,9 +688,9 @@ $(document).ready(function () {
 <p>Hover your mouse over the example codes to learn more.</p>
 <a href="javascript:showhide('min1')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> min <span class="tooltiprtext">&quot;min&quot; is an R function used to calculate the minimum of data.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> airquality <span class="tooltiprtext">&quot;airquality&quot; is a dataset. Type &quot;View(airquality)&quot; in R to see it.</span> </span><span class="tooltipr"> $ <span class="tooltiprtext">The $ allows us to access any variable from the airquality dataset.</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">&quot;Temp&quot; is a quantitative variable (numeric vector) from the &quot;airquality&quot; dataset.</span> </span><span class="tooltipr"> )<br />
+<p><span class="tooltipr"> min <span class="tooltiprtext">“min” is an R function used to calculate the minimum of data.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> airquality <span class="tooltiprtext">“airquality” is a dataset. Type “View(airquality)” in R to see it.</span> </span><span class="tooltipr"> $ <span class="tooltiprtext">The $ allows us to access any variable from the airquality dataset.</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">“Temp” is a quantitative variable (numeric vector) from the “airquality” dataset.</span> </span><span class="tooltipr"> )<br />
 <span class="tooltiprtext">Closing parenthsis for the function.</span> </span><span class="tooltipr">     <br />
-<span class="tooltiprtext">Press Enter to run the code if you have typed it in yourself. You can also click here to view the output.</span> </span><span class="tooltipr" style="float:right;">  ...  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<span class="tooltiprtext">Press Enter to run the code if you have typed it in yourself. You can also click here to view the output.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 </a>
 <div id="min1" style="display:none;">
@@ -672,8 +699,8 @@ $(document).ready(function () {
 </div>
 <a href="javascript:showhide('min2')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> library(mosaic) <span class="tooltiprtext">mosaic is an R Package that overlaods many R functions to improve their usefulness. The command: library(mosaic) loads the mosaic package.</span> </span><br><span class="tooltipr"> min( <span class="tooltiprtext">&quot;min&quot; is an R function used to calculate the minimum</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">Temp is a quantitative variable (numeric vector) from the airquality dataset.</span> </span><span class="tooltipr">   ~   <span class="tooltiprtext">  ~ is the tilde symbol. It is used to create a &quot;forumla&quot; in R. The quantitative variable is always on the left of the tilde. The grouping variable is on the right of the tilde.</span> </span><span class="tooltipr"> Month <span class="tooltiprtext">Month is a qualitative variable (technically a numeric vector) from the airquality dataset. May is 5, June is 6, and so on.</span> </span><span class="tooltipr"> ,  <span class="tooltiprtext">The comma allows us to specify optional commands to the &quot;min&quot; function. The space after the comma is not required. It just looks nice.</span> </span><span class="tooltipr"> data=airquality <span class="tooltiprtext">data= is used to tell R to find the Temp and Month variables in the airquality dataset.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span> </span><span class="tooltipr">     <br />
-<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  ...  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<p><span class="tooltipr"> library(mosaic) <span class="tooltiprtext">mosaic is an R Package that overlaods many R functions to improve their usefulness. The command: library(mosaic) loads the mosaic package.</span> </span><br><span class="tooltipr"> min( <span class="tooltiprtext">“min” is an R function used to calculate the minimum</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">Temp is a quantitative variable (numeric vector) from the airquality dataset.</span> </span><span class="tooltipr">   ~   <span class="tooltiprtext">  ~ is the tilde symbol. It is used to create a “forumla” in R. The quantitative variable is always on the left of the tilde. The grouping variable is on the right of the tilde.</span> </span><span class="tooltipr"> Month <span class="tooltiprtext">Month is a qualitative variable (technically a numeric vector) from the airquality dataset. May is 5, June is 6, and so on.</span> </span><span class="tooltipr"> ,  <span class="tooltiprtext">The comma allows us to specify optional commands to the “min” function. The space after the comma is not required. It just looks nice.</span> </span><span class="tooltipr"> data=airquality <span class="tooltiprtext">data= is used to tell R to find the Temp and Month variables in the airquality dataset.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span> </span><span class="tooltipr">     <br />
+<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 </a>
 <div id="min2" style="display:none;">
@@ -687,7 +714,7 @@ $(document).ready(function () {
 </div>
 </div>
 <div id="maximum" class="section level3 tabset tabset-fade tabset-pills">
-<h3>Maximum</h3>
+<h3 class="tabset tabset-fade tabset-pills">Maximum</h3>
 <div style="float:left;width:150px;">
 <p><span class="math display">\[
   x_{(n)}
@@ -707,13 +734,13 @@ $(document).ready(function () {
 <p>To calculate a maximum in R use the code:</p>
 <p><code>max(object)</code></p>
 <ul>
-<li><code>object</code> must be a quantitative variable, what R calls a &quot;numeric vector.&quot;</li>
+<li><code>object</code> must be a quantitative variable, what R calls a “numeric vector.”</li>
 </ul>
 <p>If using <code>library(mosaic)</code> then,</p>
 <p><code>max(object ~ group, data=NameOfData)</code></p>
 <ul>
-<li><code>object</code> is a quanitative variable, which R calls a &quot;numeric vector&quot;.</li>
-<li><code>group</code> is a qualitative variable, which R calls a &quot;character vector&quot;, &quot;factor&quot;, and sometimes a &quot;numeric vector&quot;.</li>
+<li><code>object</code> is a quanitative variable, which R calls a “numeric vector”.</li>
+<li><code>group</code> is a qualitative variable, which R calls a “character vector”, “factor”, and sometimes a “numeric vector”.</li>
 <li><code>NameOfData</code> is the name of the R dataset containing <code>object</code> and <code>group</code>.</li>
 </ul>
 <p><br></p>
@@ -721,9 +748,9 @@ $(document).ready(function () {
 <p>Hover your mouse over the example codes to learn more.</p>
 <a href="javascript:showhide('max1')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> max <span class="tooltiprtext">&quot;max&quot; is an R function used to calculate the maximum of data.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> airquality <span class="tooltiprtext">&quot;airquality&quot; is a dataset. Type &quot;View(airquality)&quot; in R to see it.</span> </span><span class="tooltipr"> $ <span class="tooltiprtext">The $ allows us to access any variable from the airquality dataset.</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">&quot;Temp&quot; is a quantitative variable (numeric vector) from the &quot;airquality&quot; dataset.</span> </span><span class="tooltipr"> )<br />
+<p><span class="tooltipr"> max <span class="tooltiprtext">“max” is an R function used to calculate the maximum of data.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> airquality <span class="tooltiprtext">“airquality” is a dataset. Type “View(airquality)” in R to see it.</span> </span><span class="tooltipr"> $ <span class="tooltiprtext">The $ allows us to access any variable from the airquality dataset.</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">“Temp” is a quantitative variable (numeric vector) from the “airquality” dataset.</span> </span><span class="tooltipr"> )<br />
 <span class="tooltiprtext">Closing parenthsis for the function.</span> </span><span class="tooltipr">     <br />
-<span class="tooltiprtext">Press Enter to run the code if you have typed it in yourself. You can also click here to view the output.</span> </span><span class="tooltipr" style="float:right;">  ...  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<span class="tooltiprtext">Press Enter to run the code if you have typed it in yourself. You can also click here to view the output.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 </a>
 <div id="max1" style="display:none;">
@@ -732,8 +759,8 @@ $(document).ready(function () {
 </div>
 <a href="javascript:showhide('max2')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> library(mosaic) <span class="tooltiprtext">mosaic is an R Package that overlaods many R functions to improve their usefulness. The command: library(mosaic) loads the mosaic package.</span> </span><br><span class="tooltipr"> max( <span class="tooltiprtext">&quot;max&quot; is an R function used to calculate the maximum</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">Temp is a quantitative variable (numeric vector) from the airquality dataset.</span> </span><span class="tooltipr">   ~   <span class="tooltiprtext">  ~ is the tilde symbol. It is used to create a &quot;forumla&quot; in R. The quantitative variable is always on the left of the tilde. The grouping variable is on the right of the tilde.</span> </span><span class="tooltipr"> Month <span class="tooltiprtext">Month is a qualitative variable (technically a numeric vector) from the airquality dataset. May is 5, June is 6, and so on.</span> </span><span class="tooltipr"> ,  <span class="tooltiprtext">The comma allows us to specify optional commands to the &quot;max&quot; function. The space after the comma is not required. It just looks nice.</span> </span><span class="tooltipr"> data=airquality <span class="tooltiprtext">data= is used to tell R to find the Temp and Month variables in the airquality dataset.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span> </span><span class="tooltipr">     <br />
-<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  ...  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<p><span class="tooltipr"> library(mosaic) <span class="tooltiprtext">mosaic is an R Package that overlaods many R functions to improve their usefulness. The command: library(mosaic) loads the mosaic package.</span> </span><br><span class="tooltipr"> max( <span class="tooltiprtext">“max” is an R function used to calculate the maximum</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">Temp is a quantitative variable (numeric vector) from the airquality dataset.</span> </span><span class="tooltipr">   ~   <span class="tooltiprtext">  ~ is the tilde symbol. It is used to create a “forumla” in R. The quantitative variable is always on the left of the tilde. The grouping variable is on the right of the tilde.</span> </span><span class="tooltipr"> Month <span class="tooltiprtext">Month is a qualitative variable (technically a numeric vector) from the airquality dataset. May is 5, June is 6, and so on.</span> </span><span class="tooltipr"> ,  <span class="tooltiprtext">The comma allows us to specify optional commands to the “max” function. The space after the comma is not required. It just looks nice.</span> </span><span class="tooltipr"> data=airquality <span class="tooltiprtext">data= is used to tell R to find the Temp and Month variables in the airquality dataset.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span> </span><span class="tooltipr">     <br />
+<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 </a>
 <div id="max2" style="display:none;">
@@ -747,7 +774,7 @@ $(document).ready(function () {
 </div>
 </div>
 <div id="quartiles-five-number-summary" class="section level3 tabset tabset-fade tabset-pills">
-<h3>Quartiles (five-number summary)</h3>
+<h3 class="tabset tabset-fade tabset-pills">Quartiles (five-number summary)</h3>
 <div style="float:left;width:150px;">
 <center>
 <p><strong>25</strong><span class="math inline">\(^{th}\)</span>, <strong>50</strong><span class="math inline">\(^{th}\)</span>, <strong>75</strong><span class="math inline">\(^{th}\)</span></p>
@@ -759,7 +786,7 @@ $(document).ready(function () {
 <div id="overview-5" class="section level4">
 <h4>Overview</h4>
 <div style="padding-left:150px;">
-<p>Good for describing the spread of data, typically for skewed distributions. There are four quartiles. They make up the <strong><em>five-number summary</em></strong> when combined with the minimum. The second quartile is the median (50<span class="math inline">\(^{th}\)</span> percentile) and the fourth quartile is the maximum (100<span class="math inline">\(^{th}\)</span> percentile). The first quartile (<span class="math inline">\(Q_1\)</span> or lower quartile) and third quartile (<span class="math inline">\(Q_3\)</span> or upper quartile) show the spread of the &quot;middle 50%&quot; of the data, which is often called the <strong><em>interquartile range</em></strong>. Comparing the interquartile range to the minimum and maximum shows how the possible values spread out around the more probable values.</p>
+<p>Good for describing the spread of data, typically for skewed distributions. There are four quartiles. They make up the <strong><em>five-number summary</em></strong> when combined with the minimum. The second quartile is the median (50<span class="math inline">\(^{th}\)</span> percentile) and the fourth quartile is the maximum (100<span class="math inline">\(^{th}\)</span> percentile). The first quartile (<span class="math inline">\(Q_1\)</span> or lower quartile) and third quartile (<span class="math inline">\(Q_3\)</span> or upper quartile) show the spread of the “middle 50%” of the data, which is often called the <strong><em>interquartile range</em></strong>. Comparing the interquartile range to the minimum and maximum shows how the possible values spread out around the more probable values.</p>
 </div>
 <hr />
 </div>
@@ -769,13 +796,13 @@ $(document).ready(function () {
 <p>To calculate a five-number summary (and mean) in R use the code:</p>
 <p><code>summary(object)</code></p>
 <ul>
-<li><code>object</code> must be a quantitative variable, what R calls a &quot;numeric vector.&quot;</li>
+<li><code>object</code> must be a quantitative variable, what R calls a “numeric vector.”</li>
 </ul>
 <p>If using <code>library(mosaic)</code> then,</p>
 <p><code>favstats(object ~ group, data=NameOfData)</code></p>
 <ul>
-<li><code>object</code> is a quanitative variable, which R calls a &quot;numeric vector&quot;.</li>
-<li><code>group</code> is a qualitative variable, which R calls a &quot;character vector&quot;, &quot;factor&quot;, and sometimes a &quot;numeric vector&quot;.</li>
+<li><code>object</code> is a quanitative variable, which R calls a “numeric vector”.</li>
+<li><code>group</code> is a qualitative variable, which R calls a “character vector”, “factor”, and sometimes a “numeric vector”.</li>
 <li><code>NameOfData</code> is the name of the R dataset containing <code>object</code> and <code>group</code>.</li>
 </ul>
 <p>Note: <code>favstats()</code> provides the five-number summary along with the mean, standard deviation, sample size (n), and number of missing values.</p>
@@ -784,9 +811,9 @@ $(document).ready(function () {
 <p>Hover your mouse over the example codes to learn more.</p>
 <a href="javascript:showhide('summary1')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> summary <span class="tooltiprtext">&quot;summary&quot; is an R function used to calculate the five-number summary (and mean) of data.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> airquality <span class="tooltiprtext">&quot;airquality&quot; is a dataset. Type &quot;View(airquality)&quot; in R to see it.</span> </span><span class="tooltipr"> $ <span class="tooltiprtext">The $ allows us to access any variable from the airquality dataset.</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">&quot;Temp&quot; is a quantitative variable (numeric vector) from the &quot;airquality&quot; dataset.</span> </span><span class="tooltipr"> )<br />
+<p><span class="tooltipr"> summary <span class="tooltiprtext">“summary” is an R function used to calculate the five-number summary (and mean) of data.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> airquality <span class="tooltiprtext">“airquality” is a dataset. Type “View(airquality)” in R to see it.</span> </span><span class="tooltipr"> $ <span class="tooltiprtext">The $ allows us to access any variable from the airquality dataset.</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">“Temp” is a quantitative variable (numeric vector) from the “airquality” dataset.</span> </span><span class="tooltipr"> )<br />
 <span class="tooltiprtext">Closing parenthsis for the function.</span> </span><span class="tooltipr">     <br />
-<span class="tooltiprtext">Press Enter to run the code if you have typed it in yourself. You can also click here to view the output.</span> </span><span class="tooltipr" style="float:right;">  ...  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<span class="tooltiprtext">Press Enter to run the code if you have typed it in yourself. You can also click here to view the output.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 </a>
 <div id="summary1" style="display:none;">
@@ -796,12 +823,12 @@ $(document).ready(function () {
 </div>
 <a href="javascript:showhide('summary2')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> library(mosaic) <span class="tooltiprtext">mosaic is an R Package that provides new R functions to improve the usefulness of R. The command: library(mosaic) loads the mosaic package.</span> </span><br><span class="tooltipr"> favstats( <span class="tooltiprtext">&quot;favstats&quot; is a library(mosaic) function used to calculate the five-number summary, mean, standard deviation, sample size, and number of missing values all at once.</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">Temp is a quantitative variable (numeric vector) from the airquality dataset.</span> </span><span class="tooltipr">   ~   <span class="tooltiprtext">  ~ is the tilde symbol. It is used to create a &quot;forumla&quot; in R. The quantitative variable is always on the left of the tilde. The grouping variable is on the right of the tilde.</span> </span><span class="tooltipr"> Month <span class="tooltiprtext">Month is a qualitative variable (technically a numeric vector) from the airquality dataset. May is 5, June is 6, and so on.</span> </span><span class="tooltipr"> ,  <span class="tooltiprtext">The comma allows us to specify optional commands to the &quot;favstats&quot; function. The space after the comma is not required. It just looks nice.</span> </span><span class="tooltipr"> data=airquality <span class="tooltiprtext">data= is used to tell R to find the Temp and Month variables in the airquality dataset.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span> </span><span class="tooltipr">     <br />
-<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  ...  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<p><span class="tooltipr"> library(mosaic) <span class="tooltiprtext">mosaic is an R Package that provides new R functions to improve the usefulness of R. The command: library(mosaic) loads the mosaic package.</span> </span><br><span class="tooltipr"> favstats( <span class="tooltiprtext">“favstats” is a library(mosaic) function used to calculate the five-number summary, mean, standard deviation, sample size, and number of missing values all at once.</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">Temp is a quantitative variable (numeric vector) from the airquality dataset.</span> </span><span class="tooltipr">   ~   <span class="tooltiprtext">  ~ is the tilde symbol. It is used to create a “forumla” in R. The quantitative variable is always on the left of the tilde. The grouping variable is on the right of the tilde.</span> </span><span class="tooltipr"> Month <span class="tooltiprtext">Month is a qualitative variable (technically a numeric vector) from the airquality dataset. May is 5, June is 6, and so on.</span> </span><span class="tooltipr"> ,  <span class="tooltiprtext">The comma allows us to specify optional commands to the “favstats” function. The space after the comma is not required. It just looks nice.</span> </span><span class="tooltipr"> data=airquality <span class="tooltiprtext">data= is used to tell R to find the Temp and Month variables in the airquality dataset.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span> </span><span class="tooltipr">     <br />
+<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 </a>
 <div id="summary2" style="display:none;">
-<table style="width:100%;">
+<table>
 <colgroup>
 <col width="10%" />
 <col width="8%" />
@@ -812,7 +839,7 @@ $(document).ready(function () {
 <col width="10%" />
 <col width="10%" />
 <col width="6%" />
-<col width="12%" />
+<col width="13%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -899,7 +926,7 @@ $(document).ready(function () {
 </div>
 </div>
 <div id="standard-deviation" class="section level3 tabset tabset-fade tabset-pills">
-<h3>Standard Deviation</h3>
+<h3 class="tabset tabset-fade tabset-pills">Standard Deviation</h3>
 <div style="float:left;width:150px;">
 <p><span class="math inline">\(s = \sqrt{\frac{\sum_{i=1}^n(x_i-\bar{x})^2}{n-1}}\)</span></p>
 </div>
@@ -907,7 +934,7 @@ $(document).ready(function () {
 <div id="overview-6" class="section level4">
 <h4>Overview</h4>
 <div style="padding-left:150px;">
-<p>Measures how spread out the data are from the mean. It is never negative and typically not zero. Larger values mean the data is highly variable. Smaller values mean the data is consistent and not as variable. It is typically used with the mean to describe the spread of relatively normally distributed data. The order of operations in the formula is important and for this reason it is sometimes called the &quot;root mean squared error,&quot; though the calculations are performed in reverse of that. (Study the formula on the left to understand.) The denominator <span class="math inline">\(n-1\)</span> is called the <strong><em>degrees of freedom</em></strong>.</p>
+<p>Measures how spread out the data are from the mean. It is never negative and typically not zero. Larger values mean the data is highly variable. Smaller values mean the data is consistent and not as variable. It is typically used with the mean to describe the spread of relatively normally distributed data. The order of operations in the formula is important and for this reason it is sometimes called the “root mean squared error,” though the calculations are performed in reverse of that. (Study the formula on the left to understand.) The denominator <span class="math inline">\(n-1\)</span> is called the <strong><em>degrees of freedom</em></strong>.</p>
 </div>
 <hr />
 </div>
@@ -917,13 +944,13 @@ $(document).ready(function () {
 <p>To calculate the standard deviation in R use the code:</p>
 <p><code>sd(object)</code></p>
 <ul>
-<li><code>object</code> must be a quantitative variable, what R calls a &quot;numeric vector.&quot;</li>
+<li><code>object</code> must be a quantitative variable, what R calls a “numeric vector.”</li>
 </ul>
 <p>If using <code>library(mosaic)</code> then,</p>
 <p><code>sd(object ~ group, data=NameOfData)</code></p>
 <ul>
-<li><code>object</code> is a quanitative variable, which R calls a &quot;numeric vector&quot;.</li>
-<li><code>group</code> is a qualitative variable, which R calls a &quot;character vector&quot;, &quot;factor&quot;, and sometimes a &quot;numeric vector&quot;.</li>
+<li><code>object</code> is a quanitative variable, which R calls a “numeric vector”.</li>
+<li><code>group</code> is a qualitative variable, which R calls a “character vector”, “factor”, and sometimes a “numeric vector”.</li>
 <li><code>NameOfData</code> is the name of the R dataset containing <code>object</code> and <code>group</code>.</li>
 </ul>
 <p><br></p>
@@ -931,9 +958,9 @@ $(document).ready(function () {
 <p>Hover your mouse over the example codes to learn more.</p>
 <a href="javascript:showhide('sd1')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> sd <span class="tooltiprtext">&quot;sd&quot; is an R function used to calculate the standard deviation of data.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> airquality <span class="tooltiprtext">&quot;airquality&quot; is a dataset. Type &quot;View(airquality)&quot; in R to see it.</span> </span><span class="tooltipr"> $ <span class="tooltiprtext">The $ allows us to access any variable from the airquality dataset.</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">&quot;Temp&quot; is a quantitative variable (numeric vector) from the &quot;airquality&quot; dataset.</span> </span><span class="tooltipr"> )<br />
+<p><span class="tooltipr"> sd <span class="tooltiprtext">“sd” is an R function used to calculate the standard deviation of data.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> airquality <span class="tooltiprtext">“airquality” is a dataset. Type “View(airquality)” in R to see it.</span> </span><span class="tooltipr"> $ <span class="tooltiprtext">The $ allows us to access any variable from the airquality dataset.</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">“Temp” is a quantitative variable (numeric vector) from the “airquality” dataset.</span> </span><span class="tooltipr"> )<br />
 <span class="tooltiprtext">Closing parenthsis for the function.</span> </span><span class="tooltipr">     <br />
-<span class="tooltiprtext">Press Enter to run the code if you have typed it in yourself. You can also click here to view the output.</span> </span><span class="tooltipr" style="float:right;">  ...  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<span class="tooltiprtext">Press Enter to run the code if you have typed it in yourself. You can also click here to view the output.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 </a>
 <div id="sd1" style="display:none;">
@@ -942,8 +969,8 @@ $(document).ready(function () {
 </div>
 <a href="javascript:showhide('sd2')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> library(mosaic) <span class="tooltiprtext">mosaic is an R Package that overlaods many R functions to improve their usefulness. The command: library(mosaic) loads the mosaic package.</span> </span><br><span class="tooltipr"> sd( <span class="tooltiprtext">&quot;sd&quot; is an R function used to calculate the standard deviation.</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">Temp is a quantitative variable (numeric vector) from the airquality dataset.</span> </span><span class="tooltipr">   ~   <span class="tooltiprtext">  ~ is the tilde symbol. It is used to create a &quot;forumla&quot; in R. The quantitative variable is always on the left of the tilde. The grouping variable is on the right of the tilde.</span> </span><span class="tooltipr"> Month <span class="tooltiprtext">Month is a qualitative variable (technically a numeric vector) from the airquality dataset. May is 5, June is 6, and so on.</span> </span><span class="tooltipr"> ,  <span class="tooltiprtext">The comma allows us to specify optional commands to the &quot;sd&quot; function. The space after the comma is not required. It just looks nice.</span> </span><span class="tooltipr"> data=airquality <span class="tooltiprtext">data= is used to tell R to find the Temp and Month variables in the airquality dataset.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span> </span><span class="tooltipr">     <br />
-<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  ...  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<p><span class="tooltipr"> library(mosaic) <span class="tooltiprtext">mosaic is an R Package that overlaods many R functions to improve their usefulness. The command: library(mosaic) loads the mosaic package.</span> </span><br><span class="tooltipr"> sd( <span class="tooltiprtext">“sd” is an R function used to calculate the standard deviation.</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">Temp is a quantitative variable (numeric vector) from the airquality dataset.</span> </span><span class="tooltipr">   ~   <span class="tooltiprtext">  ~ is the tilde symbol. It is used to create a “forumla” in R. The quantitative variable is always on the left of the tilde. The grouping variable is on the right of the tilde.</span> </span><span class="tooltipr"> Month <span class="tooltiprtext">Month is a qualitative variable (technically a numeric vector) from the airquality dataset. May is 5, June is 6, and so on.</span> </span><span class="tooltipr"> ,  <span class="tooltiprtext">The comma allows us to specify optional commands to the “sd” function. The space after the comma is not required. It just looks nice.</span> </span><span class="tooltipr"> data=airquality <span class="tooltiprtext">data= is used to tell R to find the Temp and Month variables in the airquality dataset.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span> </span><span class="tooltipr">     <br />
+<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 </a>
 <div id="sd2" style="display:none;">
@@ -962,7 +989,7 @@ $(document).ready(function () {
 <p>The first idea in measuring the variability in data is that there must be a reference point. Something from which everything varies. The most widely accepted reference point is the <a href="../NumericalSummaries.html#mean">mean</a>.</p>
 <p>A <strong>deviation</strong> is defined as the distance an observation lies from the reference point, the mean. This distance is obtained by subtraction in the order <span class="math inline">\(x_i - \bar{x}\)</span>, where <span class="math inline">\(x_i\)</span> is the data point value and <span class="math inline">\(\bar{x}\)</span> is the mean of the data. There are thus <span class="math inline">\(n\)</span> deviations because there are <span class="math inline">\(n\)</span> data points.</p>
 <p>Unfortunately, because of the order of subtraction in obtaining deviations, the average deviation will always work out to be zero. This is because the mean by nature splits the deviations evenly. <a href="Mean.html#deviations">Click here for details</a>.</p>
-<p>One solution would be to take the absolute value of the deviations and obtain what is known as the &quot;absolute mean deviation.&quot; This is sometimes done, but a far more attractive choice (to mathematicians and statisticians) is to square each deviation. You'll have to trust us that this is the better choice.</p>
+<p>One solution would be to take the absolute value of the deviations and obtain what is known as the “absolute mean deviation.” This is sometimes done, but a far more attractive choice (to mathematicians and statisticians) is to square each deviation. You’ll have to trust us that this is the better choice.</p>
 <p>Squaring a deviation results in the expression <span class="math inline">\((x_i-\bar{x})^2\)</span>. <strong>SQUARE</strong></p>
 <p>Summing up all of the squared deviations results in the expression <span class="math inline">\(\sum_{i=1}^n (x_i-\bar{x})^2\)</span>.</p>
 <p>Dividing the sum of the squared deviations by <span class="math inline">\(n\)</span> would seem like an appropriate thing to do. Experience (and some fantastic statistical theory!) demonstrated that this is wrong. Dividing by <span class="math inline">\(n-1\)</span>, the <em>degrees of freedom</em> is right. <strong>MEAN</strong></p>
@@ -972,13 +999,16 @@ $(document).ready(function () {
   s = \sqrt{\frac{\sum_{i=1}^n(x_i-\bar{x})^2}{n-1}}
 \]</span></p>
 <p>The <em>standard deviation</em> is thus the representative deviation of all deviations in a given data set. It is never negative and only zero if all values are the same in a data set. Larger values of <span class="math inline">\(s\)</span> imply the data is highly variable, very spread out or very inconsistent. Smaller values mean the data is consistent and not as variable.</p>
-<h5 id="population-standard-deviation">Population Standard Deviation</h5>
-<p>When <strong>all</strong> of the data from a population is available, the <strong>population standard deviation</strong> <span class="math inline">\(\sigma\)</span> (the lower-case Greek letter &quot;sigma&quot;) is calculated by the following formula.</p>
+<div id="population-standard-deviation" class="section level5">
+<h5>Population Standard Deviation</h5>
+<p>When <strong>all</strong> of the data from a population is available, the <strong>population standard deviation</strong> <span class="math inline">\(\sigma\)</span> (the lower-case Greek letter “sigma”) is calculated by the following formula.</p>
 <p><span class="math display">\[
   \sigma = \sqrt{\frac{\sum_{i=1}^N(x_i-\mu)^2}{N}}
 \]</span></p>
 <p>Note that <span class="math inline">\(N\)</span> is the number of data points in the full population. In this formula the denominator is actually <span class="math inline">\(N\)</span> and the deviations are calculated as the distance each data point is from the population mean <span class="math inline">\(\mu\)</span>.</p>
-<h5 id="an-example">An Example</h5>
+</div>
+<div id="an-example" class="section level5">
+<h5>An Example</h5>
 <p>Say there are five data points given by</p>
 <ul>
 <li><span class="math inline">\(x_1 = 2\)</span></li>
@@ -1018,7 +1048,9 @@ $(document).ready(function () {
 \]</span></p>
 <p>The red lines below show how the standard deviation represents all deviations in this data set. Recall that the magnitudes of the individual deviations were <span class="math inline">\(4, 1, 0, 1\)</span>, and <span class="math inline">\(4\)</span>. The representative deviation is <span class="math inline">\(2.915\)</span>.</p>
 <p><img src="NumericalSummaries_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
-<h5 id="effect-of-outliers-1">Effect of Outliers</h5>
+</div>
+<div id="effect-of-outliers-1" class="section level5">
+<h5>Effect of Outliers</h5>
 <p>Like the mean, the standard deviation is influenced by outliers. This is shown below by changing <span class="math inline">\(x_5\)</span> to be 20. Note that the deviation of <span class="math inline">\(x_5\)</span> is now 12 (instead of 4 like it was previously) and that the mean is now <span class="math inline">\(8\)</span> (as shown <a href="Mean.html#outliers">here</a>). The standard deviation of the altered data</p>
 <ul>
 <li><span class="math inline">\(x_1 = 2\)</span></li>
@@ -1027,14 +1059,15 @@ $(document).ready(function () {
 <li><span class="math inline">\(x_4 = 7\)</span></li>
 <li><span class="math inline">\(x_5 = 20\)</span></li>
 </ul>
-<p>is now <span class="math inline">\(s \approx 6.964\)</span>. Not very &quot;representative&quot; of all the deviations. It is biased towards the largest deviation. It is important to be aware of outliers when reporting the standard deviation <span class="math inline">\(s\)</span>.</p>
+<p>is now <span class="math inline">\(s \approx 6.964\)</span>. Not very “representative” of all the deviations. It is biased towards the largest deviation. It is important to be aware of outliers when reporting the standard deviation <span class="math inline">\(s\)</span>.</p>
 <p><img src="NumericalSummaries_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+</div>
 </div>
 <hr />
 </div>
 </div>
 <div id="variance" class="section level3 tabset tabset-fade tabset-pills">
-<h3>Variance</h3>
+<h3 class="tabset tabset-fade tabset-pills">Variance</h3>
 <div style="float:left;width:175px;">
 <p><span class="math display">\[s^2 = \frac{\sum_{i=1}^n(x_i-\bar{x})^2}{n-1}\]</span></p>
 </div>
@@ -1052,13 +1085,13 @@ $(document).ready(function () {
 <p>To calculate the variance in R use the code:</p>
 <p><code>var(object)</code></p>
 <ul>
-<li><code>object</code> must be a quantitative variable, what R calls a &quot;numeric vector.&quot;</li>
+<li><code>object</code> must be a quantitative variable, what R calls a “numeric vector.”</li>
 </ul>
 <p>If using <code>library(mosaic)</code> then,</p>
 <p><code>var(object ~ group, data=NameOfData)</code></p>
 <ul>
-<li><code>object</code> is a quanitative variable, which R calls a &quot;numeric vector&quot;.</li>
-<li><code>group</code> is a qualitative variable, which R calls a &quot;character vector&quot;, &quot;factor&quot;, and sometimes a &quot;numeric vector&quot;.</li>
+<li><code>object</code> is a quanitative variable, which R calls a “numeric vector”.</li>
+<li><code>group</code> is a qualitative variable, which R calls a “character vector”, “factor”, and sometimes a “numeric vector”.</li>
 <li><code>NameOfData</code> is the name of the R dataset containing <code>object</code> and <code>group</code>.</li>
 </ul>
 <p><br></p>
@@ -1066,9 +1099,9 @@ $(document).ready(function () {
 <p>Hover your mouse over the example codes to learn more.</p>
 <a href="javascript:showhide('var1')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> var <span class="tooltiprtext">&quot;var&quot; is an R function used to calculate the variance of data.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> airquality <span class="tooltiprtext">&quot;airquality&quot; is a dataset. Type &quot;View(airquality)&quot; in R to see it.</span> </span><span class="tooltipr"> $ <span class="tooltiprtext">The $ allows us to access any variable from the airquality dataset.</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">&quot;Temp&quot; is a quantitative variable (numeric vector) from the &quot;airquality&quot; dataset.</span> </span><span class="tooltipr"> )<br />
+<p><span class="tooltipr"> var <span class="tooltiprtext">“var” is an R function used to calculate the variance of data.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> airquality <span class="tooltiprtext">“airquality” is a dataset. Type “View(airquality)” in R to see it.</span> </span><span class="tooltipr"> $ <span class="tooltiprtext">The $ allows us to access any variable from the airquality dataset.</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">“Temp” is a quantitative variable (numeric vector) from the “airquality” dataset.</span> </span><span class="tooltipr"> )<br />
 <span class="tooltiprtext">Closing parenthsis for the function.</span> </span><span class="tooltipr">     <br />
-<span class="tooltiprtext">Press Enter to run the code if you have typed it in yourself. You can also click here to view the output.</span> </span><span class="tooltipr" style="float:right;">  ...  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<span class="tooltiprtext">Press Enter to run the code if you have typed it in yourself. You can also click here to view the output.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 </a>
 <div id="var1" style="display:none;">
@@ -1077,8 +1110,8 @@ $(document).ready(function () {
 </div>
 <a href="javascript:showhide('var2')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> library(mosaic) <span class="tooltiprtext">mosaic is an R Package that overlaods many R functions to improve their usefulness. The command: library(mosaic) loads the mosaic package.</span> </span><br><span class="tooltipr"> var( <span class="tooltiprtext">&quot;var&quot; is an R function used to calculate the variance.</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">Temp is a quantitative variable (numeric vector) from the airquality dataset.</span> </span><span class="tooltipr">   ~   <span class="tooltiprtext">  ~ is the tilde symbol. It is used to create a &quot;forumla&quot; in R. The quantitative variable is always on the left of the tilde. The grouping variable is on the right of the tilde.</span> </span><span class="tooltipr"> Month <span class="tooltiprtext">Month is a qualitative variable (technically a numeric vector) from the airquality dataset. May is 5, June is 6, and so on.</span> </span><span class="tooltipr"> ,  <span class="tooltiprtext">The comma allows us to specify optional commands to the &quot;var&quot; function. The space after the comma is not required. It just looks nice.</span> </span><span class="tooltipr"> data=airquality <span class="tooltiprtext">data= is used to tell R to find the Temp and Month variables in the airquality dataset.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span> </span><span class="tooltipr">     <br />
-<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  ...  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<p><span class="tooltipr"> library(mosaic) <span class="tooltiprtext">mosaic is an R Package that overlaods many R functions to improve their usefulness. The command: library(mosaic) loads the mosaic package.</span> </span><br><span class="tooltipr"> var( <span class="tooltiprtext">“var” is an R function used to calculate the variance.</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">Temp is a quantitative variable (numeric vector) from the airquality dataset.</span> </span><span class="tooltipr">   ~   <span class="tooltiprtext">  ~ is the tilde symbol. It is used to create a “forumla” in R. The quantitative variable is always on the left of the tilde. The grouping variable is on the right of the tilde.</span> </span><span class="tooltipr"> Month <span class="tooltiprtext">Month is a qualitative variable (technically a numeric vector) from the airquality dataset. May is 5, June is 6, and so on.</span> </span><span class="tooltipr"> ,  <span class="tooltiprtext">The comma allows us to specify optional commands to the “var” function. The space after the comma is not required. It just looks nice.</span> </span><span class="tooltipr"> data=airquality <span class="tooltiprtext">data= is used to tell R to find the Temp and Month variables in the airquality dataset.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span> </span><span class="tooltipr">     <br />
+<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 </a>
 <div id="var2" style="display:none;">
@@ -1092,7 +1125,7 @@ $(document).ready(function () {
 </div>
 </div>
 <div id="range" class="section level3 tabset tabset-fade tabset-pills">
-<h3>Range</h3>
+<h3 class="tabset tabset-fade tabset-pills">Range</h3>
 <div style="float:left;width:150px;">
 <p><span class="math display">\[x_{(n)}-x_{(1)}\]</span> <br> <br></p>
 </div>
@@ -1113,7 +1146,7 @@ $(document).ready(function () {
 </div>
 </div>
 <div id="percentile-quantile" class="section level3 tabset tabset-fade tabset-pills">
-<h3>Percentile (Quantile)</h3>
+<h3 class="tabset tabset-fade tabset-pills">Percentile (Quantile)</h3>
 <div style="float:left;width:150px;">
 <center>
 <span class="math inline">\(\leftarrow\)</span><strong>To the Left</strong>
@@ -1134,13 +1167,13 @@ $(document).ready(function () {
 <p>To compute the quantile in R for a given percentile:</p>
 <p><code>quantile(object, percentile)</code></p>
 <ul>
-<li><p><code>object</code> must be a quantitative variable, or as R terms it, a &quot;numeric vector&quot;.</p></li>
-<li><p><code>percentile</code> must be a value between 0 and 1 or a &quot;numeric vector&quot; of such values.</p></li>
+<li><p><code>object</code> must be a quantitative variable, or as R terms it, a “numeric vector”.</p></li>
+<li><p><code>percentile</code> must be a value between 0 and 1 or a “numeric vector” of such values.</p></li>
 </ul>
 <a href="javascript:showhide('perc1')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> quantile( <span class="tooltiprtext">&quot;quantile&quot; is an R function used to calculate the data value corresponding to a given percentile.</span> </span><span class="tooltipr"> airquality$Temp <span class="tooltiprtext">Temp is a quantitative variable (numeric vector) being accessed from the airquality dataset with the $ sign.</span> </span><span class="tooltipr"> ,  <span class="tooltiprtext">Comma separating the two commands of the quantile function.</span> </span><span class="tooltipr"> 0.8 <span class="tooltiprtext">The value of 0.8 specifies the 80th percentile. Any other value from 0 to 1 inclusive could be used.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span> </span><span class="tooltipr">     <br />
-<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  ...  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<p><span class="tooltipr"> quantile( <span class="tooltiprtext">“quantile” is an R function used to calculate the data value corresponding to a given percentile.</span> </span><span class="tooltipr"> airquality$Temp <span class="tooltiprtext">Temp is a quantitative variable (numeric vector) being accessed from the airquality dataset with the $ sign.</span> </span><span class="tooltipr"> ,  <span class="tooltiprtext">Comma separating the two commands of the quantile function.</span> </span><span class="tooltipr"> 0.8 <span class="tooltiprtext">The value of 0.8 specifies the 80th percentile. Any other value from 0 to 1 inclusive could be used.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span> </span><span class="tooltipr">     <br />
+<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 </a>
 <div id="perc1" style="display:none;">
@@ -1153,7 +1186,7 @@ $(document).ready(function () {
 </div>
 </div>
 <div id="proportion" class="section level3 tabset tabset-fade tabset-pills">
-<h3>Proportion</h3>
+<h3 class="tabset tabset-fade tabset-pills">Proportion</h3>
 <div style="float:left;width:150px;">
 <p><span class="math display">\[\hat{p}=\frac{x}{n}\]</span> <br> <br></p>
 </div>
@@ -1167,7 +1200,7 @@ $(document).ready(function () {
 </div>
 </div>
 <div id="correlation" class="section level3 tabset tabset-fade tabset-pills">
-<h3>Correlation</h3>
+<h3 class="tabset tabset-fade tabset-pills">Correlation</h3>
 <div style="float:left;width:175px;">
 <p><span class="math inline">\(r = \frac{\textstyle\sum\left(\frac{x-\bar{x}}{s_x}\right)\left(\frac{y-\bar{y}}{s_y}\right)}{n-1}\)</span></p>
 </div>
@@ -1185,12 +1218,12 @@ $(document).ready(function () {
 <p>To calculate the correlation in R use the code:</p>
 <p><code>cor(object1,object2)</code></p>
 <ul>
-<li><code>object1</code> and <code>object2</code> must both be a quantitative variables, what R calls &quot;numeric vectors.&quot;</li>
+<li><code>object1</code> and <code>object2</code> must both be a quantitative variables, what R calls “numeric vectors.”</li>
 </ul>
 <p>If using <code>library(mosaic)</code> then,</p>
 <p><code>cor(object1 ~ object2, data=NameOfData)</code></p>
 <ul>
-<li><code>object1</code> and <code>object2</code> are quanitative variables, which R calls a &quot;numeric vectors&quot;.</li>
+<li><code>object1</code> and <code>object2</code> are quanitative variables, which R calls a “numeric vectors”.</li>
 <li><code>NameOfData</code> is the name of the R dataset containing <code>object</code> and <code>group</code>.</li>
 </ul>
 <p><br></p>
@@ -1198,9 +1231,9 @@ $(document).ready(function () {
 <p>Hover your mouse over the example codes to learn more.</p>
 <a href="javascript:showhide('cor1')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> cor <span class="tooltiprtext">&quot;cor&quot; is an R function used to calculate the standard deviation of data.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> airquality <span class="tooltiprtext">&quot;airquality&quot; is a dataset. Type &quot;View(airquality)&quot; in R to see it.</span> </span><span class="tooltipr"> $ <span class="tooltiprtext">The $ allows us to access any variable from the airquality dataset.</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">&quot;Temp&quot; is a quantitative variable (numeric vector) from the &quot;airquality&quot; dataset.</span> </span><span class="tooltipr"> ,  <span class="tooltiprtext">The comma is needed to separate the two quantitative variables of the cor() function. The space after the comma is not required. It just looks nice.</span> </span><span class="tooltipr"> airquality <span class="tooltiprtext">&quot;airquality&quot; is a dataset. Type &quot;View(airquality)&quot; in R to see it.</span> </span><span class="tooltipr"> $ <span class="tooltiprtext">The $ allows us to access any variable from the airquality dataset.</span> </span><span class="tooltipr"> Month <span class="tooltiprtext">&quot;Month&quot; is a quantitative variable (numeric vector) from the &quot;airquality&quot; dataset.</span> </span><span class="tooltipr"> )<br />
+<p><span class="tooltipr"> cor <span class="tooltiprtext">“cor” is an R function used to calculate the standard deviation of data.</span> </span><span class="tooltipr"> ( <span class="tooltiprtext">Parenthesis to begin the function. Must touch the last letter of the function.</span> </span><span class="tooltipr"> airquality <span class="tooltiprtext">“airquality” is a dataset. Type “View(airquality)” in R to see it.</span> </span><span class="tooltipr"> $ <span class="tooltiprtext">The $ allows us to access any variable from the airquality dataset.</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">“Temp” is a quantitative variable (numeric vector) from the “airquality” dataset.</span> </span><span class="tooltipr"> ,  <span class="tooltiprtext">The comma is needed to separate the two quantitative variables of the cor() function. The space after the comma is not required. It just looks nice.</span> </span><span class="tooltipr"> airquality <span class="tooltiprtext">“airquality” is a dataset. Type “View(airquality)” in R to see it.</span> </span><span class="tooltipr"> $ <span class="tooltiprtext">The $ allows us to access any variable from the airquality dataset.</span> </span><span class="tooltipr"> Month <span class="tooltiprtext">“Month” is a quantitative variable (numeric vector) from the “airquality” dataset.</span> </span><span class="tooltipr"> )<br />
 <span class="tooltiprtext">Closing parenthsis for the function.</span> </span><span class="tooltipr">     <br />
-<span class="tooltiprtext">Press Enter to run the code if you have typed it in yourself. You can also click here to view the output.</span> </span><span class="tooltipr" style="float:right;">  ...  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<span class="tooltiprtext">Press Enter to run the code if you have typed it in yourself. You can also click here to view the output.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 </a>
 <div id="cor1" style="display:none;">
@@ -1209,8 +1242,8 @@ $(document).ready(function () {
 </div>
 <a href="javascript:showhide('cor2')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> library(mosaic) <span class="tooltiprtext">mosaic is an R Package that overlaods many R functions to improve their usefulness. The command: library(mosaic) loads the mosaic package.</span> </span><br><span class="tooltipr"> cor( <span class="tooltiprtext">&quot;cor&quot; is an R function used to calculate the correlation of two quantitative variables.</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">Temp is a quantitative variable (numeric vector) from the airquality dataset.</span> </span><span class="tooltipr">   ~   <span class="tooltiprtext">  ~ is the tilde symbol. It is used to create a &quot;forumla&quot; in R. The quantitative variable is always on the left of the tilde. The grouping variable is on the right of the tilde.</span> </span><span class="tooltipr"> Month <span class="tooltiprtext">Month can be considered a quantitative variable because it is a numeric vector from the airquality dataset. May is 5, June is 6, and so on.</span> </span><span class="tooltipr"> ,  <span class="tooltiprtext">The comma allows us to specify optional commands to the &quot;cor&quot; function. The space after the comma is not required. It just looks nice.</span> </span><span class="tooltipr"> data=airquality <span class="tooltiprtext">data= is used to tell R to find the Temp and Month variables in the airquality dataset.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span> </span><span class="tooltipr">     <br />
-<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  ...  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<p><span class="tooltipr"> library(mosaic) <span class="tooltiprtext">mosaic is an R Package that overlaods many R functions to improve their usefulness. The command: library(mosaic) loads the mosaic package.</span> </span><br><span class="tooltipr"> cor( <span class="tooltiprtext">“cor” is an R function used to calculate the correlation of two quantitative variables.</span> </span><span class="tooltipr"> Temp <span class="tooltiprtext">Temp is a quantitative variable (numeric vector) from the airquality dataset.</span> </span><span class="tooltipr">   ~   <span class="tooltiprtext">  ~ is the tilde symbol. It is used to create a “forumla” in R. The quantitative variable is always on the left of the tilde. The grouping variable is on the right of the tilde.</span> </span><span class="tooltipr"> Month <span class="tooltiprtext">Month can be considered a quantitative variable because it is a numeric vector from the airquality dataset. May is 5, June is 6, and so on.</span> </span><span class="tooltipr"> ,  <span class="tooltiprtext">The comma allows us to specify optional commands to the “cor” function. The space after the comma is not required. It just looks nice.</span> </span><span class="tooltipr"> data=airquality <span class="tooltiprtext">data= is used to tell R to find the Temp and Month variables in the airquality dataset.</span> </span><span class="tooltipr"> ) <span class="tooltiprtext">Functions must always end with a closing parenthesis.</span> </span><span class="tooltipr">     <br />
+<span class="tooltiprtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 </a>
 <div id="cor2" style="display:none;">

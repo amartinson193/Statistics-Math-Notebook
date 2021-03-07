@@ -34,5 +34,7 @@ navbar:
           href: PermutationTests.html
     - text: "Glossary"
       href: Glossary.html
-
+    - text: "Articles"
+      href: Articles.html
+      
 output_dir: '.'

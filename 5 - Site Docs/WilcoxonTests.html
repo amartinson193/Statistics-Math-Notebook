@@ -13,6 +13,7 @@
 
 <title>Wilcoxon Tests</title>
 
+<script src="site_libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
@@ -339,6 +340,12 @@ $(document).ready(function () {
     </li>
   </ul>
 </li>
+<li>
+  <a href="Glossary.html">Glossary</a>
+</li>
+<li>
+  <a href="Articles.html">Articles</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -366,7 +373,7 @@ $(document).ready(function () {
 <p>Wilcoxon tests allow for the testing of hypotheses about the value of the the <em>median</em> without assuming the test statistic follows any parametric distribution. They are often seen as nonparametric alternatives to the various t tests. However, they can also be used on ordinal data (data that is not quite quantitative, but is ordered) unlike t tests which require quantitative data.</p>
 <hr />
 <div id="wilcoxon-signed-rank-test" class="section level3 tabset tabset-fade tabset-pills">
-<h3>Wilcoxon Signed-Rank Test</h3>
+<h3 class="tabset tabset-fade tabset-pills">Wilcoxon Signed-Rank Test</h3>
 <div style="float:left;width:125px;" align="center">
 <p><img src="Images/QuantY.png" width=35px;></p>
 </div>
@@ -391,23 +398,27 @@ $(document).ready(function () {
 <h4>R Instructions</h4>
 <div style="padding-left:125px;">
 <p><strong>Console</strong> Help Command: <code>?wilcox.test()</code></p>
-<h5 id="paired-data">Paired Data</h5>
+<div id="paired-data" class="section level5">
+<h5>Paired Data</h5>
 <p><code>wilcox.test(object1, object2, mu = YourNull, alternative = YourAlternative, paired = TRUE, conf.level = 0.95)</code></p>
 <ul>
-<li><code>object1</code> must be a &quot;numeric&quot; vector. One set of measurements from the pair.</li>
-<li><code>object2</code> also a &quot;numeric&quot; vector. Other set of measurements from the pair.</li>
+<li><code>object1</code> must be a “numeric” vector. One set of measurements from the pair.</li>
+<li><code>object2</code> also a “numeric” vector. Other set of measurements from the pair.</li>
 <li><code>YourNull</code> is the numeric value from your null hypothesis for the median of differences from the paired data. Usually zero.</li>
-<li><code>YourAlternative</code> is one of the three options: <code>&quot;two.sided&quot;</code>, <code>&quot;greater&quot;</code>, <code>&quot;less&quot;</code> and should correspond to your alternative hypothesis.</li>
+<li><code>YourAlternative</code> is one of the three options: <code>"two.sided"</code>, <code>"greater"</code>, <code>"less"</code> and should correspond to your alternative hypothesis.</li>
 <li>The value for <code>conf.level = 0.95</code> can be changed to any desired confidence level, like 0.90 or 0.99. It should correspond to <span class="math inline">\(1-\alpha\)</span>.</li>
 </ul>
-<h5 id="one-sample">One Sample</h5>
+</div>
+<div id="one-sample" class="section level5">
+<h5>One Sample</h5>
 <p><code>wilcox.test(object, mu = YourNull, alternative = YourAlternative, conf.level = 0.95)</code></p>
 <ul>
-<li><code>object</code> must be a &quot;numeric&quot; vector.</li>
-<li><code>YourNull</code> is the numeric value from your null hypothesis for the median (even though it says &quot;mu&quot;).</li>
-<li><code>YourAlternative</code> is one of the three options: <code>&quot;two.sided&quot;</code>, <code>&quot;greater&quot;</code>, <code>&quot;less&quot;</code> and should correspond to your alternative hypothesis.</li>
+<li><code>object</code> must be a “numeric” vector.</li>
+<li><code>YourNull</code> is the numeric value from your null hypothesis for the median (even though it says “mu”).</li>
+<li><code>YourAlternative</code> is one of the three options: <code>"two.sided"</code>, <code>"greater"</code>, <code>"less"</code> and should correspond to your alternative hypothesis.</li>
 <li>The value for <code>conf.level = 0.95</code> can be changed to any desired confidence level, like 0.90 or 0.99. It should correspond to <span class="math inline">\(1-\alpha\)</span>.</li>
 </ul>
+</div>
 </div>
 <hr />
 </div>
@@ -421,22 +432,28 @@ $(document).ready(function () {
 <li>The differences obtained from <strong>paired data</strong>. (Very common.)</li>
 </ol>
 <p>The Wilcoxon methods are most easily explained through examples, beginning with the paired data for which the method was originally created. Scroll down for the <a href="#one">One Sample Example</a> if that is what you are really interested in. However, it is still recommended that you read the paired data example first.</p>
-<h5 id="paired-data-example">Paired Data Example</h5>
+<div id="paired-data-example" class="section level5">
+<h5>Paired Data Example</h5>
 <div style="padding-left:15px;">
 <div style="color:#a8a8a8;">
 <p>Note: the data for this example comes from the original 1945 paper <a href="http://sci2s.ugr.es/keel/pdf/algorithm/articulo/wilcoxon1945.pdf">Individual Comparison by Ranking Methods</a> by Frank Wilcoxon.</p>
 </div>
-<h6 id="background">Background</h6>
-<p>Height differences &quot;between cross- and self- fertilized corn plants of the same pair&quot; were collected. The experiment hypothesized that the center of the distribution of the height differences would be zero, with the alternative being that the center was not zero. The result of the data collection was 15 height differences:</p>
+<div id="background" class="section level6">
+<h6>Background</h6>
+<p>Height differences “between cross- and self- fertilized corn plants of the same pair” were collected. The experiment hypothesized that the center of the distribution of the height differences would be zero, with the alternative being that the center was not zero. The result of the data collection was 15 height differences:</p>
 <div style="padding-left:15px;">
 <p><strong>Differences</strong>: 14, 56, 60, 16, 6, 8, -48, 49, 24, 28, 29, 41, -67, 23, 75</p>
 </div>
-<h6 id="step-1">Step 1</h6>
+</div>
+<div id="step-1" class="section level6">
+<h6>Step 1</h6>
 <p>The first step of the Wilcoxon Signed Rank Test is to order the differences from smallest <em>magnitude</em> to largest <em>magnitude</em>. Negative signs are essentially ignored at this point and only magnitudes of the numbers matter.</p>
 <div style="padding-left:15px;">
 <p><strong>Sorted Differences</strong>: 6, 8, 14, 16, 23, 24, 28, 29, 41, -48, 49, 56, 60, -67, 75</p>
 </div>
-<h6 id="step-2">Step 2</h6>
+</div>
+<div id="step-2" class="section level6">
+<h6>Step 2</h6>
 <p>The next step is to rank the ordered values. Negative signs are attached to the ranks corresponding to negative numbers.</p>
 <div style="padding-left:15px;">
 <table>
@@ -501,7 +518,9 @@ $(document).ready(function () {
 </table>
 </div>
 <p>Note that the ranks will always be of the form <span class="math inline">\(1, 2, \ldots, n\)</span>. In this case, <span class="math inline">\(n=15\)</span>.</p>
-<h6 id="step-3">Step 3</h6>
+</div>
+<div id="step-3" class="section level6">
+<h6>Step 3</h6>
 <p>The ranks are then put into two groups.</p>
 <table>
 <thead>
@@ -517,13 +536,17 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
-<h6 id="step-4">Step 4</h6>
+</div>
+<div id="step-4" class="section level6">
+<h6>Step 4</h6>
 <p>One of the groups is summed, usually the group with the fewest observations. Only the absolute values of the ranks are summed.</p>
 <div style="padding-left:15px;">
 <p><strong>Sum of Negative Ranks</strong>: <span class="math inline">\(\left|-10\right| + \left|-14\right| = 24\)</span></p>
 <p>The sum of the ranks becomes the <em>test statistic</em> of the Wilcoxon Test. The test statistic is sometimes called <span class="math inline">\(W\)</span> or <span class="math inline">\(V\)</span> or <span class="math inline">\(U\)</span>.</p>
 </div>
-<h6 id="step-5">Step 5</h6>
+</div>
+<div id="step-5" class="section level6">
+<h6>Step 5</h6>
 <p>The <span class="math inline">\(p\)</span>-value of the test is then obtained by computing the probability of the test statistic being as extreme or more extreme than the one obtained. This is done by first computing the probability of all possible values the test statistic could have obtained using mathematical counting techniques. This is a very tedious process that only a mathematician would enjoy pursuing. However, the end result is fairly easily understood. If you are interested, read the details.</p>
 <div style="padding-left:30px; padding-right:15px;">
 <p><a href="javascript:showhide('uniquename')"><strong>Details</strong></a></p>
@@ -549,9 +572,11 @@ $(document).ready(function () {
 </div>
 <p><img src="WilcoxonTests_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p>Computing the probabilities of all possible sums creates a distribution of the test statistic (shown in the plot above). Note that the test statistic is obtained in Step 4 (above) by taking the sum of the ranks. Once the distribution of the test statistic is established, the <span class="math inline">\(p\)</span>-value of the test can be calculated as the combined probability of possible sums that are as extreme or more extreme than the one observed.</p>
-<p>For this example, it turns out that the probability of getting a sum of (the absolute value of) negative ranks as extreme or more extreme than <span class="math inline">\(24\)</span> is <span class="math inline">\(p=0.04126\)</span> (the sum of the probabilities of the red bars in the plot above). Thus, at the <span class="math inline">\(\alpha=0.05\)</span> level we would reject the null hypothesis that the center of the distribution of differences is zero. We conclude that the center of the distribution is greater than zero because the sum of negative ranks is much smaller than we expected under the zero center hypothesis (the null). Thus, there is sufficient evidence to conclude that the centers of the distributions of &quot;cross- and self-fertilized corn plants&quot; heights are not equal. One is greater than the other. Notice how the following dot plot shows that the differences are in favor of the cross-fertilized plants (the first group in the subtraction) being taller. This is true even though two self-fertilized plants were much taller than their cross-fertilized counterpart (the two negative differences).</p>
+<p>For this example, it turns out that the probability of getting a sum of (the absolute value of) negative ranks as extreme or more extreme than <span class="math inline">\(24\)</span> is <span class="math inline">\(p=0.04126\)</span> (the sum of the probabilities of the red bars in the plot above). Thus, at the <span class="math inline">\(\alpha=0.05\)</span> level we would reject the null hypothesis that the center of the distribution of differences is zero. We conclude that the center of the distribution is greater than zero because the sum of negative ranks is much smaller than we expected under the zero center hypothesis (the null). Thus, there is sufficient evidence to conclude that the centers of the distributions of “cross- and self-fertilized corn plants” heights are not equal. One is greater than the other. Notice how the following dot plot shows that the differences are in favor of the cross-fertilized plants (the first group in the subtraction) being taller. This is true even though two self-fertilized plants were much taller than their cross-fertilized counterpart (the two negative differences).</p>
 <p><img src="WilcoxonTests_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<h6 id="comment">Comment</h6>
+</div>
+<div id="comment" class="section level6">
+<h6>Comment</h6>
 <p>If the distribution of differences is symmetric, then the hypotheses can be written as <span class="math display">\[
   H_0: \mu = 0
 \]</span> <span class="math display">\[
@@ -564,10 +589,14 @@ $(document).ready(function () {
       H_a: \text{median} \neq 0
 \]</span></p>
 </div>
-<h5 id="one">One Sample Example</h5>
+</div>
+</div>
+<div id="one" class="section level5">
+<h5>One Sample Example</h5>
 <div style="padding-left:15px;">
 <p>The idea behind the one sample Wilcoxon Signed Rank test is nearly identical to the paired data. The only change is that the median must be subtracted from all observed values to obtain the <em>differences</em>. Note that the mean is equal to the median when data is symmetric.</p>
-<h6 id="background-1">Background</h6>
+<div id="background-1" class="section level6">
+<h6>Background</h6>
 <p>Suppose we are interested in testing to see if the median hourly wage of BYU-Idaho students during their off-track employment is equal to the minimum wage in Idaho, $7.25 an hour as of January 1st, 2015. Five randomly sampled hourly wages from BYU-Idaho Math 221B students provides the following data.</p>
 <div style="padding-left:15px;">
 <p><strong>Wages</strong>: $6.00, $9.00, $8.10, $18.00, $10.45</p>
@@ -579,18 +608,24 @@ $(document).ready(function () {
 <p>Note: from this point down, the wording of this example is identical to the paired data example (above) with the numbers changed to match <span class="math inline">\(n=5\)</span>. It is useful to continue reading to reinforce the idea of the Wilcoxon Signed Rank Test, but no new knowledge will be presented.</p>
 </div>
 </div>
-<h6 id="step-1-1">Step 1</h6>
+</div>
+<div id="step-1-1" class="section level6">
+<h6>Step 1</h6>
 <p>The first step of the Wilcoxon Signed Rank Test is to order the differences from smallest <em>magnitude</em> to largest <em>magnitude</em>. Negative signs are essentially ignored at this point and only magnitudes of the numbers matter.</p>
 <div style="padding-left:15px;">
 <p><strong>Sorted Differences</strong>: 0.85, -1.25, 1.75, 3.20, 10.75</p>
 </div>
-<h6 id="step-2-1">Step 2</h6>
+</div>
+<div id="step-2-1" class="section level6">
+<h6>Step 2</h6>
 <p>The next step is to rank the ordered values. Negative signs are attached to the ranks corresponding to negative numbers.</p>
 <div style="padding-left:15px;">
 <p><strong>Ranks</strong>: 1, -2, 3, 4, 5</p>
 </div>
 <p>Note that the ranks will always be of the form <span class="math inline">\(1, 2, \ldots, n\)</span>. In this case, <span class="math inline">\(n=5\)</span>.</p>
-<h6 id="step-3-1">Step 3</h6>
+</div>
+<div id="step-3-1" class="section level6">
+<h6>Step 3</h6>
 <p>The ranks are then put into two groups.</p>
 <table>
 <thead>
@@ -606,12 +641,16 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
-<h6 id="step-4-1">Step 4</h6>
+</div>
+<div id="step-4-1" class="section level6">
+<h6>Step 4</h6>
 <p>One of the groups is summed, usually the group with the fewest observations.</p>
 <div style="padding-left:15px;">
 <p><strong>Sum of Negative Ranks</strong>: <span class="math inline">\(\left|-2\right| = 2\)</span></p>
 </div>
-<h6 id="step-5-1">Step 5</h6>
+</div>
+<div id="step-5-1" class="section level6">
+<h6>Step 5</h6>
 <p>The <span class="math inline">\(p\)</span>-value of the test is then obtained by computing the probabilities of all possible sums using mathematical counting techniques. This is a very tedious process that only a mathematician would enjoy pursuing. However, the end result is fairly easily understood. If you are interested, read the details.</p>
 <div style="padding-left:30px; padding-right:15px;">
 <p><strong>Details</strong></p>
@@ -631,15 +670,19 @@ $(document).ready(function () {
 <p>Computing the probabilities of all possible sums creates a distribution of the test statistic (shown in the plot above). Note that the test statistic is obtained in Step 4 (above) by taking the sum of the ranks. Once the distribution of the test statistic is established, the <span class="math inline">\(p\)</span>-value of the test can be calculated as the combined probability of possible sums that are as extreme or more extreme than the one observed.</p>
 </div>
 <p>For this example, it turns out that the probability of getting a sum of negative ranks as extreme or more extreme than <span class="math inline">\(-2\)</span> is <span class="math inline">\(p=0.1875\)</span> (the sum of the probabilities of the red bars in the plot above). Thus, at the <span class="math inline">\(\alpha=0.05\)</span> level we would fail to reject the null hypothesis that the center of the distribution of differences is zero. We will continue to assume the null hypothesis was true, that the median off-track hourly wage of BYU-Idaho students is the same as the Idaho minimum wage.</p>
-<h6 id="final-comment">Final Comment</h6>
+</div>
+<div id="final-comment" class="section level6">
+<h6>Final Comment</h6>
 <p>Notice that when the sample size is large the distribution of the test statistic can be approximated by a normal distribution. Most software applications use this approximation when the sample size is over <span class="math inline">\(50\)</span>, i.e., for <span class="math inline">\(n\geq50\)</span> because computing all the possible sums of ranks becomes incredibly time consuming. Thus, for large sample sizes the results will be almost identical whether the Wilcoxon Tests or a t Test is used.</p>
+</div>
+</div>
 </div>
 </div>
 <hr />
 </div>
 </div>
 <div id="wilcoxon-rank-sum-mann-whitney-test" class="section level3 tabset tabset-fade tabset-pills">
-<h3>Wilcoxon Rank Sum (Mann-Whitney) Test</h3>
+<h3 class="tabset tabset-fade tabset-pills">Wilcoxon Rank Sum (Mann-Whitney) Test</h3>
 <div style="float:left;width:125px;" align="center">
 <p><img src="Images/QuantYQualXg2.png" width=58px;></p>
 </div>
@@ -662,7 +705,7 @@ $(document).ready(function () {
 <p><span class="math inline">\(H_a: \text{one distribution is stochastically greater than the other}\)</span></p>
 </div>
 <p>If these hypotheses are used, then the distributions do not have to be identically distributed.</p>
-<p>(Note: Men's heights are <em>stochastically greater</em> than women's heights because men are generally taller than women, but not all men are taller than all women.)</p>
+<p>(Note: Men’s heights are <em>stochastically greater</em> than women’s heights because men are generally taller than women, but not all men are taller than all women.)</p>
 <p><strong>Examples</strong>: <a href="./Analyses/BugSprayWilcoxonRankSum.html">BugSpray</a>, <a href="./Analyses/MoralIntegration.html">MoralIntegration</a></p>
 </div>
 <hr />
@@ -675,19 +718,19 @@ $(document).ready(function () {
 <p>Option 1:</p>
 <p><code>wilcox.test(object1, object2, mu = YourNull, alternative = YourAlternative, conf.level = 0.95)</code></p>
 <ul>
-<li><code>object1</code> must be a &quot;numeric&quot; vector that represents the first sample of data.</li>
-<li><code>obejct2</code> must be a &quot;numeric&quot; vector that represents the second sample of data.</li>
+<li><code>object1</code> must be a “numeric” vector that represents the first sample of data.</li>
+<li><code>obejct2</code> must be a “numeric” vector that represents the second sample of data.</li>
 <li><code>YourNull</code> is the numeric value from your null hypothesis for the difference in medians from the two groups.</li>
-<li><code>YourAlternative</code> is one of the three options: <code>&quot;two.sided&quot;</code>, <code>&quot;greater&quot;</code>, <code>&quot;less&quot;</code> and should correspond to your alternative hypothesis.</li>
+<li><code>YourAlternative</code> is one of the three options: <code>"two.sided"</code>, <code>"greater"</code>, <code>"less"</code> and should correspond to your alternative hypothesis.</li>
 <li>The value for <code>conf.level = 0.95</code> can be changed to any desired confidence level, like 0.90 or 0.99. It should correspond to <span class="math inline">\(1-\alpha\)</span>.</li>
 </ul>
 <p>Option 2:</p>
 <p><code>wilcox.test(column ~ group, data = YourData, mu = YourNull, alternative = YourAlternative, conf.level = 0.95)</code></p>
 <ul>
-<li><code>column</code> must be a &quot;numeric&quot; vector from <code>YourData</code> that represents the data for both samples.</li>
-<li><code>group</code> must be a &quot;factor&quot; or &quot;character&quot; vector from <code>YourData</code> that represents the group assignment for each observation. There can only be two groups specified in this column of data.</li>
+<li><code>column</code> must be a “numeric” vector from <code>YourData</code> that represents the data for both samples.</li>
+<li><code>group</code> must be a “factor” or “character” vector from <code>YourData</code> that represents the group assignment for each observation. There can only be two groups specified in this column of data.</li>
 <li><code>YourNull</code> is the numeric value from your null hypothesis for the difference in medians from the two groups.</li>
-<li><code>YourAlternative</code> is one of the three options: <code>&quot;two.sided&quot;</code>, <code>&quot;greater&quot;</code>, <code>&quot;less&quot;</code> and should correspond to your alternative hypothesis.</li>
+<li><code>YourAlternative</code> is one of the three options: <code>"two.sided"</code>, <code>"greater"</code>, <code>"less"</code> and should correspond to your alternative hypothesis.</li>
 <li>The value for <code>conf.level = 0.95</code> can be changed to any desired confidence level, like 0.90 or 0.99. It should correspond to <span class="math inline">\(1-\alpha\)</span>.</li>
 </ul>
 </div>
@@ -1030,7 +1073,7 @@ $(document).ready(function () {
   H_a: \mu_1-\mu_2 \neq 0
 \]</span></p>
 <p>However, it is important to remember that the estimated difference in location parameters that results from the test does not provide a measurement on either of these things. However, the <span class="math inline">\(p\)</span>-value can lead us to determine whether to reject, or fail to reject the null, whichever of the above hypotheses is used.</p>
-<p>As stated in the R help file for this test <code>?wilcox.test()</code> &quot;the estimator for the difference in location parameters does not estimate the difference in medians (a common misconception) but rather the median of the difference between a sample from [the first population] and a sample from [the second population].&quot; These are technical details that most people ignore without encountering too much difficulty. However, it does remind us that the t test is more easily interpreted whenever it is appropriate to use that test.</p>
+<p>As stated in the R help file for this test <code>?wilcox.test()</code> “the estimator for the difference in location parameters does not estimate the difference in medians (a common misconception) but rather the median of the difference between a sample from [the first population] and a sample from [the second population].” These are technical details that most people ignore without encountering too much difficulty. However, it does remind us that the t test is more easily interpreted whenever it is appropriate to use that test.</p>
 </div>
 <p><br /></p>
 </div>
