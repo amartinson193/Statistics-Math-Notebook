@@ -42,6 +42,7 @@ This model is appropriate when five assumptions can be made.
 1. **Linear Relation**: the regression relation between $Y$ and $X$ is linear.
     
 2. **Normal Errors**: the error terms are normally distributed with a mean of zero.
+* https://data.library.virginia.edu/normality-assumption/
 
 3. **Constant Variance**: the variance of the error terms is constant over all $X$ values.
 
@@ -77,9 +78,8 @@ If $\beta_1 = 0$, then the model reduces to $Y_i = \beta_0 + \epsilon_i$, claimi
 
 If $\beta_0 = 0$, then the model reduces to $Y_i = \beta_1 X + \epsilon_i$, claiming the average $Y$-value is $0$ when $X=0$.
 
-
-
 ----
+
 
 </div>
 

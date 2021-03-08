@@ -1,0 +1,386 @@
+############################
+# 1 - Analysis
+############################
+  
+# 0 Load packages
+library(intermountain)
+library(tidyverse)
+library(ggplot2)
+library(pwr)
+library(lubridate)
+
+  # 1 - Pull the data  
+msk_query <- 
+"
+ WITH POP_MATCHES as ( -- Has some duplicates, but they are ok since these are ppl who matches multiple times to different ppl in the test group
+  select 
+to_char(pop.empi_match) as empi_match
+, pop.empi
+, case when pop.rpc = 'RPC Patient' then 'Test' else pop.rpc end as pop_group
+, add_months(msk.event_start_dts,-6) as start_dt
+, msk.event_start_dts as intervention_dt
+
+from sandbox.rpc_matches_temp pop
+left join sandbox.msk_membership_list msk
+on pop.empi = msk.empi
+where 1=1
+and pop.rpc_phase = 'MSK Pop Full v2021-03'
+and msk.event_start_dts <= date '2020-6-1' 
+)
+--select * from pop_matches;
+
+, CLAIMS AS (
+SELECT 
+pop.empi_match
+, pop.empi
+, pop.pop_group
+, ql.from_dt
+, COST2 -- Allowed amount
+, COST3 -- Paid amount
+, pop.intervention_dt
+
+from POP_MATCHES pop
+left join SH_OPTUM.QL_CLAIMS_PHM ql
+on pop.EMPI_MATCH = ql.MEMBER
+
+WHERE COST2 > 0
+AND CLM_TYPE IN ('C','M','P') 
+AND CLM_EXCLUDE IN(0, 1) --2020 UPDATE
+AND IA_TIME != 0 -- Don't include claims lag
+AND FROM_DT >= pop.start_dt
+AND FROM_DT <= pop.intervention_dt
+)
+--select count(*) from claims;
+-- Put into a PMPM format
+
+, PMPM as (
+select
+empi_match
+, empi
+, trunc(from_dt,'mm') as mondate
+, floor(months_between(from_dt, intervention_dt)) as time_interval -- Turn this into months
+, pop_group
+, round(sum(cost2),2) as total_allowed_amt
+
+from claims
+group by
+empi_match
+, empi
+, trunc(from_dt,'mm')
+, floor(months_between(from_dt, intervention_dt))
+, pop_group
+)
+--select * from PMPM;
+
+, percentile_rank as (
+select
+pmpm.*
+, round(percent_rank() over (order by total_allowed_amt),2) as pct_rank
+from pmpm
+)
+
+, percentile_rank_99_test as (
+select distinct 
+empi 
+from percentile_rank
+where 1=1
+and pct_rank >= .99
+)
+
+, percentile_rank_99_control as (
+select distinct 
+empi_match as empi
+from percentile_rank
+where 1=1
+and pct_rank >= .99
+)
+
+, final_ as (
+select
+pr.*
+, case when (pr99c.empi is not null or pr99t.empi is not null) then 1 else 0 end as flag
+
+from percentile_rank pr
+left join percentile_rank_99_test pr99t
+on pr.empi_match = pr99t.empi
+left join percentile_rank_99_control pr99c
+on pr.empi_match = pr99c.empi
+)
+
+select * from final_
+where 1=1
+and flag = 0
+"
+
+db = edw()
+dat = dbGetQuery(db, msk_query)
+dbDisconnect(db)
+
+# 2 Plot the distribution
+
+dat %>% ggplot(aes(POP_GROUP, TOTAL_ALLOWED_AMT)) + geom_point() + geom_boxplot() + xlab('MSK Populations') + ylab('Allowed Amount') + ggtitle('Allowed Amount Distribution')
+  
+# 3 Find the standard deviation for the test group
+
+sd_MEDEXP_test <- sd(dat$TOTAL_ALLOWED_AMT[dat$POP_GROUP == 'Test'])
+avg_MEDEXP_test <- mean(dat$TOTAL_ALLOWED_AMT[dat$POP_GROUP == 'Test'])
+mean(dat$TOTAL_ALLOWED_AMT[dat$POP_GROUP == 'Control'])
+
+
+# 4 Do the power analysis
+
+savings_pct <-  seq(from=.05,to=.5,by=.05)
+savings  <- (savings_pct * avg_MEDEXP_test) * -1
+
+  ## Cohen's d is the savings divided by the standard deviation
+  
+  c.d <- savings/sd_MEDEXP_test
+  
+  pwr.out =NULL
+  for(i in c.d){
+    p.temp=pwr.t.test(n=NULL,d=i,sig.level=0.05,power=0.75,type="two.sample",alternative="less")
+    pwr.out=c(pwr.out,p.temp$n)
+  }
+
+  plot(x=pwr.out,y=-1*savings,type='l',xlab="No of Encounters",ylab="Savings (%)")
+  pwr.out
+  p.temp=pwr.t.test(n=NULL,d=-((.05*avg_MEDEXP_test)/sd_MEDEXP_test),sig.level=0.05,power=0.75,type="two.sample",alternative="less") # Plot the graph showing test power graph
+  
+# 5 Plot the data over time
+  
+  ggplot(data = dat, aes(x=TIME_INTERVAL, y=TOTAL_ALLOWED_AMT, col=POP_GROUP)) +
+    geom_smooth(method='loess') +
+    labs(x='Months From Intervention Date', y='Allowed Amt') + 
+    ggtitle('Costs Over Time')
+
+# 6 % of ppl with claims
+  
+write.table(dat, 'clipboard-128', sep="\t", row.names=FALSE) # wclip(dat)
+
+## After looking in excel, there were 777 people in total for all 6 months with each month having distinct ppl. 777 / 6 months = 130 ppl per month. 130/255 = ~51%
+
+# 7 Pull the full time period available
+# The only difference is removing the less than intervention date section on the claims subquery
+msk_query_full <- 
+  
+"
+ WITH POP_MATCHES as ( -- Has some duplicates, but they are ok since these are ppl who matches multiple times to different ppl in the test group
+  select 
+to_char(pop.empi_match) as empi_match
+, pop.empi
+, case when pop.rpc = 'RPC Patient' then 'Test' else pop.rpc end as pop_group
+, add_months(msk.event_start_dts,-6) as start_dt
+, msk.event_start_dts as intervention_dt
+
+from sandbox.rpc_matches_temp pop
+left join sandbox.msk_membership_list msk
+on pop.empi = msk.empi
+where 1=1
+and pop.rpc_phase = 'MSK Pop Full v2021-03'
+and msk.event_start_dts <= date '2020-6-1' 
+)
+--select * from pop_matches;
+
+, CLAIMS AS (
+SELECT 
+pop.empi_match
+, pop.empi
+, pop.pop_group
+, ql.from_dt
+, COST2 -- Allowed amount
+, COST3 -- Paid amount
+, pop.intervention_dt
+
+from POP_MATCHES pop
+left join SH_OPTUM.QL_CLAIMS_PHM ql
+on pop.EMPI_MATCH = ql.MEMBER
+
+WHERE COST2 > 0
+AND CLM_TYPE IN ('C','M','P') 
+AND CLM_EXCLUDE IN(0, 1) --2020 UPDATE
+AND IA_TIME != 0 -- Don't include claims lag
+AND FROM_DT >= pop.start_dt
+--AND FROM_DT <= pop.intervention_dt
+)
+--select count(*) from claims;
+-- Put into a PMPM format
+
+, PMPM as (
+select
+empi_match
+, empi
+, trunc(from_dt,'mm') as mondate
+, floor(months_between(from_dt, intervention_dt)) as time_interval -- Turn this into months
+, pop_group
+, round(sum(cost2),2) as total_allowed_amt
+
+from claims
+group by
+empi_match
+, empi
+, trunc(from_dt,'mm')
+, floor(months_between(from_dt, intervention_dt))
+, pop_group
+)
+--select * from PMPM;
+
+, percentile_rank as (
+select
+pmpm.*
+, round(percent_rank() over (order by total_allowed_amt),2) as pct_rank
+from pmpm
+)
+
+, percentile_rank_99_test as (
+select distinct 
+empi 
+from percentile_rank
+where 1=1
+and pct_rank >= .99
+)
+
+, percentile_rank_99_control as (
+select distinct 
+empi_match as empi
+from percentile_rank
+where 1=1
+and pct_rank >= .99
+)
+
+, final_ as (
+select
+pr.*
+, case when (pr99c.empi is not null or pr99t.empi is not null) then 1 else 0 end as flag
+
+from percentile_rank pr
+left join percentile_rank_99_test pr99t
+on pr.empi_match = pr99t.empi
+left join percentile_rank_99_control pr99c
+on pr.empi_match = pr99c.empi
+)
+
+select * from final_
+where 1=1
+and flag = 0
+"
+db = edw()
+dat_full = dbGetQuery(db, msk_query_full)
+dbDisconnect(db)
+
+# 8 Run a t-test checking for significance
+
+dat_full['PRE_POST'] = ifelse(dat_full['TIME_INTERVAL'] <= 0,'PRE','POST')
+dat_full['PRE_POST'] = relevel(as.factor(dat_full[, 'PRE_POST']),ref='PRE')
+
+lm.test=lm(TOTAL_ALLOWED_AMT~POP_GROUP*PRE_POST,data=dat_full) 
+summary(lm.test)
+
+# Check for normality of the residuals
+plot(lm.test)
+hist(residuals(lm.test))
+
+# 9 Plot the changes over time
+
+### Line plot
+
+ggplot(data = dat_full, aes(x=TIME_INTERVAL, y=TOTAL_ALLOWED_AMT, col=POP_GROUP)) +
+  geom_smooth(method='loess') +
+  labs(x='Months From Intervention Date', y='Allowed Amt') + 
+  ggtitle('Mean Medical Expense Over Time') +
+  geom_vline(xintercept = 0, col = 2)  +
+  xlim(-7,6)
+
+### Bar chart
+
+dat_full_ct <- dat_full %>% group_by(TIME_INTERVAL, POP_GROUP) %>% summarise(count = n())
+
+ggplot(dat_full_ct, aes(x=TIME_INTERVAL, y=count, col=POP_GROUP)) + 
+  geom_col(aes(fill=POP_GROUP)) +
+  xlim(-7,6)
+
+# 10 Write it to the clipboard
+
+write.table(dat_full, 'clipboard-128', sep="\t", row.names=FALSE)
+
+# 11 Find the mean diff
+
+mean(dat_full$TOTAL_ALLOWED_AMT[dat_full$POP_GROUP == 'Test' & dat_full$PRE_POST == 'POST'])
+mean(dat_full$TOTAL_ALLOWED_AMT[dat_full$POP_GROUP == 'Control' & dat_full$PRE_POST == 'POST'])
+
+# 12 Run the Wilcoxon test
+
+# Group the total allowed amt median each month
+dat_median <- dat_full %>% 
+  group_by(POP_GROUP, TIME_INTERVAL) %>% 
+  summarise(MEDIAN_ALLOWED_AMT = median(TOTAL_ALLOWED_AMT))
+
+
+# Plot the median over time
+
+dat_median %>% 
+  ggplot(aes(x=TIME_INTERVAL, y=MEDIAN_ALLOWED_AMT, col=POP_GROUP)) +
+  geom_line() +
+  # geom_smooth(method='loess') +
+  xlim(-7,6) +
+  ylim(0,1000) +
+  geom_vline(xintercept = 0, col = 2) +
+  labs(x='Months From Intervention Date', y='Allowed Amt') + 
+  ggtitle('Median Medical Expense Over Time')
+
+# Group the total allowed amt mean each month
+dat_mean <- dat_full %>% 
+  group_by(POP_GROUP, TIME_INTERVAL) %>% 
+  summarise(MEAN_ALLOWED_AMT = mean(TOTAL_ALLOWED_AMT))
+
+#Plot the mean over time
+
+dat_mean %>% 
+  ggplot(aes(x=TIME_INTERVAL, y=MEAN_ALLOWED_AMT, col=POP_GROUP)) +
+  geom_line() +
+  # geom_smooth(method='loess') +
+  xlim(-7,6) +
+  ylim(0,2000) +
+  geom_vline(xintercept = 0, col = 2) +
+  labs(x='Months From Intervention Date', y='Allowed Amt') + 
+  ggtitle('Mean Medical Expense Over Time')
+
+
+# Filter to just the post period and crop lag in claims
+new_dat <- dat_full[dat_full$PRE_POST == 'POST', ]
+new_dat <- new_dat[new_dat$TIME_INTERVAL < 7, ]
+
+# Check if the histograms are similarly distributed, but just have a shifted median
+# new_dat %>% 
+# ggplot(aes(TOTAL_ALLOWED_AMT, col=POP_GROUP)) +
+#   geom_histogram(position='identity', alpha=.5)
+
+# Check the boxplots for similar distribution
+new_dat %>% 
+  ggplot(aes(y=TOTAL_ALLOWED_AMT, col=POP_GROUP)) +
+  # geom_point() +
+  geom_boxplot() + 
+  # xlim(,6) + 
+  ylim(0,600) +
+  labs(y='Allowed Amt') + 
+  ggtitle('Difference in Medians of Allowed Amt [Post-Period]')
+
+
+wilcox.test(new_dat$TOTAL_ALLOWED_AMT ~ new_dat$POP_GROUP, alternative='two.sided')
+
+# Running a t test again on the cropped data
+
+dat_ttest <- dat_full[dat_full$TIME_INTERVAL < 7, ]
+dat_ttest['PRE_POST'] = relevel(as.factor(dat_ttest[, 'PRE_POST']),ref='PRE')
+
+
+lm.test=lm(TOTAL_ALLOWED_AMT~POP_GROUP*PRE_POST,data=dat_ttest) 
+
+summary(lm.test)
+
+dat_means_test <- dat_ttest[dat_ttest$POP_GROUP == 'Test', ]
+dat_means_control <- dat_ttest[dat_ttest$POP_GROUP == 'Control', ]
+
+mean(dat_means_test[dat_means_test$PRE_POST == 'POST', ]$TOTAL_ALLOWED_AMT)
+mean(dat_means_control[dat_means_control$PRE_POST == 'POST', ]$TOTAL_ALLOWED_AMT)
+
+

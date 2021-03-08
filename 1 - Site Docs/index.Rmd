@@ -9,14 +9,18 @@ output:
 
 ----
 
-Customize this page and any of the Math 325 Notebook so that it becomes a useful *Guide to Statistical Analysis* for your *current* and *future* self. 
+## Blogs
 
-<!-- This is how to comment text out. You can comment out the above instructions if you wish. Comments allow the text to remain in the Rmd file, but not be displayed in the html file. -->
+* [Statistic by Jim](https://statisticsbyjim.com/)
 
-[Customization Help](RMarkdownHints.html)
+
 
 ----
+  
+## Reference
 
+[Customization Help](RMarkdownHints.html)
+  
 <div style="float:left;width:125px;" align=center>
 <img src="./Images/QuantY.png" width=35px;>
 </div>

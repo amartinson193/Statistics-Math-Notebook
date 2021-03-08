@@ -2,7 +2,7 @@ name: "math-325-notebook"
 navbar:
   title: "My Stats Notebook"
   left:
-    - text: "Table of Contents"
+    - text: "Home"
       href: index.html
     - text: "Describing Data"
       menu:
@@ -10,7 +10,7 @@ navbar:
           href: GraphicalSummaries.html
         - text: "Numerical Summaries"
           href: NumericalSummaries.html
-    - text: "Making Inference"
+    - text: "Models"
       menu:
         - text: "Making Inference"
           href: MakingInference.html
@@ -25,6 +25,8 @@ navbar:
         - text: "Kruskal-Wallis"
           href: Kruskal.html
         - text: "Linear Regression"
+          href: Non-LinearRegression.html
+        - text: "Non-Linear Regression"
           href: LinearRegression.html
         - text: "Logistic Regression"
           href: LogisticRegression.html
