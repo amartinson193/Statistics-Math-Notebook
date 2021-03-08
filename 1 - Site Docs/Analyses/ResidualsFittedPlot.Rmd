@@ -1,0 +1,102 @@
+---
+title: "Residuals versus Fitted Values Plot"
+output: 
+  html_document:
+    theme: cerulean
+    code_folding: hide
+---
+
+
+```{r,include=FALSE}
+library(mosaic)
+library(car)
+```
+
+----
+
+The residuals versus fitted values plot checks for departures from the linear relation assumption and the constant variance assumption. 
+
+* The linear relation is assumed to be satisfied if there are no apparent trends in the plot. 
+
+* The constant variance assumption is assumed to be satisfied if the vertical spread of the residuals remains roughly consistent across all fitted values.
+
+The left column of plots below show scenarios that would be considered not linear. The right column of plots show scenarios that would be considered linear, but lacking constant variance. The middle column of plots shows scenarios that would satisfy both assumptions, linear and constant variance. 
+
+
+
+```{r}
+set.seed(2)
+X <- rnorm(30,15,3)
+notLin <- data.frame(X = X, Y = 500-X^2+rnorm(30,1,8))
+notLin.lm <- lm(Y~X, data=notLin)
+set.seed(15)
+Lin <- data.frame(X=X, Y = 5+1.8*X+rnorm(30,2,1.3))
+Lin.lm <- lm(Y~X, data=Lin)
+par(mfrow=c(3,3),  mai=c(.25,.25,.25,.25), mgp=c(1,.75,0))
+  plot(notLin.lm$fitted.values,notLin.lm$residuals, pch=20,
+       xlab="Fitted Values", ylab="Residuals", 
+       main="Not Linear", cex.main=0.95,
+       xaxt='n', yaxt='n')
+  abline(h=0)
+  plot(Lin.lm$fitted.values,Lin.lm$residuals, pch=20, 
+       xlab="Fitted Values", ylab="Residuals", 
+       main="Good: Linear, Constant Variance", 
+       cex.main=0.95, xaxt='n', yaxt='n')
+  abline(h=0)
+
+  set.seed(6)
+notCon <- data.frame(X = X, Y = 5+1.8*X + rnorm(30,2,X^1.5))
+notCon.lm <- lm(Y~X, data=notCon)
+LinO <- data.frame(X=X, Y = 5+1.8*X+rnorm(30,2,1.3))
+LinO[1] <- LinO[1]^2
+LinO.lm <- lm(Y~X, data=LinO)
+  plot(notCon.lm$fitted.values,notCon.lm$residuals, pch=20, xlab="Fitted Values", ylab="Residuals", main="Unconstant Variance", cex.main=0.95, yaxt='n', xaxt='n')
+  abline(h=0)
+#  plot(LinO.lm$fitted.values,LinO.lm$residuals, pch=20, xlab="Fitted Values", ylab="Residuals", main="Outliers", cex.main=0.95)
+#  abline(h=0)
+
+  
+  tmp <- lm(height ~ age, data=Loblolly)
+  plot(tmp$residuals ~ tmp$fitted.values, pch=20,
+       xlab="Fitted Values", ylab="Residuals", 
+       main="", cex.main=0.95,
+       xaxt='n', yaxt='n')
+  abline(h=0)
+  
+  tmp <- lm(Girth ~ Volume, data=trees[-31,])
+  plot(tmp$residuals ~ tmp$fitted.values, pch=20,
+       xlab="Fitted Values", ylab="Residuals", 
+       main="", cex.main=0.95,
+       xaxt='n', yaxt='n')
+  abline(h=0)
+
+  tmp <- lm(Height ~ Volume, data=trees)
+  plot(tmp$residuals ~ tmp$fitted.values, pch=20,
+       xlab="Fitted Values", ylab="Residuals", 
+       main="", cex.main=0.95,
+       xaxt='n', yaxt='n')
+  abline(h=0)
+  
+  tmp <- lm(mpg ~ disp, data=mtcars)
+  plot(tmp$residuals ~ tmp$fitted.values, pch=20,
+       xlab="Fitted Values", ylab="Residuals", 
+       main="", cex.main=0.95,
+       xaxt='n', yaxt='n')
+  abline(h=0) 
+  
+  
+  tmp <- lm(weight ~ repwt, data=Davis[-12,])
+  plot(tmp$residuals ~ tmp$fitted.values, pch=20,
+       xlab="Fitted Values", ylab="Residuals", 
+       main="", cex.main=0.95,
+       xaxt='n', yaxt='n')
+  abline(h=0) 
+
+  tmp <- lm(weight ~ repht, data=Davis[-12,])
+  plot(tmp$residuals ~ tmp$fitted.values, pch=20,
+       xlab="Fitted Values", ylab="Residuals", 
+       main="", cex.main=0.95,
+       xaxt='n', yaxt='n')
+  abline(h=0) 
+  
+```

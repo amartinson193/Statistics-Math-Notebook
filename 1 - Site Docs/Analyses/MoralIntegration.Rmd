@@ -1,0 +1,56 @@
+---
+title: "Moral Integration of American Cities"
+output: 
+  html_document:
+    theme: cerulean
+---
+
+```{r, include=FALSE}
+library(mosaic)
+library(plyr)
+```
+
+This document uses the `Angell` dataset to determine if there is greater `mobility` between the `East` and the `West` among the cities in the U.S. (around 1950).
+
+First, because this file is being used to demonstrate the Wilcoxon Rank Sum Test, we need to isolate the data to two groups, `East` and `West`. We will do this by combining `S` and `NE` to be `E` and combining `MW` and `W` to be `W`. We will use the `library(plyr)` and the function `revalue` to do this. Notice how the dataset is modifed by the revalue command below.
+
+```{r}
+Angell[c(1,5,12,30),]
+Angell$area <- revalue(Angell$region, 
+                       c("S"="E", "MW"="W"))
+# alternatively we could have used:
+#Angell$area <- mapvalues(Angell$region, 
+#                         from = c("S", "MW"), 
+#                         to = c("E", "W"))
+```
+
+```{r}
+Angell[c(1,5,12,30),]
+```
+
+Now we can compare the `East` and `West` with respect to their `mobility` scores.
+
+```{r}
+boxplot(mobility ~ area, data=Angell, names=c("East","West"), ylab="mobility score", col='gray', boxwex=.25)
+```
+
+It appears there may be a slight shift in medians with the `West` being higher. Since the distibutions are similarly shaped (slightly right skewed), an official test of the hypotheses
+$$
+  H_0: \text{difference in medians} = 0
+$$
+$$
+  H_a: \text{difference in medians} \neq 0
+$$
+can be performed. Using a Wilcoxon Rank Sum Test (using the normal approximation with continuity correction due to ties in the data), we obtain a test statistic of $W = 181$ and a p-value of $0.2376$. There is insufficient evidence to reject the null. We conclude that any differences in medians demonstrated by the above boxplot is simply due to random sampling. The mobility scores appear to be the same on average between the `East` and `West`.
+
+----
+
+Note that the R Code that produced the Wilcoxon Test results reported above is given by:
+
+```{r}
+wilcox.test(mobility ~ area, data=Angell)
+```
+
+
+
+

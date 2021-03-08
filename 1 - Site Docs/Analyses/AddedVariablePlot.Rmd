@@ -1,0 +1,137 @@
+---
+title: "Added Variable Plot"
+output: 
+  html_document:
+    theme: cerulean
+---
+
+----
+
+```{r,include=FALSE}
+library(mosaic)
+library(car)
+library(mosaicData)
+```
+
+An added variable plot checks to see if a new variable has any information to add to the current multiple regression model. 
+
+The plot is made by taking the residuals from the current multiple regression model ($y$-axis) and plotting them against the new explanatory variable ($x$-axis). 
+
+* If there is a trend in the added variable plot, then the new explanatory variable contains extra information that is not already contained in the current multiple regression. The new variable should be included in the model.
+
+* If there is no trend in the added variable plot, then the information provided by the new explanatory variable is already contained in the current multiple regression model. The new variable should continue to be left out of the model.
+
+The left column of plots below show scenarios where the new explanatory variable should be included in the model. The right column of plots show scenarios where the new explanatory variable should not be included in the model. 
+
+<br />
+
+```{r,echo=FALSE}
+
+par(mfcol=c(3,2),  mai=c(.25,.6,.25,.6), mgp=c(1,.75,0))
+
+  # Include the Xnew variable:
+  tmp <- lm(mpg ~ qsec, data=mtcars)
+  plot(tmp$residuals ~ disp, data=mtcars, 
+       pch=20,
+       xlab=expression(X[new]), ylab="Residuals", 
+       main="Include New Variable, Extra Information", cex.main=0.95,
+       xaxt='n', yaxt='n')
+  abline(h=0)
+
+  tmp <- lm(height ~ Seed, data=Loblolly)
+  plot(tmp$residuals ~ age, data=Loblolly,
+       pch=20,
+       xlab=expression(X[new]), ylab="Residuals", 
+       main="", cex.main=0.95,
+       xaxt='n', yaxt='n')
+  abline(h=0)
+  
+  tmp <- lm(Girth ~ Height, data=trees[-31,])
+  plot(tmp$residuals ~ Volume, data=trees[-31,],
+       pch=20,
+       xlab=expression(X[new]), ylab="Residuals", 
+       main="", cex.main=0.95,
+       xaxt='n', yaxt='n')
+  abline(h=0)
+  
+  
+  # No new information, don't include new variable:  
+  tmp <- lm(width ~ length, data=KidsFeet)
+  plot(tmp$residuals ~ birthmonth, data=KidsFeet,
+       pch=20,
+       xlab=expression(X[new]), ylab="Residuals", 
+       main="Leave Variable Out, Not Enough New Information", cex.main=0.95,
+       xaxt='n', yaxt='n')
+  abline(h=0)
+
+  tmp <- lm(circumference ~ age, data=Orange)
+  plot(tmp$residuals ~ age, data=Orange,
+       pch=20,
+       xlab=expression(X[new]), ylab="Residuals", 
+       main="", cex.main=0.95,
+       xaxt='n', yaxt='n')
+  abline(h=0)
+  
+  tmp <- lm(salary ~ yrs.since.phd, data=Salaries)
+  plot(tmp$residuals ~ yrs.service, data=Salaries,
+       pch=20, cex=0.8,
+       xlab=expression(X[new]), ylab="Residuals", 
+       main="", cex.main=0.95,
+       xaxt='n', yaxt='n')
+  abline(h=0)  
+  
+
+
+  
+  # Include the Xnew variable:
+  tmp <- lm(mpg ~ drat, data=mtcars)
+  plot(tmp$residuals ~ wt, data=mtcars, 
+       pch=20,
+       xlab=expression(X[new]), ylab="Residuals", 
+       main="", cex.main=0.95,
+       xaxt='n', yaxt='n')
+  abline(h=0)
+
+  tmp <- lm(Wind ~ Solar.R, data=na.omit(airquality))
+  plot(tmp$residuals ~ Temp, data=na.omit(airquality),
+       pch=20,
+       xlab=expression(X[new]), ylab="Residuals", 
+       main="", cex.main=0.95,
+       xaxt='n', yaxt='n')
+  abline(h=0)
+  
+  tmp <- lm(Girth ~ Height, data=trees[-31,])
+  plot(tmp$residuals ~ Volume, data=trees[-31,],
+       pch=20,
+       xlab=expression(X[new]), ylab="Residuals", 
+       main="", cex.main=0.95,
+       xaxt='n', yaxt='n')
+  abline(h=0)
+  
+  
+  # No new information, don't include new variable:  
+  tmp <- lm(width ~ length, data=KidsFeet)
+  plot(tmp$residuals ~ birthmonth, data=KidsFeet,
+       pch=20,
+       xlab=expression(X[new]), ylab="Residuals", 
+       main="", cex.main=0.95,
+       xaxt='n', yaxt='n')
+  abline(h=0)
+
+  tmp <- lm(wt ~ gestation, data=na.omit(Gestation))
+  plot(tmp$residuals ~ dwt, data=na.omit(Gestation),
+       pch=20,
+       xlab=expression(X[new]), ylab="Residuals", 
+       main="", cex.main=0.95,
+       xaxt='n', yaxt='n')
+  abline(h=0)
+  
+  tmp <- lm(Solar.R ~ Ozone, data=na.omit(airquality))
+  plot(tmp$residuals ~ Wind, data=na.omit(airquality),
+       pch=20,
+       xlab=expression(X[new]), ylab="Residuals", 
+       main="", cex.main=0.95,
+       xaxt='n', yaxt='n')
+  abline(h=0)
+      
+```

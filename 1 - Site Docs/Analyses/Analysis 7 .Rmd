@@ -1,0 +1,27 @@
+---
+title: "Analysis Title Here"
+author: "Your Name Here"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output: StatsBYUI::math325_analysis
+---
+
+```{r load_library, include=FALSE}
+# Use this R-Chunk to load your libraries!
+library(mosaic)
+
+```
+
+```{r load_data, include=FALSE}
+# Use this R-Chunk to load your datasets!
+
+```
+
+### Background
+
+
+### Analysis
+
+
+### Interpretation
+
+
