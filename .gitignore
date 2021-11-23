@@ -1,0 +1,9 @@
+env_**/
+Data**/
+*.msg
+Data_and_Project_Details.txt
+requirements.txt
+
+# Projects I'm Not Uploading
+*RPC*Project
+*SNF*Project
