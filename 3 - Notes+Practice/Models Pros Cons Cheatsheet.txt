@@ -1,0 +1,10 @@
+Source: https://towardsdatascience.com/pros-and-cons-of-various-classification-ml-algorithms-3b5bfb3c87d6
+
+Random Forest
+    * Pro: Good performance on imbalanced datasets
+    * Con: ?
+Logistic Regression:
+    * Pro: 
+        * Quick to train
+        * Feature scaling is not needed
+    * Con: Poor performance on non-linear data
