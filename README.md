@@ -3,6 +3,7 @@
 https://amartinson193.github.io/Statistics-Book
 
 # Medium Articles
+* [10 Probability Distributions that Every Data Scientist Should Know](https://medium.com/python-in-plain-english/10-probability-distribution-that-every-data-scientist-should-know-d73bcfe248b0)
 
 # Kaggle Notebooks
 * [Binomial Distribution: Using Stats to Determine Skill in Fantasy Football](https://www.kaggle.com/code/amartinson193/using-stats-to-determine-skill-in-fantasy-football)
