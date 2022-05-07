@@ -4,6 +4,8 @@ https://amartinson193.github.io/Statistics-Book
 
 # Medium Articles
 
+# Kaggle Notebooks
+
 # Additional Resources
 
 * [Computation Statistics with Python](https://github.com/amartinson193/Computational-statistics-with-Python)
