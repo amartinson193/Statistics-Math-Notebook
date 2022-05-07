@@ -10,5 +10,5 @@ https://amartinson193.github.io/Statistics-Book
 * [U of U Course: Intro to Probability and Statistics](https://github.com/amartinson193/BMI6106)
 * [BYU-I Data Science Page](https://byuidatascience.github.io/resume.html) 
 * [BYU-I Stats Notebook](http://statistics.byuimath.com/index.php?title=Main_Page)
-* [U of U Data Science Course]()
+* [U of U Data Science Course](https://github.com/amartinson193/2021-datascience-lectures)
 
