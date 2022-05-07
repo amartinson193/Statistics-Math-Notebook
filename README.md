@@ -5,6 +5,8 @@ https://amartinson193.github.io/Statistics-Book
 # Medium Articles
 
 # Kaggle Notebooks
+* [Binomial Distribution: Using Stats to Determine Skill in Fantasy Football](https://www.kaggle.com/code/amartinson193/using-stats-to-determine-skill-in-fantasy-football)
+* [Permutations: Using Permutations in your Statistical Analysis](https://www.kaggle.com/code/amartinson193/using-permutations-in-your-statistical-analysis)
 
 # Additional Resources
 
