@@ -18,4 +18,5 @@
 * [BYU-I Data Science Page](https://byuidatascience.github.io) 
 * [BYU-I Stats Notebook](http://statistics.byuimath.com/index.php?title=Main_Page)
 * [U of U Data Science Course](https://github.com/amartinson193/2021-datascience-lectures)
+* [Datacamp - Statistical Thinking in Python (Part 1)](https://github.com/amartinson193/Statistics-Book-Private)
 
