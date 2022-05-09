@@ -8,8 +8,6 @@ navbar:
       menu:
         - text: "Graphical Summaries"
           href: GraphicalSummaries.html
-        - text: "Numerical Summaries"
-          href: NumericalSummaries.html
     - text: "Models"
       menu:
         - text: "Making Inference"
@@ -25,9 +23,9 @@ navbar:
         - text: "Kruskal-Wallis"
           href: Kruskal.html
         - text: "Linear Regression"
-          href: Non-LinearRegression.html
-        - text: "Non-Linear Regression"
           href: LinearRegression.html
+        - text: "Non-Linear Regression"
+          href: Non-Linear-Regression.html
         - text: "Logistic Regression"
           href: LogisticRegression.html
         - text: "Chi-Squared Tests"

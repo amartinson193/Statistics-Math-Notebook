@@ -103,7 +103,7 @@ Note that the single number showing above is the average `Temp` from the `airqua
 <a href="javascript:showhide('mean2')">
 <div class="hoverchunk">
 <span class="tooltipr">
-library(mosaic)
+# library(mosaic)
 <span class="tooltiprtext">mosaic is an R Package that overlaods many R functions to improve their usefulness. The command: library(mosaic) loads the mosaic package.</span>
 </span><br><span class="tooltipr">
 mean(
@@ -137,7 +137,7 @@ data=airquality
 </a>
 <div id="mean2" style="display:none;">
 ```{r, include=FALSE}
-library(mosaic)
+# library(mosaic)
 ```
 
 ```{r, echo=FALSE}

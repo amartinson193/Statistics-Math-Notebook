@@ -13,18 +13,25 @@
 
 <title>Table of Contents</title>
 
-<script src="site_libs/header-attrs-2.5/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -36,11 +43,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -53,32 +55,8 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
+
 
 
 
@@ -88,10 +66,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -108,40 +82,16 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -169,7 +119,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -181,7 +131,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -192,10 +142,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -207,7 +170,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -274,7 +236,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -287,7 +249,7 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Describing Data
      
     <span class="caret"></span>
@@ -296,13 +258,10 @@ $(document).ready(function () {
     <li>
       <a href="GraphicalSummaries.html">Graphical Summaries</a>
     </li>
-    <li>
-      <a href="NumericalSummaries.html">Numerical Summaries</a>
-    </li>
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Models
      
     <span class="caret"></span>
@@ -327,10 +286,10 @@ $(document).ready(function () {
       <a href="Kruskal.html">Kruskal-Wallis</a>
     </li>
     <li>
-      <a href="Non-LinearRegression.html">Linear Regression</a>
+      <a href="LinearRegression.html">Linear Regression</a>
     </li>
     <li>
-      <a href="LinearRegression.html">Non-Linear Regression</a>
+      <a href="Non-Linear-Regression.html">Non-Linear Regression</a>
     </li>
     <li>
       <a href="LogisticRegression.html">Logistic Regression</a>
@@ -357,7 +316,7 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -384,11 +343,14 @@ $(document).ready(function () {
 <div style="padding-left:125px;">
 <!-- Add your customizations in the area below: -->
 <p><strong>1 Quantitative Variable</strong></p>
-<p>Y is a quantitative variable that represents measures on individual units (i.e. height of people)</p>
+<p>Y is a quantitative variable that represents measures on individual
+units (i.e. height of people)</p>
 <p><strong>Appropriate Tests</strong></p>
-<p><a href="tTests.html">T-test, Paired T-test</a> | <a href="WilcoxonTests.html">Wilcoxon Signed-Rank Test</a></p>
+<p><a href="tTests.html">T-test, Paired T-test</a> | <a
+href="WilcoxonTests.html">Wilcoxon Signed-Rank Test</a></p>
 <p><strong>Appropriate Summaries</strong></p>
-<p><a href="NumericalSummaries.html">Mean, Median, Five-number summary, Standard Deviation</a></p>
+<p><a href="NumericalSummaries.html">Mean, Median, Five-number summary,
+Standard Deviation</a></p>
 <p><strong>Appropriate Graphs</strong></p>
 <p><a href="GraphicalSummaries.html">Histogram, Boxplot</a></p>
 <!------------------------------------------------>
@@ -405,9 +367,11 @@ $(document).ready(function () {
 <p><strong>1 Quantitative Variable | 2 Groups</strong></p>
 <p>Y is a quantitative measure and x are the two groups.</p>
 <p><strong>Appropriate Tests</strong></p>
-<p><a href="tTests.html">Independent T-test</a> | <a href="WilcoxonTests.html">Wilcoxon Rank-Sum (Mann-Whitney) Test</a></p>
+<p><a href="tTests.html">Independent T-test</a> | <a
+href="WilcoxonTests.html">Wilcoxon Rank-Sum (Mann-Whitney) Test</a></p>
 <p><strong>Appropriate Summaries</strong></p>
-<p><a href="NumericalSummaries.html">Mean, Median, Five-number summary, Standard Deviation</a></p>
+<p><a href="NumericalSummaries.html">Mean, Median, Five-number summary,
+Standard Deviation</a></p>
 <p><strong>Appropriate Graphs</strong></p>
 <p><a href="GraphicalSummaries.html">Boxplot, Dot Plots</a></p>
 <!------------------------------------------------>
@@ -422,13 +386,17 @@ $(document).ready(function () {
 <div style="padding-left:125px;">
 <!-- Add your customizations in the area below: -->
 <p><strong>1 Quantitative Variable | 3+ Groups</strong></p>
-<p>This is when there are 3 or more groups. These groups would be a part of factor. A factor is an item that has several levels, or groups.</p>
+<p>This is when there are 3 or more groups. These groups would be a part
+of factor. A factor is an item that has several levels, or groups.</p>
 <p><strong>Appropriate Tests</strong></p>
-<p><a href="ANOVA.html">One-Way ANOVA, Two-Way ANOVA</a> | <a href="Kruskal.html">Kruskal-Wallis Test</a></p>
+<p><a href="ANOVA.html">One-Way ANOVA, Two-Way ANOVA</a> | <a
+href="Kruskal.html">Kruskal-Wallis Test</a></p>
 <p><strong>Appropriate Summaries</strong></p>
-<p><a href="NumericalSummaries.html">Mean, Median, Five-number summary, Standard Deviation</a></p>
+<p><a href="NumericalSummaries.html">Mean, Median, Five-number summary,
+Standard Deviation</a></p>
 <p><strong>Appropriate Graphs</strong></p>
-<p><a href="GraphicalSummaries.html">Boxplot, Dot Plots, Scatterplots</a></p>
+<p><a href="GraphicalSummaries.html">Boxplot, Dot Plots,
+Scatterplots</a></p>
 <!------------------------------------------------>
 </div>
 <div style="clear:both;">
@@ -441,11 +409,13 @@ $(document).ready(function () {
 <div style="padding-left:125px;">
 <!-- Add your customizations in the area below: -->
 <p><strong>2 Quantitative Variables</strong></p>
-<p>This is when two quantitative variables are used to determine if there is a linear relationship between the two or not.</p>
+<p>This is when two quantitative variables are used to determine if
+there is a linear relationship between the two or not.</p>
 <p><strong>Appropriate Tests</strong></p>
 <p><a href="LinearRegression.html">Simple Linear Regression</a></p>
 <p><strong>Appropriate Summaries</strong></p>
-<p><a href="NumericalSummaries.html">Mean, Median, Percentile, Correlation</a></p>
+<p><a href="NumericalSummaries.html">Mean, Median, Percentile,
+Correlation</a></p>
 <p><strong>Appropriate Graphs</strong></p>
 <p><a href="GraphicalSummaries.html">Scatterplots</a></p>
 <!------------------------------------------------>
@@ -459,12 +429,15 @@ $(document).ready(function () {
 </div>
 <div style="padding-left:125px;">
 <!-- Add your customizations in the area below: -->
-<p><strong>1 Quantitative Response | Multiple Explanatory Variables</strong></p>
-<p>More than one response variable to y is used in order to help determine a linear correlation between the x points and y.</p>
+<p><strong>1 Quantitative Response | Multiple Explanatory
+Variables</strong></p>
+<p>More than one response variable to y is used in order to help
+determine a linear correlation between the x points and y.</p>
 <p><strong>Appropriate Tests</strong></p>
 <p><a href="LinearRegression.html">Multiple Linear Regression</a></p>
 <p><strong>Appropriate Summaries</strong></p>
-<p><a href="NumericalSummaries.html">Mean, Median, Percentile, Correlation</a></p>
+<p><a href="NumericalSummaries.html">Mean, Median, Percentile,
+Correlation</a></p>
 <p><strong>Appropriate Graphs</strong></p>
 <p><a href="GraphicalSummaries.html">Scatterplots</a></p>
 <!------------------------------------------------>
@@ -479,11 +452,13 @@ $(document).ready(function () {
 <div style="padding-left:125px;">
 <!-- Add your customizations in the area below: -->
 <p><strong>Binomial Response | 1 Explanatory Variable</strong></p>
-<p>Regression for a qualitative binary response variable (Yi=0 or 1), using a single (typically quantitative) explanatory variable.</p>
+<p>Regression for a qualitative binary response variable (Yi=0 or 1),
+using a single (typically quantitative) explanatory variable.</p>
 <p><strong>Appropriate Tests</strong></p>
 <p><a href="LogisticRegression.html">Logistic Regression</a></p>
 <p><strong>Appropriate Summaries</strong></p>
-<p><a href="NumericalSummaries.html">Mean, Median, Mode, Minimum, Maximum, Standard Deviation, Quartiles</a></p>
+<p><a href="NumericalSummaries.html">Mean, Median, Mode, Minimum,
+Maximum, Standard Deviation, Quartiles</a></p>
 <p><strong>Appropriate Graphs</strong></p>
 <p><a href="GraphicalSummaries.html">Custom Plot - S Curve Graph</a></p>
 <!------------------------------------------------>
@@ -497,12 +472,16 @@ $(document).ready(function () {
 </div>
 <div style="padding-left:125px;">
 <!-- Add your customizations in the area below: -->
-<p><strong>Binomial Response | Multiple Explanatory Variables</strong></p>
-<p>Regression for a qualitative binary response variable (Yi=0 or 1). The explanatory variables can be either quantitative or qualitative.</p>
+<p><strong>Binomial Response | Multiple Explanatory
+Variables</strong></p>
+<p>Regression for a qualitative binary response variable (Yi=0 or 1).
+The explanatory variables can be either quantitative or qualitative.</p>
 <p><strong>Appropriate Tests</strong></p>
-<p><a href="LogisticRegression.html">Multiple Logistic Regression Model</a></p>
+<p><a href="LogisticRegression.html">Multiple Logistic Regression
+Model</a></p>
 <p><strong>Appropriate Summaries</strong></p>
-<p><a href="NumericalSummaries.html">Mean, Median, Mode, Minimum, Maximum, Standard Deviation, Quartiles</a></p>
+<p><a href="NumericalSummaries.html">Mean, Median, Mode, Minimum,
+Maximum, Standard Deviation, Quartiles</a></p>
 <p><strong>Appropriate Graphs</strong></p>
 <p><a href="GraphicalSummaries.html">Custom Plot - S Curve Graph</a></p>
 <!------------------------------------------------>
@@ -517,11 +496,14 @@ $(document).ready(function () {
 <div style="padding-left:125px;">
 <!-- Add your customizations in the area below: -->
 <p><strong>2 Qualitative Variables</strong></p>
-<p>Association testing for two qualitative variables with at least two levels to each variable.</p>
+<p>Association testing for two qualitative variables with at least two
+levels to each variable.</p>
 <p><strong>Appropriate Tests</strong></p>
-<p><a href="ChiSquaredTests.html">Chi-squared Test of Independence</a> | <a href="ChiSquaredTests.html">Nonparametric Chi-squared Test</a></p>
+<p><a href="ChiSquaredTests.html">Chi-squared Test of Independence</a> |
+<a href="ChiSquaredTests.html">Nonparametric Chi-squared Test</a></p>
 <p><strong>Appropriate Summaries</strong></p>
-<p><a href="NumericalSummaries.html">Mean, Median, Mode, Minimum, Maximum</a></p>
+<p><a href="NumericalSummaries.html">Mean, Median, Mode, Minimum,
+Maximum</a></p>
 <p><strong>Appropriate Graphs</strong></p>
 <p><a href="GraphicalSummaries.html">Barplot, Dotplot</a></p>
 <!------------------------------------------------>
@@ -561,7 +543,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>

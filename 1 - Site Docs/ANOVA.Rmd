@@ -182,7 +182,7 @@ where $\mu_i$ is the mean of each group (or level) $i$ of a factor, and $\epsilo
 
 
 ```{r, include=FALSE}
-library(mosaic)
+# library(mosaic)
 ```
 
 ```{r, echo=FALSE}

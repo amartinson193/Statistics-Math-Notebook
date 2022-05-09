@@ -14,8 +14,8 @@ output:
 </script>
 
 ```{r, include=FALSE}
-library(mosaic)
-library(car)
+# library(mosaic)
+# library(car)
 ```
 ----
 

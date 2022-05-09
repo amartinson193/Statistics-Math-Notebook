@@ -13,16 +13,23 @@
 
 <title>R Commands</title>
 
-<script src="site_libs/header-attrs-2.5/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -36,32 +43,8 @@
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
+
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
@@ -72,10 +55,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -92,40 +71,16 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -153,7 +108,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -165,7 +120,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -176,10 +131,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -191,7 +159,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -258,7 +225,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -271,7 +238,7 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Describing Data
      
     <span class="caret"></span>
@@ -280,13 +247,10 @@ $(document).ready(function () {
     <li>
       <a href="GraphicalSummaries.html">Graphical Summaries</a>
     </li>
-    <li>
-      <a href="NumericalSummaries.html">Numerical Summaries</a>
-    </li>
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Models
      
     <span class="caret"></span>
@@ -311,10 +275,10 @@ $(document).ready(function () {
       <a href="Kruskal.html">Kruskal-Wallis</a>
     </li>
     <li>
-      <a href="Non-LinearRegression.html">Linear Regression</a>
+      <a href="LinearRegression.html">Linear Regression</a>
     </li>
     <li>
-      <a href="LinearRegression.html">Non-Linear Regression</a>
+      <a href="Non-Linear-Regression.html">Non-Linear Regression</a>
     </li>
     <li>
       <a href="LogisticRegression.html">Logistic Regression</a>
@@ -341,7 +305,7 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -357,7 +321,8 @@ $(document).ready(function () {
  }
 </script>
 <hr />
-<p>Open RStudio and try all the <strong>Example</strong> codes yourself.</p>
+<p>Open RStudio and try all the <strong>Example</strong> codes
+yourself.</p>
 <div id="data" class="section level2">
 <h2>data( )</h2>
 <div style="padding-left:15px;">
@@ -369,8 +334,15 @@ $(document).ready(function () {
 <p><strong>Examples</strong></p>
 <a href="javascript:showhide('DataOutput')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> data <span class="tooltipRtext">An R function “data” used to bring up a list of available datasets in R.</span> </span><span class="tooltipr"> () <span class="tooltipRtext">Functions always have parantheses following the function name. For this function we do not put anything inside the parantheses.</span> </span><span class="tooltipr">     <br />
-<span class="tooltipRtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<p><span class="tooltipr"> data <span class="tooltipRtext">An R function
+“data” used to bring up a list of available datasets in R.</span>
+</span><span class="tooltipr"> () <span class="tooltipRtext">Functions
+always have parantheses following the function name. For this function
+we do not put anything inside the parantheses.</span> </span><span
+class="tooltipr">     <br />
+<span class="tooltipRtext">Press Enter to run the code.</span>
+</span><span class="tooltipr" style="float:right;">  …  <span
+class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 </a>
 <div id="DataOutput" style="display:none;padding-left:20px;">
@@ -386,22 +358,35 @@ $(document).ready(function () {
 <p><strong>Usage</strong></p>
 <p><code>?something</code></p>
 <ul>
-<li>This is the help command. It pulls up the help file for whatever you write in the place of <code>something</code>.</li>
+<li>This is the help command. It pulls up the help file for whatever you
+write in the place of <code>something</code>.</li>
 </ul>
 <p><strong>Examples</strong></p>
 <a href="javascript:showhide('HelpOutput')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> ? <span class="tooltipRtext">The quick way to access the help function in R.</span> </span><span class="tooltipr"> cars <span class="tooltipRtext">The name of a dataset can be typed to open the help file for that dataset.</span> </span><span class="tooltipr">     <br />
-<span class="tooltipRtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<p><span class="tooltipr"> ? <span class="tooltipRtext">The quick way to
+access the help function in R.</span> </span><span class="tooltipr">
+cars <span class="tooltipRtext">The name of a dataset can be typed to
+open the help file for that dataset.</span> </span><span
+class="tooltipr">     <br />
+<span class="tooltipRtext">Press Enter to run the code.</span>
+</span><span class="tooltipr" style="float:right;">  …  <span
+class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 </a>
 <div id="HelpOutput" style="display:none;padding-left:20px;">
-<p><img src="Images/HelpOutputCars.png" /></p>
+<p><img src="Images/HelpOutputcars.png" /></p>
 </div>
 <a href="javascript:showhide('HelpOutput2')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> ? <span class="tooltipRtext">The quick way to access the help function in R.</span> </span><span class="tooltipr"> View <span class="tooltipRtext">The name of an R function, like <code>View</code> can also be used to open the help file for that function.</span> </span><span class="tooltipr">     <br />
-<span class="tooltipRtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<p><span class="tooltipr"> ? <span class="tooltipRtext">The quick way to
+access the help function in R.</span> </span><span class="tooltipr">
+View <span class="tooltipRtext">The name of an R function, like
+<code>View</code> can also be used to open the help file for that
+function.</span> </span><span class="tooltipr">     <br />
+<span class="tooltipRtext">Press Enter to run the code.</span>
+</span><span class="tooltipr" style="float:right;">  …  <span
+class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 </a>
 <div id="HelpOutput2" style="display:none;padding-left:20px;">
@@ -417,13 +402,26 @@ $(document).ready(function () {
 <p><strong>Usage</strong></p>
 <p><code>View(object)</code></p>
 <ul>
-<li><code>object</code> is typically the name of a <code>data.frame</code> object in R, i.e., a dataset.</li>
+<li><code>object</code> is typically the name of a
+<code>data.frame</code> object in R, i.e., a dataset.</li>
 </ul>
 <p><strong>Example Code</strong></p>
 <a href="javascript:showhide('CarsOutput')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> View( <span class="tooltipRtext">An R function “View” allows us to view the datset that we select. This will open up a new tab in RStudio showing the dataset. Be sure to include the opening parantheses. </span> </span><span class="tooltipr"> cars <span class="tooltipRtext"><code>cars</code> is data set that is in R. R has datasets that are available for anyone to use. You can see them using the <code>data()</code> command. It would be good to explore <code>View()</code> a few different datasets. </span> </span><span class="tooltipr"> ) <span class="tooltipRtext">Always be sure to end your function with closing parantheses. </span> </span><span class="tooltipr">     <br />
-<span class="tooltipRtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<p><span class="tooltipr"> View( <span class="tooltipRtext">An R
+function “View” allows us to view the datset that we select. This will
+open up a new tab in RStudio showing the dataset. Be sure to include the
+opening parantheses. </span> </span><span class="tooltipr"> cars <span
+class="tooltipRtext"><code>cars</code> is data set that is in R. R has
+datasets that are available for anyone to use. You can see them using
+the <code>data()</code> command. It would be good to explore
+<code>View()</code> a few different datasets. </span> </span><span
+class="tooltipr"> ) <span class="tooltipRtext">Always be sure to end
+your function with closing parantheses. </span> </span><span
+class="tooltipr">     <br />
+<span class="tooltipRtext">Press Enter to run the code.</span>
+</span><span class="tooltipr" style="float:right;">  …  <span
+class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 </a>
 <div id="CarsOutput" style="display:none;padding-left:20px;">
@@ -431,8 +429,16 @@ $(document).ready(function () {
 </div>
 <a href="javascript:showhide('airqualityOutput1')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> View( <span class="tooltipRtext"> Function can work with datasets but also combinations and matrices that you create. </span> </span><span class="tooltipr"> airquality) <span class="tooltipRtext"> Gives us data concerning air quality measurements around New York City, NY. For more details on this dataset type: <code>?airquality</code></span> </span><span class="tooltipr">     <br />
-<span class="tooltipRtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<p><span class="tooltipr"> View( <span class="tooltipRtext"> Function
+can work with datasets but also combinations and matrices that you
+create. </span> </span><span class="tooltipr"> airquality) <span
+class="tooltipRtext"> Gives us data concerning air quality measurements
+around New York City, NY. For more details on this dataset type:
+<code>?airquality</code></span> </span><span class="tooltipr">
+    <br />
+<span class="tooltipRtext">Press Enter to run the code.</span>
+</span><span class="tooltipr" style="float:right;">  …  <span
+class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 </a>
 <div id="airqualityOutput1" style="display:none;padding-left:20px;">
@@ -447,13 +453,28 @@ $(document).ready(function () {
 <div style="padding-left:15px;">
 <p><code>DataSetName$ColumnName</code></p>
 <ul>
-<li>The <code>$</code> operator allows you to access the individual columns of a dataset.</li>
+<li>The <code>$</code> operator allows you to access the individual
+columns of a dataset.</li>
 </ul>
 <p><strong>Example Code</strong></p>
 <a href="javascript:showhide('airqualityDollar')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> airquality <span class="tooltipRtext">The <code>airqaulity</code> dataset. This could be the name of any dataset instead of <code>airquality</code>.</span> </span><span class="tooltipr"> $ <span class="tooltipRtext"> Grabs the column, or variable, from the dataset to be used. This is typically used when computing say the mean (or other statistic) of a single column of the data. </span> </span><span class="tooltipr"> Ozone <span class="tooltipRtext"> The name of any column of the dataset can be entered after the dollar sign. In the airquality dataset, this includes: <code>Ozone</code>, <code>Solar.R</code>, <code>Wind</code>, <code>Temp</code>, <code>Month</code>, or <code>Day</code> as shown by <code>View(airquality)</code>. </span> </span><span class="tooltipr">     <br />
-<span class="tooltipRtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<p><span class="tooltipr"> airquality <span class="tooltipRtext">The
+<code>airqaulity</code> dataset. This could be the name of any dataset
+instead of <code>airquality</code>.</span> </span><span
+class="tooltipr"> $ <span class="tooltipRtext"> Grabs the column, or
+variable, from the dataset to be used. This is typically used when
+computing say the mean (or other statistic) of a single column of the
+data. </span> </span><span class="tooltipr"> Ozone <span
+class="tooltipRtext"> The name of any column of the dataset can be
+entered after the dollar sign. In the airquality dataset, this includes:
+<code>Ozone</code>, <code>Solar.R</code>, <code>Wind</code>,
+<code>Temp</code>, <code>Month</code>, or <code>Day</code> as shown by
+<code>View(airquality)</code>. </span> </span><span class="tooltipr">
+    <br />
+<span class="tooltipRtext">Press Enter to run the code.</span>
+</span><span class="tooltipr" style="float:right;">  …  <span
+class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 <p></a></p>
 <div id="airqualityDollar" style="display:none;padding-left:20px;">
@@ -469,16 +490,50 @@ $(document).ready(function () {
 <p><strong>Usage</strong></p>
 <p><code>NameYouCreate &lt;- some R commands</code></p>
 <ul>
-<li><code>&lt;-</code> (Less than symbol <code>&lt;</code> with a hyphen <code>-</code>) is called the assignment operator and lets you store the results of the <code>some R commands</code> into an object called <code>NameYouCreate</code>.</li>
-<li><code>NameYouCreate</code> is any name that begins with a letter, but can use numbers, periods, and underscores thereafter. The name should not contain spaces.</li>
+<li><code>&lt;-</code> (Less than symbol <code>&lt;</code> with a hyphen
+<code>-</code>) is called the assignment operator and lets you store the
+results of the <code>some R commands</code> into an object called
+<code>NameYouCreate</code>.</li>
+<li><code>NameYouCreate</code> is any name that begins with a letter,
+but can use numbers, periods, and underscores thereafter. The name
+should not contain spaces.</li>
 </ul>
 <p><strong>Example Code</strong></p>
 <a href="javascript:showhide('NamingCars1')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> cars2 <span class="tooltipRtext">First we name the object we are creating. In this case, we are making a copy of the cars dataset, so it is logical to call it <code>cars2</code>, but it could be <code>bob</code>, <code>c2</code> or any name you wanted to use. Just be careful to not use names that are already in use! </span> </span><span class="tooltipr">   &lt;-   <span class="tooltipRtext"> The <code>&lt;-</code> assignment operator will take whatever is on the right hand side and save it into the name written on the left hand side. </span> </span><span class="tooltipr"> cars <span class="tooltipRtext">In this case the <code>cars</code> dataset is being copied to <code>cars2</code> so that we can change <code>cars2</code> without changing the original <code>cars</code> dataset.</span> </span><span class="tooltipr">     <br />
+<p><span class="tooltipr"> cars2 <span class="tooltipRtext">First we
+name the object we are creating. In this case, we are making a copy of
+the cars dataset, so it is logical to call it <code>cars2</code>, but it
+could be <code>bob</code>, <code>c2</code> or any name you wanted to
+use. Just be careful to not use names that are already in use! </span>
+</span><span class="tooltipr">   &lt;-   <span class="tooltipRtext"> The
+<code>&lt;-</code> assignment operator will take whatever is on the
+right hand side and save it into the name written on the left hand side.
+</span> </span><span class="tooltipr"> cars <span
+class="tooltipRtext">In this case the <code>cars</code> dataset is being
+copied to <code>cars2</code> so that we can change <code>cars2</code>
+without changing the original <code>cars</code> dataset.</span>
+</span><span class="tooltipr">     <br />
 <span class="tooltipRtext">Press Enter to run the code.</span></p>
-<p></span><span class="tooltipr"> cars2 <span class="tooltipRtext">The new copy of the <code>cars</code> dataset that we just created</span> </span><span class="tooltipr"> $ftpersec <span class="tooltipRtext">The <code>$</code> selection operator can be used to create a new column in a dataset when used with the <code>&lt;-</code> assignment operator. </span> </span><span class="tooltipr">  &lt;-  <span class="tooltipRtext">The <code>&lt;-</code> assignment operator will take the results of the right-hand-side and save them into the name on the left-hand-side. </span> </span><span class="tooltipr"> cars2$speed * 5280 / 3600 <span class="tooltipRtext">This calculation converts the miles per hour of the <code>cars2</code> <code>speed</code> column into feet per seconds because there are 5280 feet in a mile and 60 minutes in an hour and 60 seconds in a minute.</span> </span></p>
-<p></span><span class="tooltipr"> View(cars2) <span class="tooltipRtext">The <code>cars2</code> dataset now contains a 3rd column called <code>feetpersec</code>. Compare this to the original <code>cars</code> dataset to see how it changed.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<p></span><span class="tooltipr"> cars2 <span class="tooltipRtext">The
+new copy of the <code>cars</code> dataset that we just created</span>
+</span><span class="tooltipr"> $ftpersec <span class="tooltipRtext">The
+<code>$</code> selection operator can be used to create a new column in
+a dataset when used with the <code>&lt;-</code> assignment operator.
+</span> </span><span class="tooltipr">  &lt;-  <span
+class="tooltipRtext">The <code>&lt;-</code> assignment operator will
+take the results of the right-hand-side and save them into the name on
+the left-hand-side. </span> </span><span class="tooltipr"> cars2$speed *
+5280 / 3600 <span class="tooltipRtext">This calculation converts the
+miles per hour of the <code>cars2</code> <code>speed</code> column into
+feet per seconds because there are 5280 feet in a mile and 60 minutes in
+an hour and 60 seconds in a minute.</span> </span></p>
+<p></span><span class="tooltipr"> View(cars2) <span
+class="tooltipRtext">The <code>cars2</code> dataset now contains a 3rd
+column called <code>feetpersec</code>. Compare this to the original
+<code>cars</code> dataset to see how it changed.</span> </span><span
+class="tooltipr" style="float:right;">  …  <span
+class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 <p></a></p>
 <div id="NamingCars1" style="display:none;padding-left:20px;">
@@ -494,17 +549,52 @@ $(document).ready(function () {
 <p><strong>Usage</strong></p>
 <p><code>c(value 1, value 2, value 3, ... )</code></p>
 <ul>
-<li>The <code>c( )</code> function combines <code>values</code> into a single object called a “vector”.</li>
-<li><code>values 1, 2, 3, ...</code> can be numbers or characters, i.e., words, but must be all of one type or the other.</li>
+<li>The <code>c( )</code> function combines <code>values</code> into a
+single object called a “vector”.</li>
+<li><code>values 1, 2, 3, ...</code> can be numbers or characters, i.e.,
+words, but must be all of one type or the other.</li>
 </ul>
 <p><strong>Example Code</strong></p>
 <a href="javascript:showhide('cVector')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> Classlist &lt;- <span class="tooltipRtext"><code>Classlist</code> is a new object being created using the assignment operator <code>&lt;-</code> that will contain the four names listed above.</span> </span><span class="tooltipr">  c( <span class="tooltipRtext">The concatenate function <code>c( )</code> is being used in this case to group character values representing names of students into a single object named “Classlist”. </span> </span><span class="tooltipr"> “Jackson”, “Jared”, “Jill”, “Jane”) <span class="tooltipRtext"> These are the values we are grouping into the object named <code>Classlist</code>. </span> </span><span class="tooltipr">     <br />
-<span class="tooltipRtext">Press Enter to run the code.</span> </span></p>
-<p><span class="tooltipr"> Ages &lt;-   <span class="tooltipRtext">The assignment operator <code>&lt;-</code> is being used to create the object called <code>Ages</code> that will contain the ages of each student on the <code>Classlist</code>. </span> </span><span class="tooltipr"> c( <span class="tooltipRtext">The R function “c()” allows us to group together values in order to save them into an object. </span> </span><span class="tooltipr"> 8, 9, 7, 8 <span class="tooltipRtext"> The values, separated by comma’s, that are being grouped together. In this case, numbers are being grouped together. </span> </span><span class="tooltipr"> ) <span class="tooltipRtext">Always close off your functions in R with a closing parathesis.</span> </span><span class="tooltipr">     <br />
+<p><span class="tooltipr"> Classlist &lt;- <span
+class="tooltipRtext"><code>Classlist</code> is a new object being
+created using the assignment operator <code>&lt;-</code> that will
+contain the four names listed above.</span> </span><span
+class="tooltipr">  c( <span class="tooltipRtext">The concatenate
+function <code>c( )</code> is being used in this case to group character
+values representing names of students into a single object named
+“Classlist”. </span> </span><span class="tooltipr"> “Jackson”, “Jared”,
+“Jill”, “Jane”) <span class="tooltipRtext"> These are the values we are
+grouping into the object named <code>Classlist</code>. </span>
+</span><span class="tooltipr">     <br />
+<span class="tooltipRtext">Press Enter to run the code.</span>
+</span></p>
+<p><span class="tooltipr"> Ages &lt;-   <span class="tooltipRtext">The
+assignment operator <code>&lt;-</code> is being used to create the
+object called <code>Ages</code> that will contain the ages of each
+student on the <code>Classlist</code>. </span> </span><span
+class="tooltipr"> c( <span class="tooltipRtext">The R function “c()”
+allows us to group together values in order to save them into an object.
+</span> </span><span class="tooltipr"> 8, 9, 7, 8 <span
+class="tooltipRtext"> The values, separated by comma’s, that are being
+grouped together. In this case, numbers are being grouped together.
+</span> </span><span class="tooltipr"> ) <span
+class="tooltipRtext">Always close off your functions in R with a closing
+parathesis.</span> </span><span class="tooltipr">     <br />
 <span class="tooltipRtext">Press Enter to run the code.</span></p>
-<p><span class="tooltipr"> Colors &lt;-   <span class="tooltipRtext">The assignment operator <code>&lt;-</code> is being used to create the object called <code>Colors</code> that will have one color for each student on the <code>Classlist</code>. </span> </span><span class="tooltipr"> c( <span class="tooltipRtext">The R function “c()” allows us to group together values in order to save them into an object. </span> </span><span class="tooltipr"> “red”, “blue”, “green”, “yellow” <span class="tooltipRtext"> The values, separated by comma’s, that are being grouped together. In this case, characters are being grouped together. </span> </span><span class="tooltipr"> ) <span class="tooltipRtext">Always close off your functions in R with a closing parathesis.</span> </span><span class="tooltipr">     <br />
+<p><span class="tooltipr"> Colors &lt;-   <span class="tooltipRtext">The
+assignment operator <code>&lt;-</code> is being used to create the
+object called <code>Colors</code> that will have one color for each
+student on the <code>Classlist</code>. </span> </span><span
+class="tooltipr"> c( <span class="tooltipRtext">The R function “c()”
+allows us to group together values in order to save them into an object.
+</span> </span><span class="tooltipr"> “red”, “blue”, “green”, “yellow”
+<span class="tooltipRtext"> The values, separated by comma’s, that are
+being grouped together. In this case, characters are being grouped
+together. </span> </span><span class="tooltipr"> ) <span
+class="tooltipRtext">Always close off your functions in R with a closing
+parathesis.</span> </span><span class="tooltipr">     <br />
 <span class="tooltipRtext">Press Enter to run the code.</span></p>
 <p></span></p>
 </div>
@@ -522,10 +612,17 @@ $(document).ready(function () {
 <p><strong>Usage</strong></p>
 <p><code>subset(NameOfDataset, subsetRules, columnsToKeep)</code></p>
 <ul>
-<li><code>subset</code> is used to reduce a data set to a smaller set of rows than the original dataset contained.</li>
-<li><code>NameOfDataset</code> is the name of a dataset, like <code>cars</code> or <code>airquality</code> or <code>KidsFeet</code>.</li>
-<li><code>subsetRules</code> consists of some <strong>Logical Expression</strong> (see below) that selects only the rows from the original dataset that meet the criterion.</li>
-<li>The <code>columnsToKeep</code> option is optional and usually excluded. However, it can be used to keep only certain columns of interest from the original dataset.</li>
+<li><code>subset</code> is used to reduce a data set to a smaller set of
+rows than the original dataset contained.</li>
+<li><code>NameOfDataset</code> is the name of a dataset, like
+<code>cars</code> or <code>airquality</code> or
+<code>KidsFeet</code>.</li>
+<li><code>subsetRules</code> consists of some <strong>Logical
+Expression</strong> (see below) that selects only the rows from the
+original dataset that meet the criterion.</li>
+<li>The <code>columnsToKeep</code> option is optional and usually
+excluded. However, it can be used to keep only certain columns of
+interest from the original dataset.</li>
 </ul>
 <div style="padding-left:30px;">
 <table>
@@ -576,17 +673,40 @@ $(document).ready(function () {
 </table>
 </div>
 <p><strong>Example Code</strong></p>
-<p>The original <code>KidsFeet</code> dataset looks like this prior to subsetting:</p>
+<p>The original <code>KidsFeet</code> dataset looks like this prior to
+subsetting:</p>
 <div id="KidsFeet" style="display:show;padding-left:20px;">
 <p><img src="Images/KidsFeet.png" /></p>
 </div>
 <p><br/></p>
-<p>Here are ways to reduce this original <code>KidsFeet</code> dataset to filtered datasets.</p>
+<p>Here are ways to reduce this original <code>KidsFeet</code> dataset
+to filtered datasets.</p>
 <p><em>Keep only kids born in 1988</em>:</p>
 <a href="javascript:showhide('SubsetEqual')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> Kids88 &lt;-  <span class="tooltipRtext">This provides a name for the new subset of the <code>KidsFeet</code> dataset that is going to be created by the <code>subset(...)</code> function. The results of the subset will be stored into this name by the assignment operator <code>&lt;-</code>. </span> </span><span class="tooltipr"> subset( <span class="tooltipRtext">An R function “subset” allows us to take our data and filter it with certain criteria. </span> </span><span class="tooltipr"> KidsFeet, <span class="tooltipRtext"> Is the data we are filtering, in this case it is the data set “KidsFeet”. The comma seperates the criteria. </span> </span><span class="tooltipr">  birthyear <span class="tooltipRtext"> Represents the variable that we want to manipulate, it can be qualitative or quantitative. The variable “birthyear” reperesents the year the child was born in. </span> </span><span class="tooltipr">  == <span class="tooltipRtext"> Represents “Equals To”. The reason for the double equal sign will be explained later on. </span> </span><span class="tooltipr">  88) <span class="tooltipRtext"> Is the criteria from the variable that we want. In this case it represents kids born in 1988. This can be qualitative or quantitive.</span> </span><span class="tooltipr">     <br />
-<span class="tooltipRtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<p><span class="tooltipr"> Kids88 &lt;-  <span class="tooltipRtext">This
+provides a name for the new subset of the <code>KidsFeet</code> dataset
+that is going to be created by the <code>subset(...)</code> function.
+The results of the subset will be stored into this name by the
+assignment operator <code>&lt;-</code>. </span> </span><span
+class="tooltipr"> subset( <span class="tooltipRtext">An R function
+“subset” allows us to take our data and filter it with certain criteria.
+</span> </span><span class="tooltipr"> KidsFeet, <span
+class="tooltipRtext"> Is the data we are filtering, in this case it is
+the data set “KidsFeet”. The comma seperates the criteria. </span>
+</span><span class="tooltipr">  birthyear <span class="tooltipRtext">
+Represents the variable that we want to manipulate, it can be
+qualitative or quantitative. The variable “birthyear” reperesents the
+year the child was born in. </span> </span><span class="tooltipr">  ==
+<span class="tooltipRtext"> Represents “Equals To”. The reason for the
+double equal sign will be explained later on. </span> </span><span
+class="tooltipr">  88) <span class="tooltipRtext"> Is the criteria from
+the variable that we want. In this case it represents kids born in 1988.
+This can be qualitative or quantitive.</span> </span><span
+class="tooltipr">     <br />
+<span class="tooltipRtext">Press Enter to run the code.</span>
+</span><span class="tooltipr" style="float:right;">  …  <span
+class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 </a>
 <div id="SubsetEqual" style="display:none;padding-left:20px;">
@@ -596,8 +716,29 @@ $(document).ready(function () {
 <p><em>Keep only kids with specified foot widths</em>:</p>
 <a href="javascript:showhide('subsetIN')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> KidsWide &lt;-  <span class="tooltipRtext">This provides a name for the new subset of the <code>KidsFeet</code> dataset that is going to be created by the <code>subset(...)</code> function. The results of the subset will be stored into this name by the assignment operator <code>&lt;-</code>. </span> </span><span class="tooltipr"> subset(KidsFeet, <span class="tooltipRtext">This was explained in the first example. </span> </span><span class="tooltipr">  width <span class="tooltipRtext"> Represents the width of the widest foot of the child. When using the logic statement “In”, the variable comes first. </span> </span><span class="tooltipr">  %in% <span class="tooltipRtext"> Allows for specific values to be subsetted. The values can be qualitative or quantitative. </span> </span><span class="tooltipr">  c( <span class="tooltipRtext">Recall that the “c()” command allows us to select certain values and combine them into a set or a group. In this case we select them to be subsetted. </span> </span><span class="tooltipr"> 8.3,8.5,9.0,9.5)) <span class="tooltipRtext"> Are the values that we are selecting, they will always be in list form, seperating each value by a comma. The entire function is closed with closing paratheses. </span> </span><span class="tooltipr">     <br />
-<span class="tooltipRtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<p><span class="tooltipr"> KidsWide &lt;-  <span
+class="tooltipRtext">This provides a name for the new subset of the
+<code>KidsFeet</code> dataset that is going to be created by the
+<code>subset(...)</code> function. The results of the subset will be
+stored into this name by the assignment operator <code>&lt;-</code>.
+</span> </span><span class="tooltipr"> subset(KidsFeet, <span
+class="tooltipRtext">This was explained in the first example. </span>
+</span><span class="tooltipr">  width <span class="tooltipRtext">
+Represents the width of the widest foot of the child. When using the
+logic statement “In”, the variable comes first. </span> </span><span
+class="tooltipr">  %in% <span class="tooltipRtext"> Allows for specific
+values to be subsetted. The values can be qualitative or quantitative.
+</span> </span><span class="tooltipr">  c( <span
+class="tooltipRtext">Recall that the “c()” command allows us to select
+certain values and combine them into a set or a group. In this case we
+select them to be subsetted. </span> </span><span class="tooltipr">
+8.3,8.5,9.0,9.5)) <span class="tooltipRtext"> Are the values that we are
+selecting, they will always be in list form, seperating each value by a
+comma. The entire function is closed with closing paratheses. </span>
+</span><span class="tooltipr">     <br />
+<span class="tooltipRtext">Press Enter to run the code.</span>
+</span><span class="tooltipr" style="float:right;">  …  <span
+class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 <p></a></p>
 <div id="subsetIN" style="display:none;padding-left:20px;">
@@ -607,8 +748,34 @@ $(document).ready(function () {
 <p><em>Keep only kids whose name is NOT Josh</em>:</p>
 <a href="javascript:showhide('SubsetNotEqual')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> KidsNotJosh &lt;-  <span class="tooltipRtext">This provides a name for the new subset of the <code>KidsFeet</code> dataset that is going to be created by the <code>subset(...)</code> function. The results of the subset will be stored into this name by the assignment operator <code>&lt;-</code>. </span> </span><span class="tooltipr"> subset( <span class="tooltipRtext">An R function “subset” allows us to take our data and filter it with certain criteria. </span> </span><span class="tooltipr"> KidsFeet, <span class="tooltipRtext">This part was explained in the first example </span> </span><span class="tooltipr">  name <span class="tooltipRtext">Look at the first example. The variable “name” represents the names from which the data was collected. </span> </span><span class="tooltipr"> ! <span class="tooltipRtext"> Represents not. It is saying everything but the criteria you give it. This can be a valuable symbol when dealing with outliers. </span> </span><span class="tooltipr"> = <span class="tooltipRtext"> Represents equal, together with the “!”, we are saying not equal. Notice again in the first example we had two equal signs, now you can see how having two allows for greater manipulation. </span> </span><span class="tooltipr"> " <span class="tooltipRtext"> Are needed because the value is qualitative. </span> </span><span class="tooltipr"> Josh") <span class="tooltipRtext"> Is the criteria from the variable that we do not want to include. In this case it is anyone named Josh. It is closed with ending quotations and closing paratheses. </span> </span><span class="tooltipr">     <br />
-<span class="tooltipRtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<p><span class="tooltipr"> KidsNotJosh &lt;-  <span
+class="tooltipRtext">This provides a name for the new subset of the
+<code>KidsFeet</code> dataset that is going to be created by the
+<code>subset(...)</code> function. The results of the subset will be
+stored into this name by the assignment operator <code>&lt;-</code>.
+</span> </span><span class="tooltipr"> subset( <span
+class="tooltipRtext">An R function “subset” allows us to take our data
+and filter it with certain criteria. </span> </span><span
+class="tooltipr"> KidsFeet, <span class="tooltipRtext">This part was
+explained in the first example </span> </span><span class="tooltipr">
+ name <span class="tooltipRtext">Look at the first example. The variable
+“name” represents the names from which the data was collected. </span>
+</span><span class="tooltipr"> ! <span class="tooltipRtext"> Represents
+not. It is saying everything but the criteria you give it. This can be a
+valuable symbol when dealing with outliers. </span> </span><span
+class="tooltipr"> = <span class="tooltipRtext"> Represents equal,
+together with the “!”, we are saying not equal. Notice again in the
+first example we had two equal signs, now you can see how having two
+allows for greater manipulation. </span> </span><span class="tooltipr">
+” <span class="tooltipRtext"> Are needed because the value is
+qualitative. </span> </span><span class="tooltipr"> Josh”) <span
+class="tooltipRtext"> Is the criteria from the variable that we do not
+want to include. In this case it is anyone named Josh. It is closed with
+ending quotations and closing paratheses. </span> </span><span
+class="tooltipr">     <br />
+<span class="tooltipRtext">Press Enter to run the code.</span>
+</span><span class="tooltipr" style="float:right;">  …  <span
+class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 <p></a></p>
 <div id="SubsetNotEqual" style="display:none;padding-left:20px;">
@@ -618,8 +785,24 @@ $(document).ready(function () {
 <p><em>Keep only kids with foot length less than 24</em>:</p>
 <a href="javascript:showhide('LessThan')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> KidsLength24 &lt;-  <span class="tooltipRtext">This provides a name for the new subset of the <code>KidsFeet</code> dataset that is going to be created by the <code>subset(...)</code> function. The results of the subset will be stored into this name by the assignment operator <code>&lt;-</code>. </span> </span><span class="tooltipr"> subset(KidsFeet, <span class="tooltipRtext">This was explained in the first example. </span> </span><span class="tooltipr">  length <span class="tooltipRtext"> Variable represents the length of the bigger size foot from each child. </span> </span><span class="tooltipr">  &lt; <span class="tooltipRtext"> Represents “Less Than” certain value. For this to work, the value must be quantitative. </span> </span><span class="tooltipr">  24) <span class="tooltipRtext"> Is the quantitative value that we want less than of. In this case we want all children with foot length of less than 24cm. </span> </span><span class="tooltipr">     <br />
-<span class="tooltipRtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<p><span class="tooltipr"> KidsLength24 &lt;-  <span
+class="tooltipRtext">This provides a name for the new subset of the
+<code>KidsFeet</code> dataset that is going to be created by the
+<code>subset(...)</code> function. The results of the subset will be
+stored into this name by the assignment operator <code>&lt;-</code>.
+</span> </span><span class="tooltipr"> subset(KidsFeet, <span
+class="tooltipRtext">This was explained in the first example. </span>
+</span><span class="tooltipr">  length <span class="tooltipRtext">
+Variable represents the length of the bigger size foot from each child.
+</span> </span><span class="tooltipr">  &lt; <span class="tooltipRtext">
+Represents “Less Than” certain value. For this to work, the value must
+be quantitative. </span> </span><span class="tooltipr">  24) <span
+class="tooltipRtext"> Is the quantitative value that we want less than
+of. In this case we want all children with foot length of less than
+24cm. </span> </span><span class="tooltipr">     <br />
+<span class="tooltipRtext">Press Enter to run the code.</span>
+</span><span class="tooltipr" style="float:right;">  …  <span
+class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 <p></a></p>
 <div id="LessThan" style="display:none;padding-left:20px;">
@@ -629,8 +812,25 @@ $(document).ready(function () {
 <p><em>Keep only kids whose foot less than or equal to 24</em>:</p>
 <a href="javascript:showhide('LessThanorEqualTo')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> KidsLessEq24 &lt;-  <span class="tooltipRtext">This provides a name for the new subset of the <code>KidsFeet</code> dataset that is going to be created by the <code>subset(...)</code> function. The results of the subset will be stored into this name by the assignment operator <code>&lt;-</code>. </span> </span><span class="tooltipr"> subset(KidsFeet, <span class="tooltipRtext">This was explained in the first example. </span> </span><span class="tooltipr">  length <span class="tooltipRtext"> Variable represents the length of the bigger size foot from each child. </span> </span><span class="tooltipr">  &lt;= <span class="tooltipRtext"> Represents “Less Than or Equal to” certain value. For this to work, the value must be quantitative. </span> </span><span class="tooltipr">  24) <span class="tooltipRtext"> Is the quantitative value that we want our data to be equal to and less than. In this case we want all children with foot length of 24cm and below. </span> </span><span class="tooltipr">     <br />
-<span class="tooltipRtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<p><span class="tooltipr"> KidsLessEq24 &lt;-  <span
+class="tooltipRtext">This provides a name for the new subset of the
+<code>KidsFeet</code> dataset that is going to be created by the
+<code>subset(...)</code> function. The results of the subset will be
+stored into this name by the assignment operator <code>&lt;-</code>.
+</span> </span><span class="tooltipr"> subset(KidsFeet, <span
+class="tooltipRtext">This was explained in the first example. </span>
+</span><span class="tooltipr">  length <span class="tooltipRtext">
+Variable represents the length of the bigger size foot from each child.
+</span> </span><span class="tooltipr">  &lt;= <span
+class="tooltipRtext"> Represents “Less Than or Equal to” certain value.
+For this to work, the value must be quantitative. </span> </span><span
+class="tooltipr">  24) <span class="tooltipRtext"> Is the quantitative
+value that we want our data to be equal to and less than. In this case
+we want all children with foot length of 24cm and below. </span>
+</span><span class="tooltipr">     <br />
+<span class="tooltipRtext">Press Enter to run the code.</span>
+</span><span class="tooltipr" style="float:right;">  …  <span
+class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 <p></a></p>
 <div id="LessThanorEqualTo" style="display:none;padding-left:20px;">
@@ -640,18 +840,52 @@ $(document).ready(function () {
 <p><em>Keep only kids with foot wider than 9</em>:</p>
 <a href="javascript:showhide('GreaterThan')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> KidsWider9 &lt;-  <span class="tooltipRtext">This provides a name for the new subset of the <code>KidsFeet</code> dataset that is going to be created by the <code>subset(...)</code> function. The results of the subset will be stored into this name by the assignment operator <code>&lt;-</code>. </span> </span><span class="tooltipr"> subset(KidsFeet, <span class="tooltipRtext">This was explained in the first example. </span> </span><span class="tooltipr">  width <span class="tooltipRtext"> Variable represents the width of the wider foot from each child. </span> </span><span class="tooltipr">  &gt; <span class="tooltipRtext"> Represents “Greater Than” certain value. For this to work, the value must be quantitative. </span> </span><span class="tooltipr">  9) <span class="tooltipRtext"> Is the quantitative value that we want our data to be greater than. In this case we want all children with foot width greater than 9cm. </span> </span><span class="tooltipr">     <br />
-<span class="tooltipRtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<p><span class="tooltipr"> KidsWider9 &lt;-  <span
+class="tooltipRtext">This provides a name for the new subset of the
+<code>KidsFeet</code> dataset that is going to be created by the
+<code>subset(...)</code> function. The results of the subset will be
+stored into this name by the assignment operator <code>&lt;-</code>.
+</span> </span><span class="tooltipr"> subset(KidsFeet, <span
+class="tooltipRtext">This was explained in the first example. </span>
+</span><span class="tooltipr">  width <span class="tooltipRtext">
+Variable represents the width of the wider foot from each child. </span>
+</span><span class="tooltipr">  &gt; <span class="tooltipRtext">
+Represents “Greater Than” certain value. For this to work, the value
+must be quantitative. </span> </span><span class="tooltipr">  9) <span
+class="tooltipRtext"> Is the quantitative value that we want our data to
+be greater than. In this case we want all children with foot width
+greater than 9cm. </span> </span><span class="tooltipr">     <br />
+<span class="tooltipRtext">Press Enter to run the code.</span>
+</span><span class="tooltipr" style="float:right;">  …  <span
+class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 <p></a></p>
 <div id="GreaterThan" style="display:none;padding-left:20px;">
 <p><img src="Images/GreaterThan.png" /></p>
 </div>
 <p><br/></p>
-<em>Keep only kids whose foot is equal to or wider than 9</em>: <a href="javascript:showhide('GreaterThanorEqualTo')">
+<em>Keep only kids whose foot is equal to or wider than 9</em>:
+<a href="javascript:showhide('GreaterThanorEqualTo')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> KidsWiderEq9 &lt;-  <span class="tooltipRtext">This provides a name for the new subset of the <code>KidsFeet</code> dataset that is going to be created by the <code>subset(...)</code> function. The results of the subset will be stored into this name by the assignment operator <code>&lt;-</code>. </span> </span><span class="tooltipr"> subset(KidsFeet, <span class="tooltipRtext">This was explained in the first example. </span> </span><span class="tooltipr">  width <span class="tooltipRtext"> Variable represents the width of the wider foot from each child. </span> </span><span class="tooltipr">  &gt;= <span class="tooltipRtext"> Represents “Greater Than or Equal To” certain value. For this to work, the value must be quantitative. </span> </span><span class="tooltipr">  9) <span class="tooltipRtext">Is the quantitative value that we want our data to be greater than and equal to, in this case we want all children with foot width 9cm and above. </span> </span><span class="tooltipr">     <br />
-<span class="tooltipRtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<p><span class="tooltipr"> KidsWiderEq9 &lt;-  <span
+class="tooltipRtext">This provides a name for the new subset of the
+<code>KidsFeet</code> dataset that is going to be created by the
+<code>subset(...)</code> function. The results of the subset will be
+stored into this name by the assignment operator <code>&lt;-</code>.
+</span> </span><span class="tooltipr"> subset(KidsFeet, <span
+class="tooltipRtext">This was explained in the first example. </span>
+</span><span class="tooltipr">  width <span class="tooltipRtext">
+Variable represents the width of the wider foot from each child. </span>
+</span><span class="tooltipr">  &gt;= <span class="tooltipRtext">
+Represents “Greater Than or Equal To” certain value. For this to work,
+the value must be quantitative. </span> </span><span class="tooltipr">
+ 9) <span class="tooltipRtext">Is the quantitative value that we want
+our data to be greater than and equal to, in this case we want all
+children with foot width 9cm and above. </span> </span><span
+class="tooltipr">     <br />
+<span class="tooltipRtext">Press Enter to run the code.</span>
+</span><span class="tooltipr" style="float:right;">  …  <span
+class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 <p></a></p>
 <div id="GreaterThanorEqualTo" style="display:none;padding-left:20px;">
@@ -661,8 +895,27 @@ $(document).ready(function () {
 <p><em>Keep only girls with foot width greater than 9</em>:</p>
 <a href="javascript:showhide('And')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> GirlsWide9 &lt;-  <span class="tooltipRtext">This provides a name for the new subset of the <code>KidsFeet</code> dataset that is going to be created by the <code>subset(...)</code> function. The results of the subset will be stored into this name by the assignment operator <code>&lt;-</code>. </span> </span><span class="tooltipr"> subset(KidsFeet, <span class="tooltipRtext">This was explained in the first example. </span> </span><span class="tooltipr">  sex==“G” <span class="tooltipRtext"> Variable “sex” represents the first criteria. We only want girls, represented by “G”, so we write “==”. </span> </span><span class="tooltipr">  &amp; <span class="tooltipRtext"> Represents the logic statement “And”. It is used when you want to subset from two or more seperate variables. It can be used with qualitative and quantitative data. In this case, we are specifying girls that have foot width greater than 9cm. </span> </span><span class="tooltipr">  width &gt; 9) <span class="tooltipRtext"> Represents the second criteria. We want any foot width that is greater than 9. </span> </span><span class="tooltipr">     <br />
-<span class="tooltipRtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<p><span class="tooltipr"> GirlsWide9 &lt;-  <span
+class="tooltipRtext">This provides a name for the new subset of the
+<code>KidsFeet</code> dataset that is going to be created by the
+<code>subset(...)</code> function. The results of the subset will be
+stored into this name by the assignment operator <code>&lt;-</code>.
+</span> </span><span class="tooltipr"> subset(KidsFeet, <span
+class="tooltipRtext">This was explained in the first example. </span>
+</span><span class="tooltipr">  sex==“G” <span class="tooltipRtext">
+Variable “sex” represents the first criteria. We only want girls,
+represented by “G”, so we write “==”. </span> </span><span
+class="tooltipr">  &amp; <span class="tooltipRtext"> Represents the
+logic statement “And”. It is used when you want to subset from two or
+more seperate variables. It can be used with qualitative and
+quantitative data. In this case, we are specifying girls that have foot
+width greater than 9cm. </span> </span><span class="tooltipr">  width
+&gt; 9) <span class="tooltipRtext"> Represents the second criteria. We
+want any foot width that is greater than 9. </span> </span><span
+class="tooltipr">     <br />
+<span class="tooltipRtext">Press Enter to run the code.</span>
+</span><span class="tooltipr" style="float:right;">  …  <span
+class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 <p></a></p>
 <div id="And" style="display:none;padding-left:20px;">
@@ -672,8 +925,27 @@ $(document).ready(function () {
 <p><em>Keep only kids born in months 1 or 6</em>:</p>
 <a href="javascript:showhide('Or')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> KidsJanJune &lt;-  <span class="tooltipRtext">This provides a name for the new subset of the <code>KidsFeet</code> dataset that is going to be created by the <code>subset(...)</code> function. The results of the subset will be stored into this name by the assignment operator <code>&lt;-</code>. </span> </span><span class="tooltipr"> subset(KidsFeet, <span class="tooltipRtext">This was explained in the first example. </span> </span><span class="tooltipr">  birthmonth == 1 <span class="tooltipRtext"> Variable “birthmonth” represents the first criteria. We want to look at children born in January. </span> </span><span class="tooltipr">  | <span class="tooltipRtext"> Represents the logic statement “Or”. It is used when you want to subset two or more criteria from the same variable. It can be used with qualitative or quantitative data. In this case, we are specifying we want children born in January or June. </span> </span><span class="tooltipr">  birthmonth == 6) <span class="tooltipRtext"> Is the second criteria. We want to look at children that are born in June. </span> </span><span class="tooltipr">     <br />
-<span class="tooltipRtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span> </span></p>
+<p><span class="tooltipr"> KidsJanJune &lt;-  <span
+class="tooltipRtext">This provides a name for the new subset of the
+<code>KidsFeet</code> dataset that is going to be created by the
+<code>subset(...)</code> function. The results of the subset will be
+stored into this name by the assignment operator <code>&lt;-</code>.
+</span> </span><span class="tooltipr"> subset(KidsFeet, <span
+class="tooltipRtext">This was explained in the first example. </span>
+</span><span class="tooltipr">  birthmonth == 1 <span
+class="tooltipRtext"> Variable “birthmonth” represents the first
+criteria. We want to look at children born in January. </span>
+</span><span class="tooltipr">  | <span class="tooltipRtext"> Represents
+the logic statement “Or”. It is used when you want to subset two or more
+criteria from the same variable. It can be used with qualitative or
+quantitative data. In this case, we are specifying we want children born
+in January or June. </span> </span><span class="tooltipr">  birthmonth
+== 6) <span class="tooltipRtext"> Is the second criteria. We want to
+look at children that are born in June. </span> </span><span
+class="tooltipr">     <br />
+<span class="tooltipRtext">Press Enter to run the code.</span>
+</span><span class="tooltipr" style="float:right;">  …  <span
+class="tooltiprtext">Click to View Output.</span> </span></p>
 </div>
 <p></a></p>
 <div id="Or" style="display:none;padding-left:20px;">
@@ -689,17 +961,28 @@ $(document).ready(function () {
 <p><code>objectName[ elementNumber ]</code></p>
 <p><code>objectName[ Rows, Columns]</code></p>
 <ul>
-<li>If <code>objectName</code> is an object that contains a list of numbers then <code>[ elementNumber ]</code> will pull out the specified elements.</li>
-<li>If <code>objectName</code> is an object with rows and columns (like a dataset) then the specified <code>[ Rows , Columns]</code> can be accessed.</li>
+<li>If <code>objectName</code> is an object that contains a list of
+numbers then <code>[ elementNumber ]</code> will pull out the specified
+elements.</li>
+<li>If <code>objectName</code> is an object with rows and columns (like
+a dataset) then the specified <code>[ Rows , Columns]</code> can be
+accessed.</li>
 </ul>
 <p><strong>Example Code</strong></p>
 <a href="javascript:showhide('ElementExample')">
 <div class="hoverchunk">
-<p></span><span class="tooltipr"> ## Run these commands in your console to see how they work. <span class="tooltipRtext"></span></p>
-<p><span class="tooltipr"> counts &lt;- c(5, 2, 18) <span class="tooltipRtext">Run this command in your console</span> </span><span class="tooltipr">     <br />
+<p></span><span class="tooltipr"> ## Run these commands in your console
+to see how they work. <span class="tooltipRtext"></span></p>
+<p><span class="tooltipr"> counts &lt;- c(5, 2, 18) <span
+class="tooltipRtext">Run this command in your console</span>
+</span><span class="tooltipr">     <br />
 <span class="tooltipRtext">Press Enter to run the code.</span></p>
-<p></span><span class="tooltipr"> counts <span class="tooltipRtext">Run this command in your console to see the values. </span> </span><span class="tooltipr">     <br />
-<span class="tooltipRtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span></p>
+<p></span><span class="tooltipr"> counts <span class="tooltipRtext">Run
+this command in your console to see the values. </span> </span><span
+class="tooltipr">     <br />
+<span class="tooltipRtext">Press Enter to run the code.</span>
+</span><span class="tooltipr" style="float:right;">  …  <span
+class="tooltiprtext">Click to View Output.</span></p>
 <p></span></p>
 </div>
 <p></a></p>
@@ -708,8 +991,18 @@ $(document).ready(function () {
 </div>
 <a href="javascript:showhide('ElementExample1')">
 <div class="hoverchunk">
-<p></span><span class="tooltipr"> counts <span class="tooltipRtext">First, state the object that will be accessed. </span> </span><span class="tooltipr"> [ <span class="tooltipRtext">Opening brackets to allow for the command to be started. </span> </span><span class="tooltipr"> 2 <span class="tooltipRtext"> Is the element number because it is a list of numbers. </span> </span><span class="tooltipr">] <span class="tooltipRtext">Closing brackets allow for the command to end. </span> </span><span class="tooltipr">     <br />
-<span class="tooltipRtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span></p>
+<p></span><span class="tooltipr"> counts <span
+class="tooltipRtext">First, state the object that will be accessed.
+</span> </span><span class="tooltipr"> [ <span
+class="tooltipRtext">Opening brackets to allow for the command to be
+started. </span> </span><span class="tooltipr"> 2 <span
+class="tooltipRtext"> Is the element number because it is a list of
+numbers. </span> </span><span class="tooltipr">] <span
+class="tooltipRtext">Closing brackets allow for the command to end.
+</span> </span><span class="tooltipr">     <br />
+<span class="tooltipRtext">Press Enter to run the code.</span>
+</span><span class="tooltipr" style="float:right;">  …  <span
+class="tooltiprtext">Click to View Output.</span></p>
 <p></span></p>
 </div>
 <p></a></p>
@@ -718,8 +1011,14 @@ $(document).ready(function () {
 </div>
 <a href="javascript:showhide('ElementExample2')">
 <div class="hoverchunk">
-<p></span><span class="tooltipr"> counts[ <span class="tooltipRtext">This was explained in the first example. </span> </span><span class="tooltipr"> 2:3] <span class="tooltipRtext">Represents between. In this case, we want element numbers 2 and 3. </span> </span><span class="tooltipr">     <br />
-<span class="tooltipRtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span></p>
+<p></span><span class="tooltipr"> counts[ <span
+class="tooltipRtext">This was explained in the first example. </span>
+</span><span class="tooltipr"> 2:3] <span
+class="tooltipRtext">Represents between. In this case, we want element
+numbers 2 and 3. </span> </span><span class="tooltipr">     <br />
+<span class="tooltipRtext">Press Enter to run the code.</span>
+</span><span class="tooltipr" style="float:right;">  …  <span
+class="tooltiprtext">Click to View Output.</span></p>
 <p></span></p>
 </div>
 <p></a></p>
@@ -728,8 +1027,18 @@ $(document).ready(function () {
 </div>
 <a href="javascript:showhide('ElementExample3')">
 <div class="hoverchunk">
-<p></span><span class="tooltipr"> counts[ <span class="tooltipRtext">This was explained in the first example. </span> </span><span class="tooltipr"> c( <span class="tooltipRtext">Recall that the “c()” function groups together values. </span> </span><span class="tooltipr"> 1,3 <span class="tooltipRtext"> Represents the specific element numbers. </span> </span><span class="tooltipr"> )] <span class="tooltipRtext">Be sure to close off with the needed parantheses and brackets. </span> </span><span class="tooltipr">     <br />
-<span class="tooltipRtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span></p>
+<p></span><span class="tooltipr"> counts[ <span
+class="tooltipRtext">This was explained in the first example. </span>
+</span><span class="tooltipr"> c( <span class="tooltipRtext">Recall that
+the “c()” function groups together values. </span> </span><span
+class="tooltipr"> 1,3 <span class="tooltipRtext"> Represents the
+specific element numbers. </span> </span><span class="tooltipr"> )]
+<span class="tooltipRtext">Be sure to close off with the needed
+parantheses and brackets. </span> </span><span class="tooltipr">
+    <br />
+<span class="tooltipRtext">Press Enter to run the code.</span>
+</span><span class="tooltipr" style="float:right;">  …  <span
+class="tooltiprtext">Click to View Output.</span></p>
 <p></span></p>
 </div>
 <p></a></p>
@@ -738,7 +1047,10 @@ $(document).ready(function () {
 </div>
 <a href="javascript:showhide('ViewBirths')">
 <div class="hoverchunk">
-<p></span><span class="tooltipr"> View(Births) <span class="tooltipRtext">Run this code in your console to view the R dataset “Births”. </span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span></p>
+<p></span><span class="tooltipr"> View(Births) <span
+class="tooltipRtext">Run this code in your console to view the R dataset
+“Births”. </span> </span><span class="tooltipr" style="float:right;">
+ …  <span class="tooltiprtext">Click to View Output.</span></p>
 <p></span></p>
 </div>
 <p></a></p>
@@ -747,8 +1059,19 @@ $(document).ready(function () {
 </div>
 <a href="javascript:showhide('BirthsACol')">
 <div class="hoverchunk">
-<p></span><span class="tooltipr"> Births[ <span class="tooltipRtext"> Is a datset instead of a list of numbers, we treat this differently. </span> </span><span class="tooltipr"> 2:3, <span class="tooltipRtext"> Values before the comma represent the dataset rows. In this case, we are saying we want rows between 2 and 3. </span> </span><span class="tooltipr">   <span class="tooltipRtext"> Values after the comma represent the dataset columns. A blank value represents all columns.</span> </span><span class="tooltipr">] <span class="tooltipRtext">Closed with closing brackets. </span> </span><span class="tooltipr">     <br />
-<span class="tooltipRtext">Press Enter to run the code. </span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span></p>
+<p></span><span class="tooltipr"> Births[ <span class="tooltipRtext"> Is
+a datset instead of a list of numbers, we treat this differently.
+</span> </span><span class="tooltipr"> 2:3, <span class="tooltipRtext">
+Values before the comma represent the dataset rows. In this case, we are
+saying we want rows between 2 and 3. </span> </span><span
+class="tooltipr">   <span class="tooltipRtext"> Values after the comma
+represent the dataset columns. A blank value represents all
+columns.</span> </span><span class="tooltipr">] <span
+class="tooltipRtext">Closed with closing brackets. </span> </span><span
+class="tooltipr">     <br />
+<span class="tooltipRtext">Press Enter to run the code. </span>
+</span><span class="tooltipr" style="float:right;">  …  <span
+class="tooltiprtext">Click to View Output.</span></p>
 <p></span></p>
 </div>
 <p></a></p>
@@ -757,8 +1080,16 @@ $(document).ready(function () {
 </div>
 <a href="javascript:showhide('BirthARow')">
 <div class="hoverchunk">
-<p></span><span class="tooltipr"> Births[ <span class="tooltipRtext">This was explained in the first example using the Births dataset. </span> </span><span class="tooltipr">   <span class="tooltipRtext"> Blank value represents all rows. </span> </span><span class="tooltipr"> ,1] <span class="tooltipRtext"> Values after the comma represent the dataset columns. In this case, it is the 1st column. </span> </span><span class="tooltipr">     <br />
-<span class="tooltipRtext">Press Enter to run the code. </span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span></p>
+<p></span><span class="tooltipr"> Births[ <span
+class="tooltipRtext">This was explained in the first example using the
+Births dataset. </span> </span><span class="tooltipr">   <span
+class="tooltipRtext"> Blank value represents all rows. </span>
+</span><span class="tooltipr"> ,1] <span class="tooltipRtext"> Values
+after the comma represent the dataset columns. In this case, it is the
+1st column. </span> </span><span class="tooltipr">     <br />
+<span class="tooltipRtext">Press Enter to run the code. </span>
+</span><span class="tooltipr" style="float:right;">  …  <span
+class="tooltiprtext">Click to View Output.</span></p>
 <p></span></p>
 </div>
 <p></a></p>
@@ -767,8 +1098,15 @@ $(document).ready(function () {
 </div>
 <a href="javascript:showhide('BirthsRowCol')">
 <div class="hoverchunk">
-<p></span><span class="tooltipr"> Births[ <span class="tooltipRtext">This was explained in the first example using the Births dataset. </span> </span><span class="tooltipr"> 5,2] <span class="tooltipRtext"> Represents the 5th row and the 2nd column. When both values are present, it will result in a single value. </span> </span><span class="tooltipr">     <br />
-<span class="tooltipRtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span></p>
+<p></span><span class="tooltipr"> Births[ <span
+class="tooltipRtext">This was explained in the first example using the
+Births dataset. </span> </span><span class="tooltipr"> 5,2] <span
+class="tooltipRtext"> Represents the 5th row and the 2nd column. When
+both values are present, it will result in a single value. </span>
+</span><span class="tooltipr">     <br />
+<span class="tooltipRtext">Press Enter to run the code.</span>
+</span><span class="tooltipr" style="float:right;">  …  <span
+class="tooltiprtext">Click to View Output.</span></p>
 <p></span></p>
 </div>
 <p></a></p>
@@ -777,8 +1115,17 @@ $(document).ready(function () {
 </div>
 <a href="javascript:showhide('BirthsRowsCol')">
 <div class="hoverchunk">
-<p></span><span class="tooltipr"> Births[ <span class="tooltipRtext">This was explained in the first example using the Births dataset. </span> </span><span class="tooltipr"> 2:3, <span class="tooltipRtext"> Represents rows between 2 and 3. The comma seperates the rows and columns. The output will show row number 2 value first and then row number 3 value. </span> </span><span class="tooltipr"> 2] <span class="tooltipRtext"> Represents the column number. </span> </span><span class="tooltipr">     <br />
-<span class="tooltipRtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span></p>
+<p></span><span class="tooltipr"> Births[ <span
+class="tooltipRtext">This was explained in the first example using the
+Births dataset. </span> </span><span class="tooltipr"> 2:3, <span
+class="tooltipRtext"> Represents rows between 2 and 3. The comma
+seperates the rows and columns. The output will show row number 2 value
+first and then row number 3 value. </span>
+</span><span class="tooltipr"> 2] <span class="tooltipRtext"> Represents
+the column number. </span> </span><span class="tooltipr">     <br />
+<span class="tooltipRtext">Press Enter to run the code.</span>
+</span><span class="tooltipr" style="float:right;">  …  <span
+class="tooltiprtext">Click to View Output.</span></p>
 <p></span></p>
 </div>
 <p></a></p>
@@ -796,15 +1143,30 @@ $(document).ready(function () {
 <p><strong>Console</strong> Help Command: <code>?with</code></p>
 <p><code>with(datasetName, commands)</code></p>
 <ul>
-<li>This function allows you to not have to use <code>$</code> to access the columns of a dataset. It is useful sometimes, but not always.</li>
-<li><code>datasetName</code> is the name of a dataset like <code>cars</code> or <code>CO2</code>.</li>
-<li><code>commands</code> are any R Commands that need to be performed using the variables within the specified dataset.</li>
+<li>This function allows you to not have to use <code>$</code> to access
+the columns of a dataset. It is useful sometimes, but not always.</li>
+<li><code>datasetName</code> is the name of a dataset like
+<code>cars</code> or <code>CO2</code>.</li>
+<li><code>commands</code> are any R Commands that need to be performed
+using the variables within the specified dataset.</li>
 </ul>
 <p><strong>Example Code</strong></p>
 <a href="javascript:showhide('WithCarsMean')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> with( <span class="tooltipRtext">The R function “with” says that any command after this will be used using the selected dataset. </span> </span><span class="tooltipr"> cars, <span class="tooltipRtext">Immediatly after the opening paratheses we state the datset that we want our commands to use. </span> </span><span class="tooltipr">  mean( <span class="tooltipRtext"> Is the command that we want to use with our dataset. It doesn’t necessarily have to be “mean” but can be a wide range of commands. </span> </span><span class="tooltipr"> dist)) <span class="tooltipRtext"> Is the variable from our dataset that we want our command to use. It is closed off with closing parantheses. </span> </span><span class="tooltipr">     <br />
-<span class="tooltipRtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span></p>
+<p><span class="tooltipr"> with( <span class="tooltipRtext">The R
+function “with” says that any command after this will be used using the
+selected dataset. </span> </span><span class="tooltipr"> cars, <span
+class="tooltipRtext">Immediatly after the opening paratheses we state
+the datset that we want our commands to use. </span> </span><span
+class="tooltipr">  mean( <span class="tooltipRtext"> Is the command that
+we want to use with our dataset. It doesn’t necessarily have to be
+“mean” but can be a wide range of commands. </span> </span><span
+class="tooltipr"> dist)) <span class="tooltipRtext"> Is the variable
+from our dataset that we want our command to use. It is closed off with
+closing parantheses. </span> </span><span class="tooltipr">     <br />
+<span class="tooltipRtext">Press Enter to run the code.</span>
+</span><span class="tooltipr" style="float:right;">  …  <span
+class="tooltiprtext">Click to View Output.</span></p>
 <p></span></p>
 </div>
 <p></a></p>
@@ -813,8 +1175,20 @@ $(document).ready(function () {
 </div>
 <a href="javascript:showhide('WithCarsCor')">
 <div class="hoverchunk">
-<p><span class="tooltipr"> with(cars, <span class="tooltipRtext">This was explained in the first example.</span> </span><span class="tooltipr">  cor( <span class="tooltipRtext"> Gives us the correlation coefficient. As previously stated, it doesn’t have to be correlation command. </span> </span><span class="tooltipr"> dist, <span class="tooltipRtext"> Is the first variable from the cars dataset to be used for the correlation command. </span> </span><span class="tooltipr">  speed)) <span class="tooltipRtext"> Is the second variable from the cars dataset to be used for the correlation command. It is closed off with closing parantheses. </span> </span><span class="tooltipr">     <br />
-<span class="tooltipRtext">Press Enter to run the code.</span> </span><span class="tooltipr" style="float:right;">  …  <span class="tooltiprtext">Click to View Output.</span></p>
+<p><span class="tooltipr"> with(cars, <span class="tooltipRtext">This
+was explained in the first example.</span> </span><span
+class="tooltipr">  cor( <span class="tooltipRtext"> Gives us the
+correlation coefficient. As previously stated, it doesn’t have to be
+correlation command. </span> </span><span class="tooltipr"> dist, <span
+class="tooltipRtext"> Is the first variable from the cars dataset to be
+used for the correlation command. </span> </span><span class="tooltipr">
+ speed)) <span class="tooltipRtext"> Is the second variable from the
+cars dataset to be used for the correlation command. It is closed off
+with closing parantheses. </span> </span><span class="tooltipr">
+    <br />
+<span class="tooltipRtext">Press Enter to run the code.</span>
+</span><span class="tooltipr" style="float:right;">  …  <span
+class="tooltiprtext">Click to View Output.</span></p>
 <p></span></p>
 </div>
 <p></a></p>
@@ -890,7 +1264,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>

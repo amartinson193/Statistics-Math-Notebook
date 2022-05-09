@@ -3,7 +3,9 @@ Data**/
 *.msg
 Data_and_Project_Details.txt
 requirements.txt
+.DS*
 
 # Projects I'm Not Uploading
 *RPC*Project
 *SNF*Project
+.Rproj.user
