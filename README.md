@@ -3,11 +3,18 @@
 * https://amartinson193.github.io/Statistics-Book
 
 # Medium Articles
+
+## My Medium Articles
+## Others Medium Articles
 * [10 Probability Distributions that Every Data Scientist Should Know](https://medium.com/python-in-plain-english/10-probability-distribution-that-every-data-scientist-should-know-d73bcfe248b0)
 
 # Kaggle Notebooks
+
+## My Kaggle Notebooks
 * [Binomial Distribution: Using Stats to Determine Skill in Fantasy Football](https://www.kaggle.com/code/amartinson193/using-stats-to-determine-skill-in-fantasy-football)
 * [Permutations: Using Permutations in your Statistical Analysis](https://www.kaggle.com/code/amartinson193/using-permutations-in-your-statistical-analysis)
+
+## Others Kaggle Notebooks
 
 # Blogs
 * [Statistics by Jim](https://statisticsbyjim.com/)
