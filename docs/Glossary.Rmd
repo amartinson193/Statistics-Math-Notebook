@@ -15,7 +15,7 @@ output:
 ## C
 
 <details>
-  <summary>Cumulative Distribution Function</summary>
+  <summary>Cumulative Distribution Function </summary>
 
 Source: DataCamp – Exploratory Data Analysis in Python 
 Source: empiricaldist package 
