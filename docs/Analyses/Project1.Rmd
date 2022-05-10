@@ -1,0 +1,125 @@
+---
+title: "Project 1"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output: StatsBYUI::math325_analysis
+---
+
+```{r load_library, include=FALSE}
+# Use this R-Chunk to load your libraries!
+library(mosaic)
+library(readr)
+library(pander)
+library(tidyverse)
+
+```
+
+```{r load_data, include=FALSE}
+# Use this R-Chunk to load your datasets!
+URL <- "/Users/andreasmartinson/Documents/School/1 - 2018 Fall Semester Classwork/MATH 325/Math 325 Notebook/Data/ks-projects-201801.csv.zip"
+dat_kickstarter <- read_csv(unzip(URL))
+```
+
+### Background
+
+The data that I am using is a dataset from Kickstarter (a crowdfunding platform) with over 30,000 kickstarter projects. The dataset has been filtered to include kickstarter projects that were only funded in US dollars. This dataset came from Kaggle and can be found through the following link: https://www.kaggle.com/kemical/kickstarter-projects
+
+
+
+###Question and Hypothesis
+
+Below I wrote the questions that I am trying to find answers to and their hypothesis. The first 3 questions I use a kruskal wallis test to solve. The last question I will be using a linear regression to solve. 
+
+Question 1: Does each category of kickstarter projects have pledged amounts that come from the same distribution? (i.e. does one of the kickstarter projects average pledged amount asked for exceed that of other project's)
+
+$$H_o: \mu_{category1} = \mu_{category2} ... = \mu_{category15}$$
+
+$$H_a: \mu_i ≠ \mu \ for \ at \ least \ one \ i  $$
+
+Question 2: Does each state of kickstarter projects have pledged (funds raised for the project) amounts that come from the same distribution?
+
+$$H_o: \mu_{success} = \mu_{failure} =  \mu$$
+
+$$H_a: \mu_i ≠ \mu \ for \ at \ least \ one \ i \ \epsilon \left\{  1=success,\ 2 = failure\right\} $$
+
+Question 3: Is there a correlation between the goal amount and the amount that was pledged?
+
+$$H_o: \beta_1 = 0$$
+
+$$H_a: \beta_1≠ 0
+$$
+$$\alpha = .05
+$$
+###Prep the data
+
+```{r}
+dat_kickstarter2 <- subset(dat_kickstarter, dat_kickstarter$state == "failed" | dat_kickstarter$state == "successful")
+
+dat_kickstarter2 <- dat_kickstarter2 %>% 
+  filter(currency == "USD", pledged > 0)
+```
+
+### Analysis
+
+###Category and the amounts pledged
+
+```{r}
+pander(kruskal.test(pledged ~ as.factor(main_category), data= dat_kickstarter2))
+```
+
+All of the values are significant, which shows that both the project's state as well as the category help to determine the amount pledged. 
+
+
+```{r}
+options(scipen=999)
+par(mfrow=c(1,2))
+  boxplot(pledged ~ as.factor(main_category), data = dat_kickstarter2, type=c("p","a"), ylim = c(0,20000), xlab = "Categories", ylab = "Amount pledged (USD)", main = "Categories and amounts pledged", col = "blue")
+
+```
+
+From the graphs above it is apparent that the design, games, and the tech are the top 3 categories that get the most amount pledged. According to the p value from the kruskal test above, this is significant. 
+
+###States of the project and the amounts pledged
+
+```{r}
+pander(kruskal.test(pledged ~ as.factor(state), data= dat_kickstarter2))
+```
+
+
+```{r}
+
+
+boxplot(pledged ~ as.factor(state), data = dat_kickstarter2, type=c("p","a"), ylim = c(0,50000), xlab = "State", ylab = "Amount pledged (USD)", main = "Successful projects vs. failures", col = "dodgerblue", jitter.data = T)
+stripchart(pledged ~ as.factor(state), data = dat_kickstarter2, vertical = TRUE, method = "jitter", add = TRUE, pch = 18, col = 'red')
+```
+
+The outcome of the project and the amount pledged is also significant. The successful projects typically have more money pledged to them, this makes sense since those projects that are worth funding are probably going to attract more attention and money. The definition of success and failure is that if a project is successful, the project is built/occurs and if it is a failure, then funders get their money back. 
+
+###Appropriatness of the data
+
+It is important to check if the data is normal or not, since if it was normal, then an ANOVA test would have been more appropriate.
+
+```{r}
+par(mfrow=c(1,2))
+myaov <- aov(pledged ~ main_category + goal + main_category:goal, data= dat_kickstarter)
+plot(myaov, which= 2, pch=16)
+```
+
+As you can see from the diagnostic chart above, the Kruskal Wallis test was appropriate. 
+
+### Linear regression of goal and amount pledged
+
+```{r}
+options(scipen=999)
+plot(goal ~ pledged, data = dat_kickstarter2, xlab = "Amount pledged (USD)", ylab = "Goal amount (USD)", ylim = c(0,1000000), xlim = c(0,5000000))
+my_lm <- lm(goal ~ pledged, data = dat_kickstarter2)  
+pander(summary(my_lm))
+abline(my_lm)
+```
+
+From the graph above, it is easy to see that the chart is right-skewed and that there is no correlation between the amount pledged and the goal of the project. The r squared multiple is less than .01, indicating that these two items are not correlated at all.
+
+### Conclusion
+
+I was surprised to see that all of the values were significant in the dataset. The categories came from different distributions in the end, which is what I expected, I just wasn't sure which categories would be most popular (technology was one I guessed, but I would have never guessed design). Also I wasn't expecting the relationship between the goal and amount pledged to be so right skewed either. Finally, it did make sense that the successful project would get, on average, more funds given to them. 
+
+

@@ -1,0 +1,89 @@
+---
+title: "CarPrices Analysis"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output: StatsBYUI::math325_analysis
+---
+
+```{r load_library, include=FALSE}
+# Use this R-Chunk to load your libraries!
+library(mosaic)
+
+```
+
+```{r load_data, message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+# Use this R-Chunk to load your datasets!
+CarPrices <- read.csv("/Users/andreasmartinson/Documents/School/1 - 2018 Fall Semester Classwork/MATH 325/Math 325 Notebook/Data/CarPrices.csv", header=TRUE)
+```
+
+### Background
+
+As a part of the car prices dataset, I am trying to determine what could explain the two separate lines for the Cadillac Deville in the graphic below. 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+Cad <- read.table("/Users/andreasmartinson/Documents/School/1 - 2018 Fall Semester Classwork/MATH 325/Math 325 Notebook//Data/Cadillac.txt", header=TRUE, quote="\"")
+
+Cad.lm <- lm(Price ~ Mileage + Model, data=Cad)
+
+palette(c("skyblue4","firebrick","skyblue","sienna1","gray","sienna4"))
+plot(Price ~ Mileage, data=Cad, pch=16, col=Cad$Model, xlim=c(0,50000))
+abline(Cad.lm$coef[1]               , Cad.lm$coef[2], col=palette()[1])
+abline(Cad.lm$coef[1]+Cad.lm$coef[3], Cad.lm$coef[2], col=palette()[2])
+abline(Cad.lm$coef[1]+Cad.lm$coef[4], Cad.lm$coef[2], col=palette()[3])
+abline(Cad.lm$coef[1]+Cad.lm$coef[5], Cad.lm$coef[2], col=palette()[4])
+abline(Cad.lm$coef[1]+Cad.lm$coef[6], Cad.lm$coef[2], col=palette()[5])
+abline(Cad.lm$coef[1]+Cad.lm$coef[7], Cad.lm$coef[2], col=palette()[6])
+legend("topright",Cad.lm$xlevels$Model, lty=1, lwd=5, col=palette(), cex=0.7)
+```
+
+In order to do this I will test a couple different variables and see if there is a correlation between those variables and the points that are represented. I will not use any interactions for the variables in my graphs. Since I am simply finding what correlates and not doing a test, I will not be using a hypothesis, but typically the hypothesis for a multiple regression is as follows:
+
+$$
+  \underbrace{Y_i}_{\text{Price}} = \overbrace{\beta_0 + \beta_1 \underbrace{X_{i1}}_{\text{Mileage}}}^{\text{Intercept and Slope}} + \overbrace{\beta_2 \underbrace{X_{i2}}_{\text{1 if Deville}}}^{\text{Cadillac Deville Adjustments to Line}} + \epsilon_i
+$$
+
+### Analysis
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE}
+## Wrangle the data
+Deville_dat <- droplevels(subset(CarPrices, CarPrices$Model == "Deville"))
+
+```
+
+```{r echo=FALSE}
+## Test the trim
+my_lm <- lm(Price ~ Mileage + Trim, data = Deville_dat)
+summary(my_lm)
+```
+
+When looking at the multiple r squared as well as the p value of all of the intercepts and slopes, the summary shows that they are all significant and since the r squared multiple is close to one, that means that the lines and the data are also highly correlated. 
+
+```{r }
+
+palette(c("skyblue","firebrick","green"))
+plot(Price ~ Mileage, data = Deville_dat, pch = 16, col = Trim)
+legend("topright", legend=c("CX Sedan 4D","TrimDTS Sedan 4D", "TrimSedan 4D"), pch=1, col=palette(), title="Trim", bty="n")
+
+abline(my_lm$coef[1],my_lm$coef[2])
+abline(my_lm$coef[1] + my_lm$coef[3], my_lm$coef[2])
+abline(my_lm$coef[1] + my_lm$coef[4], my_lm$coef[2])
+```
+
+As can be seen above, the trim is the best fit for the multiple lines that the Deville had. 
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+## Test the sound
+my_lm <- lm(Price ~ Mileage + Sound, data = Deville_dat)
+summary(my_lm)
+
+plot(Price ~ Mileage, data = Deville_dat)
+abline(my_lm$coef[1],my_lm$coef[2])
+abline(my_lm$coef[1] + my_lm$coef[3], my_lm$coef[2])
+```
+
+To prove my point that trim is the best fit, I tried to include another variable and see how well it fits. In this case I chose to fit the sound, but as can be seen above, that is not as good of a fit as the lines for the trim. Also, the r squared multiple is closer to 0, (currently at .3997) which means that this variable is not as correlated to the points on the graph.
+
+### Interpretation
+
+There are three types of trim on the Deville and these three types of trim best fit the lines for the Deville Model as can be seen above. 
+

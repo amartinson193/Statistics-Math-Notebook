@@ -1,0 +1,133 @@
+---
+title: "Simple Linear Regression"
+output: 
+  html_document:
+    theme: cerulean
+    code_folding: hide
+---
+
+
+<!-- Directions
+
+Come up with a simple linear regression of your own creation. 
+
+* Write the Background and clearly state your question. Then collect data and perform the linear regression analysis in order to answer your question. Use the proper order of first, ask the question, then second, figure out the answer.
+
+
+* You should collect both the quantitative response variable and the quantitative explanatory variable yourself. This can be data you collect from 
+    - the internet (like weather data, Facebook data, or sports data) 
+    - your own experiment 
+    - your own observational study
+* However,     
+    - The data should not be a single pre-existing dataset. It must be something that you piece together yourself.
+
+* You need at least $n=3$ $(X,Y)$ pairs to perform the regression. However, your regression will only be useful if you can get around $n=10$ or more observations.
+
+
+
+-->
+
+## Background
+
+The data I used came from the BYU-I website. The data represents enrollment numbers from Spring 2010 to Winter 2018, this results in 24 data points for both x and y. The data is comparing two quantitative variables: total enrollment of BYU-I and enrollment of students from Washington state. These enrollment numbers are for campus students only, since that data data for both online and campus was not consistently available until 2015. I put the data from both datasets into a .csv file and then manipulated the data into the correct format in r.
+
+I chose Washington state since that is the state that I am from! My question that I want to answer from the data collected is, "Is there a linear relationship between the students that come from Washington state and total enrollment of the university?" I realize that the western states are more likely to have a bulk of the BYU-Idaho students and so I thought that it could be likely that there was a linear relationship. If there is a linear relationship, then one could predict total enrollment based on the amount of student from Washington state that are enrolled. 
+
+####Hypothesis
+
+$$H_o: \beta_1 = 0
+$$
+$$H_a: \beta_1≠ 0
+$$
+$$\alpha = .05
+$$
+
+The above formulas constitutes my hypothesis. The null states that the slope is 0 and there is no linear relationship. The alternative states that the slope is not 0 and there is a linear relationship. I will set my significance level at .05.
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(readr)
+library(tidyverse)
+library(pander)
+
+##Import data
+dat <- read_csv("/Users/andreasmartinson/Documents/School/1 - 2018 Fall Semester Classwork/MATH 325/Analysis 7 Data.csv")
+
+##Spread campus data into columns
+dat <- dat %>% 
+  spread(key = Enrollment_Type, value = Campus)
+
+##Rename the columns
+colnames(dat)[which(names(dat) == "Total")] <- "Total_CampusEnrolled"
+colnames(dat)[which(names(dat)== "Washington")] <- "Washington_CampusEnrolled"
+
+```
+
+## Linear Plot of the Data
+
+```{r}
+##Plot the data
+dat.lm <- lm(Total_CampusEnrolled ~ Washington_CampusEnrolled, data = dat)
+plot(Total_CampusEnrolled ~ Washington_CampusEnrolled, data = dat, main = "Linear Plot of BYU-I Enrollment", xlab = "Campus Students Enrolled from Washington State",
+ylab = "Total Campus Students Enrolled")
+abline(dat.lm)
+
+##Find the x and y values
+pander(dat.lm)
+```
+
+####Explanation
+
+The data does appear to be fairly linear. However, one of the p values is above my level of significance, therefore the results are insignificant. If the dataset was significant and it meets the requirements for a reliable dataset to perform linear regression, then the equation for linear equation would be as follows:
+
+$$\hat{Y_i} = 5580.331 + 7.755X_i 
+$$
+$$\underbrace{E\left\{Y \right\}}_\text{Number of campus students enrolled} = \overbrace{\beta_0}^\text{intercept} + \overbrace{\beta_1}^\text{slope}\underbrace{X_i}_\text{enrolled student}
+$$
+
+## Testing the Assumptions
+
+The five assumptions that need to be tested before the residual plot above can be trusted are:
+
+1. The regression relation between Y and X is linear.
+2. The error terms are normally distributed with E{ϵi}=0.
+3. The variance of the error terms is constant over all X values.
+4. The X values can be considered fixed and measured without error.
+5. The error terms are independent.
+
+I will test these most of these assumptions below.
+
+```{r}
+##Test the assumptions
+plot(dat.lm, which = 1)
+
+```
+
+#### Residual v. Fitted Plot
+
+The above diagnostic plot tests assumptions 1 and 3. In order to prove these assumptions, the line above should be relatively flat and the data points should not follow a distinguishable pattern. In the data above the data points seem to be fanning out and therefore we cannot assume the regression relation between x and y is linear or that the variance of the error terms are constant. This means that we cannot use the results of the linear regression for further insight into the data. 
+
+
+```{r}
+##Test the assumptions
+plot(dat.lm, which = 2)
+
+```
+
+#### QQ Plot
+
+The above diagnostic tests assumption 2. Based on the plot above, it seems that the data is relatively normal, but points 15 and 16 make the dataset not normal, therefore the dataset fails this assumption as well. 
+
+## Conclusion
+
+After testing 3 out of the 5 assumptions, I found that the data is not sufficient for a linear regression test since it failed assumptions 1-3. If there was more data, then the data might be found to be significant and a linear relationship might be found, but that was not so in this case. 
+
+
+
+
+
+
+
+
+
+
+

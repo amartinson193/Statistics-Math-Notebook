@@ -1,0 +1,112 @@
+---
+title: "Rail Trail t Test"
+output: 
+  html_document:
+    theme: cerulean
+    code_folding: hide
+---
+
+```{r, message=FALSE, warning=FALSE}
+library(mosaic)
+library(DT)
+library(pander)
+library(tidyverse)
+library(car)
+```
+
+<!-- Instructions
+
+1. Use the RailTrail dataset in R to come up with a question that can be answered with a t Test. 
+
+2. Establish why the question is interesting and rephrase the question using a statistical "null" and "alternative" hypothesis. (Hint, see the "Math 325 Notebook -> R Help -> R-Markdown Hints" page of your textbook for instructions on how to write mathematical hypotheses.)
+
+3. Clearly answer your question using statistics. Be sure to compute a p-value and provide supporting numerical and graphical summaries.
+
+For details about the RailTrail dataset type the command:
+  > ?RailTrail 
+into your Console and study the help file that appears. Also, if you want extra information, browse this document that has images and further details:
+http://www.northamptonma.gov/DocumentCenter/View/5244   
+
+
+Note: you can create "groups" from the data in many ways. For example, you can create a variable in your RailTrail dataset that is called "rain" and has categories of "yes" and "no" with the code:
+
+```{r}
+RailTrail$rain <- ifelse(RailTrail$precip > 0, "yes", "no")
+```
+
+-->
+
+## Question and Hypothesis
+
+My question is whether the average temperature in the spring is greater than the average temperature in the fall. My hypothesis is as follows:
+
+$$ H_0: \mu_1 = \mu_2  $$ $$ H_a: \mu_1 > \mu_2 $$ 
+
+$\mu_1 = Spring\, Average \, Temperature\\$
+
+$\mu_2 = Fall\, Average \, Temperature$
+
+
+I think that this would be an interesting test since these two seasons are right before and after summer and I usually think of spring being warmer than fall. I will use an independent t-test to test my hypothesis, with a confidence interval of .95. 
+
+## Testing for Normal Distribution
+
+```{r}
+SpringWeather <- subset(RailTrail,RailTrail$spring == 1)
+FallWeather <- subset(RailTrail, RailTrail$fall == 1)
+# qqplot(SpringWeather$avgtemp,FallWeather$avgtemp, xlab="Spring Weather Avg. Temp", ylab = "Fall Weather Avg. Temp.", main = "The average temp. data provided for fall and spring is normal")
+
+pander(qqPlot(FallWeather$avgtemp, ylab= "Fall Weather Average Temp", main = "The Fall Season Avg. Temp. is Normally Distributed"))
+pander(qqPlot(SpringWeather$avgtemp, ylab= "Spring Weather Average Temp", main = "The Spring Season Avg. Temp. is Normally Distributed"))
+```
+
+#### QQPlot Description
+
+I included the above chart to show that the data is normal and therefore a t-test can be done on the data since there are two requirement for a t-test. One is that the data is representative of the population. The second is that the data is normally distributed. Since the data above follows a straight 45 degree line, the data can be assumed to be normal. 
+
+## My Independent Samples T-Test
+
+```{r}
+t.test(SpringWeather$avgtemp, FallWeather$avgtemp, mu = 0, alternative = "greater", conf.level = .95)
+```
+#### T-Test Results
+
+The p value is .00086, which is definitely lower than my $\alpha$ of .05, which means that I reject the null hypothesis in favor of the alternative. This shows that the alternative hypothesis that spring average temperatures are greater has some credibility. 
+
+## Box plot of fall and spring average temperatures
+
+To further strengthen the alternative hypothesis, I included box plots below. 
+```{r}
+SpringorFall <- subset(RailTrail, fall == 1 | spring == 1 )
+SFFiltered <- 
+  SpringorFall %>% 
+  gather('spring','fall',key="Season",value = 'SeasonNumber')
+SFnew <- subset(SFFiltered, SFFiltered$SeasonNumber != 0)
+boxplot(avgtemp ~ Season, data=SFnew, xlab = "Season", ylab = "Average Temperature", main = "Spring Temperatures are Higher on Average", col = c("orange", "green"))
+FallOnly <- subset(SFnew, SFnew$Season == "Fall")
+SpringOnly <- subset(SFnew, SFnew$Season == "Spring")
+
+```
+
+#### Box Plot Results
+
+These box plots show that the median for fall is `r median(FallOnly$avgtemp)` and the median for spring is `r round(median(SpringOnly$avgtemp), digits=2)`, which supports the previous conclusion that spring is hotter, on average, than fall. 
+
+## Spring Average Temperature Summary
+```{r}
+pander(favstats(SpringWeather$avgtemp))
+```
+
+## Fall Average Temperature Summary
+```{r}
+pander(favstats(FallWeather$avgtemp))
+```
+
+#### Average Temperature Summary Explanation
+
+I included a summary of the average temperature data so that the data represented in the box plots is easier to see. 
+
+## Interpretation
+
+Spring did turn out to be a hotter season than fall. It was surprising to see that they were relatively close in temperature though. One interesting thing that I saw was that the fall median temperature was closer to the 75th percentile and the spring median temperature was closer to the 25th percentile. This tells me that there was greater variation in temperatures for fall in the 25-50th percentiles and for spring in the 50th to 75th percentiles. This would make sense because the temperatures in fall would be cooling down and spring would be warming up. Overall, the alternative hypothesis was found to be more correct based on the information given. 
+

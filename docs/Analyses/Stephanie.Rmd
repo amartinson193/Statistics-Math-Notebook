@@ -1,0 +1,100 @@
+---
+title: "Stephanie's Housing Request"
+output: 
+  html_document:
+    theme: cerulean
+    code_folding: hide
+    toc: true
+    toc_float: true
+---
+
+**Week 1 Analysis**
+
+```{r, include=FALSE}
+library(mosaic)
+library(DT) # If you get an error stating: 
+            # Error in library(DT): there is no package called 'DT'
+            # You will need to run: install.packages("DT") 
+            # in your Console, then try "Knit HTML" again.
+Rent <- read.csv("../Data/Rent.csv", header=TRUE)
+```
+
+<br />
+
+## Background
+
+Stephanie[^1] is a student that will be starting school at BYU-Idaho next semester. Suppose she sent you the following email.
+
+----
+
+"Hi. My name is Stephanie. I would like to learn about what housing options I have for living at BYU-Idaho next semester. It will be my first semester there, so I would like to find something that is close to campus and around $300 a month in rent. I'm not too picky on roomates, but I would like somewhere that has a lot of people around so I can get to know as many people as possible. Thanks in advance!"
+
+----
+
+Write your response to Stephanie below. Use the "Rent" dataset, good statistical analysis, and clear writing to make some well supported suggestions to her about apartments that meet her stated criterions. You are free to use other criterion that you think she might find more meaningful as well.
+
+## Response
+
+Dear Stephanie,
+
+Write your response here... (delete this line).
+
+
+<!-- Hint, you should probably subset the Rent dataset to only show the "Approved Women's Housing" since Stephanie won't be interested in Male Housing options. Notice how this text in green doesn't show up in the HTML output because we used the HTML comment tags around this text. --> 
+
+```{r}
+# Code to get you started, be sure to use a subset of Rent instead of Rent in this code though.
+
+datatable(subset(Rent,Rent$Gender=="F"), options=list(lengthMenu = c(3,10,30)), extensions="Responsive")
+```
+
+## Question and Hypothesis
+
+Stephanie is looking for an apartment complex that has a couple of criteria. First she wants something that is reasonably priced, around $300 a month, which would be around $900 per semester. This can be found based on the "Price" column in the rent dataset. Second, she wants something that is not too far from campus. Again, the dataset has relevant information in the "MilesToCampus" column, Third, she wants someplace with a lot of people. This can be answered using the "Capacity" column. We can find the median and mean and try to find an apartment complex greater than those values. To summarize, the question that is trying to be answered is, "Which apartment complexes are $900 or less per month, comparatively close to campus, and comparitively have a lot of people? The answer would help answer a common question that incoming, or even current, students may have. 
+
+## Scatterplot of Both Price and Miles To Campus
+```{r}
+library(plotly)
+RentWomens<- subset(Rent,Rent$Gender=="F" & Rent$Price < 1000)
+# plot(Price ~ MilesToCampus, data = RentWomens,pch=19, col="red")
+# text(Price ~ MilesToCampus, labels = Apartment,data=subset(Rent,Rent$Gender=="F" & Rent$Price < 1000),cex=.9,font=2,pos=4)
+plot_ly(data=RentWomens, x= ~MilesToCampus, y= ~Price, text = ~Apartment, color = 'red') %>%
+  add_markers()
+# layout(title = 'Womens Housing Scatterplot')
+
+
+```
+
+
+## Capacity of the Womens Complexes
+```{r}
+RentWomens<- subset(Rent,Rent$Gender=="F" & Rent$Price < 1000)
+barplot(RentWomens$Capacity, las=1, names.arg = RentWomens$Capacity, axes = FALSE, horiz=TRUE, col = "steelblue")
+```
+
+The top 5 largest complexes listed in order are: Birch Plaza, Royal Crest, Aspen Village, Brooklyn Apartment, and Greenbrier South. The reason that I looked at capacity is because Stephanie mentioned she wanted a complex with "a lot of people around". Out of these 5, Birch Plaza and Brooklyn Apartments seem both like viable options since they cost less and are relatively close to campus. To get a better idea of the distribution of capacity, I completed a 5 number summary below. 
+
+## 5 Number Summaries
+
+### Price
+
+```{r}
+summary(RentWomens$Price)
+```
+
+### Miles To Campus
+
+```{r}
+summary(RentWomens$MilesToCampus)
+```
+
+### Capacity
+
+```{r}
+summary(RentWomens$Capacity)
+```
+
+## Interpretation and Recommendation
+
+After reviewing the data, the Birch Plaza and Brooklyn apartments seemed the most viable options. The only issue was deciding between the two to recommend. That is why I included the 5 number summaries above. First of all, the price. The price difference between Brooklyn and Birch Plaza is $110, with Brooklyn only costing $870 per semester, which would be less than the $300 per month that Stephanie is looking for. However, Brooklyn is farther from campus. It is .37 miles away, while Birch Plaza is only .06. Therefore, despite being cheaper, Brooklyn apartment is farther away than the average women's apartment, and is getting close the maximum distance of apartment available. Finally, the capacity of Birch Plaza is larger than that of Brooklyn, it is more than double and is actually the largest womens complex availabe. Overall, I would recommned Birch Plaza since it is closer than the average apartment to campus, has a lot of people there, and would only cost around $327 per month. 
+

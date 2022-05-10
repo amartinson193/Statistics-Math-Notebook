@@ -1,0 +1,45 @@
+---
+title: "Residuals versus Order Plot"
+output: 
+  html_document:
+    theme: cerulean
+    code_folding: hide
+---
+
+```{r, include=FALSE}
+library(mosaic)
+library(car)
+```
+
+----
+
+Plotting the residuals against the order in which the data was collected provides insight as to whether or not the observations can be considered independent. If the plot shows no trend, then the error terms are considered independent and the regression assumption satisfied. If there is a visible trend in the plot, then the regression assumption is likely violated.
+
+```{r}
+par(mfrow=c(2,2),  mai=c(.5,.5,.25,.25), mgp=c(1,.75,0))
+
+  tmp <- lm(mpg ~ disp, data=mtcars)
+  plot(tmp$residuals, pch=20,
+       xlab="Order", ylab="Residuals", 
+       main="Good: No Trend", cex.main=0.95,
+       xaxt='n', yaxt='n')
+
+  tmp <- lm(height ~ age, data=Loblolly)
+  plot(tmp$residuals, pch=20,
+       xlab="Order", ylab="Residuals", 
+       main="Questionable: General Trend", cex.main=0.95,
+       xaxt='n', yaxt='n')
+
+  tmp <- lm(hp ~ qsec, data=mtcars)
+  plot(tmp$residuals, pch=20,
+       xlab="Order", ylab="Residuals", 
+       main="Questionable: Interesting Patterns", cex.main=0.95,
+       xaxt='n', yaxt='n')
+  
+  tmp <- lm(hp ~ drat, data=mtcars[order(mtcars$cyl),])
+  plot(tmp$residuals, pch=20,
+       xlab="Order", ylab="Residuals", 
+       main="Bad: Obvious Trend", cex.main=0.95,
+       xaxt='n', yaxt='n')
+  
+```

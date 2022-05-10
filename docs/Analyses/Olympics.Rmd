@@ -1,0 +1,94 @@
+---
+title: "The Olympics"
+output: 
+  html_document:
+    theme: cerulean
+    code_folding: hide
+    toc: true
+    toc_float: true
+---
+
+**Week 2 Analysis**
+
+```{r, include=FALSE}
+library(plyr)
+library(dplyr)
+library(mosaic)
+library(pander)
+library(DT) 
+library(tidyverse)
+library(ggplot2)
+library(readr)
+Olympics <- read_csv("../Data/Olympics.csv")
+```
+
+<br />
+
+## Background
+
+## Question and Hypothesis
+
+My question is do athletes win less medals as they get older? My null hypothesis is that younger athletes will win more medals and my alternative hypothesis will be that younger athletes, ages 20 - 30, do not win more medals than adults. To give more than one example I will compare the summer and winter olympics and see if how they compare as well.  
+
+## Number of Medals by Age Group
+```{r, warning=FALSE}
+# Code to get you started. 
+# Only the first 100 observations are shown here because the dataset is really too big to show all of it in a markdown file.
+# datatable(head(Olympics,100), options=list(lengthMenu = c(3,10,30)), extensions="Responsive")
+```
+
+
+```{r}
+#Olympics <- read.csv("../Data/Olympics.csv", header=TRUE)
+Summer = subset(Olympics, Olympics$Season == "Summer")
+Summer1 <- Summer[,c(4,15)]
+Summer2 <- na.omit(Summer1)
+Summer3 <- count(Summer2, Age, Medal)
+
+ggplot(as.data.frame(Summer3), aes(x = Age, y = n), fill = Medal) + 
+  geom_point(aes(col = Medal)) +
+  labs(title = "Summer Olympics", y = "Number of medals")
+```
+
+#### Age Statistics for Summer
+
+```{r}
+
+summary(Summer$Age)
+```
+****
+
+#### Summer Olympics Reflection
+
+I was expecting to see the peak of the graph to be more on the left-hand side since I assumed younger athletes would be winning more medals and it looks like the graph agrees with my null hypothesis. In other words, the data is "right skewed". The median age was 24 and the mean is 25.67, which falls right in that 20-30 age group I mentioned at the beginning. 
+
+```{r}
+#Olympics <- read.csv("../Data/Olympics.csv", header=TRUE)
+Winter = subset(Olympics, Olympics$Season == "Winter")
+Winter1 <- Winter[,c(4,15)]
+Winter2 <- na.omit(Winter1)
+Winter3 <- count(Winter2, Age, Medal)
+
+ggplot(as.data.frame(Winter3), aes(x = Age, y = n), fill = Medal) + 
+  geom_point(aes(col = Medal)) +
+  labs(title = "Winter Olympics", y = "Number of medals")
+
+```
+
+#### Age Statistics for Winter
+
+```{r}
+
+summary(Winter$Age)
+
+```
+***
+
+#### Winter Olympics Reflection
+
+This graph looks very similar to the summer, except there are not as many medals that were won and the peak of the graph is not as rounded, there is more of a jagged edge and then a steep drop, this could be because the number of medals being awarded is lower and that could lead to the graph looking like less of a smooth curve. 
+
+##Interpretation
+
+I noticed that there are less people competing in the winter olympics, which was interesting. I also didn't expect that the maximum age between winter and summer olympic medalists would be so different. However, in the end it does look like my null hypothesis was proven correct for both the winter and the summer. It was also interesting to see that the most amount of gold medalists are right at the peak of each of the scatterplots.  
+

@@ -1,0 +1,40 @@
+name: "math-325-notebook"
+navbar:
+  title: "My Stats Notebook"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Describing Data"
+      menu:
+        - text: "Graphical Summaries"
+          href: GraphicalSummaries.html
+    - text: "Models"
+      menu:
+        - text: "Making Inference"
+          href: MakingInference.html
+        - text: "Binomial Tests"
+          href: BinomialTests.html
+        - text: "t Tests"
+          href: tTests.html
+        - text: "Wilcoxon Tests"
+          href: WilcoxonTests.html
+        - text: "ANOVA"
+          href: ANOVA.html
+        - text: "Kruskal-Wallis"
+          href: Kruskal.html
+        - text: "Linear Regression"
+          href: LinearRegression.html
+        - text: "Non-Linear Regression"
+          href: Non-Linear-Regression.html
+        - text: "Logistic Regression"
+          href: LogisticRegression.html
+        - text: "Chi-Squared Tests"
+          href: ChiSquaredTests.html
+        - text: "Permutation Tests"
+          href: PermutationTests.html
+    - text: "Glossary"
+      href: Glossary.html
+    - text: "Articles"
+      href: Articles.html
+      
+output_dir: '.'
