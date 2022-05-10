@@ -9,6 +9,9 @@
 * [Binomial Distribution: Using Stats to Determine Skill in Fantasy Football](https://www.kaggle.com/code/amartinson193/using-stats-to-determine-skill-in-fantasy-football)
 * [Permutations: Using Permutations in your Statistical Analysis](https://www.kaggle.com/code/amartinson193/using-permutations-in-your-statistical-analysis)
 
+# Courses
+
+
 # Additional Resources
 
 * [Computation Statistics with Python](https://github.com/amartinson193/Computational-statistics-with-Python)
@@ -19,4 +22,5 @@
 * [BYU-I Stats Notebook](http://statistics.byuimath.com/index.php?title=Main_Page)
 * [U of U Data Science Course](https://github.com/amartinson193/2021-datascience-lectures)
 * [Datacamp - Statistical Thinking in Python (Part 1)](https://github.com/amartinson193/Statistics-Book-Private)
+* [Statistics by Jim](https://statisticsbyjim.com/)
 
