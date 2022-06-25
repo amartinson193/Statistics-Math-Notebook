@@ -32,6 +32,8 @@
 
 # Lists
 
+* [Linear Regression U of U Data Science](https://github.com/amartinson193/2021-datascience-lectures/blob/master/09-LinearRegression1/09-LinearRegression1_Activity_Andreas.ipynb)
+
 # Additional Resources
 
 
