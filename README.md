@@ -30,6 +30,8 @@
 * [Datacamp - Statistical Thinking in Python (Part 1)](https://github.com/amartinson193/Statistics-Book-Private)
 * [Datacamp - Statistical Thinking in Python (Part 2)](https://github.com/amartinson193/Statistics-Book-Private/tree/master/Datacamp%20-%20Statistical%20Thinking%20in%20Python%20(Part%202))
 
+# Lists
+
 # Additional Resources
 
 
