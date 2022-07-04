@@ -60,7 +60,7 @@ def check_ols_assumptions(x: pd.Series, y:pd.Series, predicted_values:pd.Series,
 
     # Figure 3 - Create the figure and axes
     if len(time) != 0:
-        fig = plt.figure(figsize=((7,8)))
+        fig = plt.figure(figsize=((7,10)))
         gs = GridSpec(2, 1, figure=fig)
         ax3 = fig.add_subplot(gs[0, 0])
         ax4 = fig.add_subplot(gs[1, 0])
