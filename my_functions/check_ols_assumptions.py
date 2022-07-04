@@ -16,7 +16,7 @@ def check_ols_assumptions(x: pd.Series, y:pd.Series, predicted_values:pd.Series,
       None
 
     Raises:
-      TypeError: If args are not numpy arrays or pandas series
+      TypeError: If args are not numpy arrays.
     """
     # Import required packages
     import matplotlib.pyplot as plt
@@ -54,6 +54,8 @@ def check_ols_assumptions(x: pd.Series, y:pd.Series, predicted_values:pd.Series,
     # Figure 2 - Tests for normality - Create a histogram
     ax2.hist(residuals)
     ax2.set_title('Histogram of the Residuals')
+    ax2.set(xlabel = 'Residuals')
+    ax2.set(ylabel = 'Frequency')
     plt.show()
 
     # Figure 3 - Create the figure and axes
@@ -75,11 +77,15 @@ def check_ols_assumptions(x: pd.Series, y:pd.Series, predicted_values:pd.Series,
     ax3.plot(x, lowess_values, c='r')
     ax3.axhline(y=0, c='black', alpha=.75)
     ax3.set_title('Fitted vs. Residuals - Tests for Linearity and Constant Variance (Assumptions #1 and #3)')
+    ax3.set(xlabel = 'Fitted Values')
+    ax3.set(ylabel = 'Residuals')
     
     # Figure 3 - Add fitted vs order plot if there is a time component
     if len(time) != 0:
         ax4.scatter(time, residuals)
         ax4.axhline(y=0, c='black', alpha=.75)
         ax4.set_title('Order vs. Residuals - Tests for Independent Error Terms (Assumption #4)')
+        ax4.set(xlabel = 'Order')
+        ax4.set(ylabel = 'Residuals')
 
     plt.show()
