@@ -5,6 +5,8 @@
 # Medium Articles
 
 ### My Medium Articles
+* [How to Simplify Hypothesis Testing for Linear Regression in Python](https://towardsdatascience.com/how-to-simplify-hypothesis-testing-for-linear-regression-in-python-8b43f6917c86)
+
 ### Others Medium Articles
 * [10 Probability Distributions that Every Data Scientist Should Know](https://medium.com/python-in-plain-english/10-probability-distribution-that-every-data-scientist-should-know-d73bcfe248b0)
 
